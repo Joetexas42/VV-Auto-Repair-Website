@@ -10,7 +10,34 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: reviews
+    description: Google Places reviews
 paths:
+  /reviews:
+    get:
+      operationId: getReviews
+      tags: [reviews]
+      summary: Fetch live Google reviews
+      description: Returns reviews from Google Places API for one or both shop locations. Falls back gracefully if the API is unavailable.
+      parameters:
+        - name: location
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [dallas, garland]
+          description: Filter by shop location. Omit to get reviews for both locations.
+      responses:
+        "200":
+          description: Reviews data (may be null if Google Places API is unavailable or not configured)
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/SingleLocationReviews"
+                  - $ref: "#/components/schemas/AllLocationsReviews"
+        "400":
+          description: Invalid location parameter
   /healthz:
     get:
       operationId: healthCheck
@@ -26,6 +53,48 @@ paths:
                 $ref: "#/components/schemas/HealthStatus"
 components:
   schemas:
+    PlaceReview:
+      type: object
+      properties:
+        author_name:
+          type: string
+        rating:
+          type: number
+        text:
+          type: string
+        time:
+          type: number
+        relative_time_description:
+          type: string
+      required: [author_name, rating, text, time]
+    LocationReviewData:
+      type: object
+      nullable: true
+      properties:
+        rating:
+          type: number
+        user_ratings_total:
+          type: number
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaceReview"
+    SingleLocationReviews:
+      type: object
+      properties:
+        location:
+          type: string
+          enum: [dallas, garland]
+        data:
+          $ref: "#/components/schemas/LocationReviewData"
+      required: [location]
+    AllLocationsReviews:
+      type: object
+      properties:
+        dallas:
+          $ref: "#/components/schemas/LocationReviewData"
+        garland:
+          $ref: "#/components/schemas/LocationReviewData"
     HealthStatus:
       type: object
       properties:

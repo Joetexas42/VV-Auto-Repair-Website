@@ -1,14 +1,64 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { MapPin, Phone, Star, Wrench, ShieldCheck, CheckCircle2, ChevronRight, ArrowRight, Clock, Images, Quote, ExternalLink, PenLine } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
+import { fetchAllReviews, type AllReviewsResponse } from "@/lib/reviewsApi";
+
+const FALLBACK_FEATURED = [
+  {
+    name: "Michael T.",
+    stars: 5,
+    textEn: "Brought my car in for brake replacement and they did an incredible job at a fair price. The mechanic explained everything clearly and didn't try to upsell me. Honest shop — I'll keep coming back.",
+    textVi: "Tôi đem xe đến thay phanh và họ làm việc xuất sắc với giá hợp lý. Thợ giải thích rõ ràng và không ép mua thêm. Tiệm trung thực — tôi sẽ quay lại.",
+    badge: "Dallas",
+  },
+  {
+    name: "Thanh H.",
+    stars: 5,
+    textEn: "Professional and honest service. They checked the car for free and clearly explained the problem. Prices are fair — not inflated like other shops. I recommend them to all my friends.",
+    textVi: "Dịch vụ chuyên nghiệp và trung thực. Họ kiểm tra xe miễn phí và giải thích rõ ràng vấn đề. Giá cả hợp lý, không chặt chém. Tôi giới thiệu cho bạn bè.",
+    badge: "Dallas",
+  },
+  {
+    name: "Jessica R.",
+    stars: 5,
+    textEn: "Had a fender bender and the Garland body shop made my car look flawless. They handled my insurance claim and made the whole process easy. Couldn't be happier!",
+    textVi: "Sau một vụ va chạm nhỏ, tiệm đồng sơn Garland làm xe tôi trông hoàn hảo. Họ xử lý hồ sơ bảo hiểm và mọi thứ rất dễ dàng. Tôi rất hài lòng!",
+    badge: "Garland",
+  },
+];
+
+function buildFeatured(liveData: AllReviewsResponse): Array<{ name: string; stars: number; textEn: string; textVi: string; badge: string }> {
+  const allReviews: Array<{ name: string; stars: number; textEn: string; textVi: string; badge: string }> = [];
+  if (liveData.dallas?.reviews) {
+    for (const r of liveData.dallas.reviews) {
+      if (r.text) allReviews.push({ name: r.author_name, stars: r.rating, textEn: r.text, textVi: r.text, badge: "Dallas" });
+    }
+  }
+  if (liveData.garland?.reviews) {
+    for (const r of liveData.garland.reviews) {
+      if (r.text) allReviews.push({ name: r.author_name, stars: r.rating, textEn: r.text, textVi: r.text, badge: "Garland" });
+    }
+  }
+  allReviews.sort((a, b) => b.stars - a.stars);
+  return allReviews.slice(0, 3);
+}
 
 const GOOGLE_WRITE_REVIEW_URL =
   "https://search.google.com/local/writereview?placeid=ChIJrRRUGaDwTIYRqwwKd4Htjl4";
 
 export default function Homepage() {
   const { lang, t } = useLanguage();
+  const [liveReviewData, setLiveReviewData] = useState<AllReviewsResponse | null>(null);
+
+  useEffect(() => {
+    fetchAllReviews().then((data) => {
+      if (data && ((data.dallas?.reviews?.length ?? 0) > 0 || (data.garland?.reviews?.length ?? 0) > 0)) {
+        setLiveReviewData(data);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     document.title = t("V.V. Auto Repair & Body Shop | Dallas & Garland TX", "Sửa Chữa Ô Tô V.V. Auto | Dallas & Garland TX");
@@ -258,8 +308,14 @@ export default function Homepage() {
               <div className="flex gap-1 text-yellow-400">
                 {[1, 2, 3, 4, 5].map(i => <Star key={i} size={22} fill="currentColor" />)}
               </div>
-              <span className="text-white font-bold text-xl font-display">4.4</span>
-              <span className="text-white/60">{t("· 65+ Google Reviews", "· Hơn 65+ Đánh Giá Google")}</span>
+              <span className="text-white font-bold text-xl font-display">
+                {liveReviewData?.dallas?.rating ? liveReviewData.dallas.rating.toFixed(1) : "4.4"}
+              </span>
+              <span className="text-white/60">
+                {liveReviewData?.dallas?.user_ratings_total
+                  ? t(`· ${liveReviewData.dallas.user_ratings_total}+ Google Reviews`, `· Hơn ${liveReviewData.dallas.user_ratings_total}+ Đánh Giá Google`)
+                  : t("· 65+ Google Reviews", "· Hơn 65+ Đánh Giá Google")}
+              </span>
             </div>
             <p className="text-white/70 text-lg">
               {t(
@@ -270,29 +326,7 @@ export default function Homepage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {[
-              {
-                name: "Michael T.",
-                stars: 5,
-                textEn: "Brought my car in for brake replacement and they did an incredible job at a fair price. The mechanic explained everything clearly and didn't try to upsell me. Honest shop — I'll keep coming back.",
-                textVi: "Tôi đem xe đến thay phanh và họ làm việc xuất sắc với giá hợp lý. Thợ giải thích rõ ràng và không ép mua thêm. Tiệm trung thực — tôi sẽ quay lại.",
-                badge: t("Dallas", "Dallas"),
-              },
-              {
-                name: "Thanh H.",
-                stars: 5,
-                textEn: "Professional and honest service. They checked the car for free and clearly explained the problem. Prices are fair — not inflated like other shops. I recommend them to all my friends.",
-                textVi: "Dịch vụ chuyên nghiệp và trung thực. Họ kiểm tra xe miễn phí và giải thích rõ ràng vấn đề. Giá cả hợp lý, không chặt chém. Tôi giới thiệu cho bạn bè.",
-                badge: t("Dallas", "Dallas"),
-              },
-              {
-                name: "Jessica R.",
-                stars: 5,
-                textEn: "Had a fender bender and the Garland body shop made my car look flawless. They handled my insurance claim and made the whole process easy. Couldn't be happier!",
-                textVi: "Sau một vụ va chạm nhỏ, tiệm đồng sơn Garland làm xe tôi trông hoàn hảo. Họ xử lý hồ sơ bảo hiểm và mọi thứ rất dễ dàng. Tôi rất hài lòng!",
-                badge: t("Garland", "Garland"),
-              },
-            ].map((review, idx) => (
+            {(liveReviewData ? buildFeatured(liveReviewData) : FALLBACK_FEATURED).map((review, idx) => (
               <div key={idx} className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-8 flex flex-col gap-4 hover:bg-white/15 transition-colors">
                 <Quote size={28} className="text-[var(--vv-red)] opacity-60" />
                 <p className="text-white/90 leading-relaxed italic flex-1">

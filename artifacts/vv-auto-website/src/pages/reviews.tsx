@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Star, ExternalLink, Quote, PenLine } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
+import { fetchAllReviews, type AllReviewsResponse } from "@/lib/reviewsApi";
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8396,-96.6685,17z/data=!4m8!3m7!1s0x0:0x0!8m2!3d32.8396!4d-96.6685!9m1!1b1";
@@ -18,7 +19,7 @@ interface Review {
   location?: "dallas" | "garland";
 }
 
-const REVIEWS: Review[] = [
+const FALLBACK_REVIEWS: Review[] = [
   {
     name: "Michael T.",
     stars: 5,
@@ -129,6 +130,19 @@ const REVIEWS: Review[] = [
   },
 ];
 
+function liveToReview(
+  r: { author_name: string; rating: number; text: string },
+  location: "dallas" | "garland"
+): Review {
+  return {
+    name: r.author_name,
+    stars: r.rating,
+    lang: "en",
+    textEn: r.text,
+    location,
+  };
+}
+
 function StarRow({ count, size = 18 }: { count: number; size?: number }) {
   return (
     <div className="flex gap-0.5 text-yellow-400">
@@ -204,8 +218,26 @@ function ReviewCard({ review, lang }: { review: Review; lang: "en" | "vi" }) {
   );
 }
 
+function buildDisplayReviews(liveData: AllReviewsResponse): Review[] {
+  const result: Review[] = [];
+  if (liveData.dallas?.reviews) {
+    for (const r of liveData.dallas.reviews) {
+      if (r.text) result.push(liveToReview(r, "dallas"));
+    }
+  }
+  if (liveData.garland?.reviews) {
+    for (const r of liveData.garland.reviews) {
+      if (r.text) result.push(liveToReview(r, "garland"));
+    }
+  }
+  result.sort((a, b) => b.stars - a.stars);
+  return result;
+}
+
 export default function ReviewsPage() {
   const { lang, t } = useLanguage();
+  const [liveData, setLiveData] = useState<AllReviewsResponse | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     document.title = t(
@@ -213,6 +245,26 @@ export default function ReviewsPage() {
       "Đánh Giá Khách Hàng | V.V. Auto Repair & Body Shop"
     );
   }, [t]);
+
+  useEffect(() => {
+    fetchAllReviews()
+      .then((data) => setLiveData(data))
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  const hasLiveReviews =
+    liveData &&
+    ((liveData.dallas?.reviews && liveData.dallas.reviews.length > 0) ||
+      (liveData.garland?.reviews && liveData.garland.reviews.length > 0));
+
+  const displayReviews: Review[] = hasLiveReviews
+    ? buildDisplayReviews(liveData!)
+    : FALLBACK_REVIEWS;
+
+  const dallasRating = liveData?.dallas?.rating;
+  const dallasCount = liveData?.dallas?.user_ratings_total;
+  const displayRating = dallasRating ? dallasRating.toFixed(1) : "4.4";
+  const displayCount = dallasCount ? `${dallasCount}+` : "65+";
 
   return (
     <Layout>
@@ -231,9 +283,9 @@ export default function ReviewsPage() {
                 <Star key={i} size={28} fill="currentColor" />
               ))}
             </div>
-            <span className="text-white text-2xl font-bold font-display">4.4</span>
+            <span className="text-white text-2xl font-bold font-display">{displayRating}</span>
             <span className="text-white/70 text-lg">
-              {t("· 65+ Google Reviews", "· Hơn 65+ Đánh Giá Google")}
+              {t(`· ${displayCount} Google Reviews`, `· Hơn ${displayCount} Đánh Giá Google`)}
             </span>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -262,11 +314,24 @@ export default function ReviewsPage() {
       {/* All Reviews */}
       <section className="py-20 bg-[var(--vv-gray)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {REVIEWS.map((review, idx) => (
-              <ReviewCard key={idx} review={review} lang={lang} />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="flex justify-center items-center py-16">
+              <div className="w-8 h-8 border-4 border-[var(--vv-navy)] border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : (
+            <>
+              {hasLiveReviews && (
+                <p className="text-center text-sm text-gray-400 mb-8">
+                  {t("Live from Google Reviews", "Trực tiếp từ Google Reviews")}
+                </p>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {displayReviews.map((review, idx) => (
+                  <ReviewCard key={idx} review={review} lang={lang} />
+                ))}
+              </div>
+            </>
+          )}
 
           <div className="text-center mt-12">
             <p className="text-gray-500 mb-6 text-lg">
@@ -282,7 +347,10 @@ export default function ReviewsPage() {
               className="inline-flex items-center gap-3 bg-[var(--vv-navy)] hover:bg-blue-900 text-white px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg"
             >
               <ExternalLink size={20} />
-              {t("Read All 65+ Reviews on Google", "Đọc Hơn 65+ Đánh Giá Trên Google")}
+              {t(
+                `Read All ${displayCount} Reviews on Google`,
+                `Đọc Hơn ${displayCount} Đánh Giá Trên Google`
+              )}
             </a>
           </div>
         </div>
