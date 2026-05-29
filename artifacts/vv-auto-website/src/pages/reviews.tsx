@@ -17,6 +17,8 @@ interface Review {
   textEn: string;
   textVi?: string;
   location?: "dallas" | "garland";
+  photoUrl?: string;
+  relativeTime?: string;
 }
 
 const FALLBACK_REVIEWS: Review[] = [
@@ -131,7 +133,7 @@ const FALLBACK_REVIEWS: Review[] = [
 ];
 
 function liveToReview(
-  r: { author_name: string; rating: number; text: string },
+  r: { author_name: string; rating: number; text: string; relative_time_description?: string; profile_photo_url?: string },
   location: "dallas" | "garland"
 ): Review {
   return {
@@ -140,6 +142,8 @@ function liveToReview(
     lang: "en",
     textEn: r.text,
     location,
+    photoUrl: r.profile_photo_url,
+    relativeTime: r.relative_time_description,
   };
 }
 
@@ -165,7 +169,23 @@ function ReviewCard({ review, lang }: { review: Review; lang: "en" | "vi" }) {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between gap-4">
-        <div className="w-12 h-12 rounded-full bg-[var(--vv-gray)] flex items-center justify-center shrink-0">
+        {review.photoUrl ? (
+          <img
+            src={review.photoUrl}
+            alt={review.name}
+            className="w-12 h-12 rounded-full object-cover shrink-0 bg-[var(--vv-gray)]"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.style.display = "none";
+              const fallback = target.nextElementSibling as HTMLElement | null;
+              if (fallback) fallback.style.display = "flex";
+            }}
+          />
+        ) : null}
+        <div
+          className="w-12 h-12 rounded-full bg-[var(--vv-gray)] items-center justify-center shrink-0"
+          style={{ display: review.photoUrl ? "none" : "flex" }}
+        >
           <span className="text-[var(--vv-navy)] font-extrabold text-lg font-display">
             {review.name.charAt(0)}
           </span>
@@ -212,7 +232,11 @@ function ReviewCard({ review, lang }: { review: Review; lang: "en" | "vi" }) {
 
       <div className="pt-2 border-t border-gray-100">
         <p className="font-bold text-[var(--vv-navy)] font-display">{review.name}</p>
-        <p className="text-sm text-gray-400">{lang === "vi" ? "Khách hàng Google" : "Google Customer"}</p>
+        <p className="text-sm text-gray-400">
+          {review.relativeTime
+            ? review.relativeTime
+            : (lang === "vi" ? "Khách hàng Google" : "Google Customer")}
+        </p>
       </div>
     </div>
   );

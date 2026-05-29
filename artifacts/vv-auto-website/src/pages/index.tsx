@@ -29,16 +29,16 @@ const FALLBACK_FEATURED = [
   },
 ];
 
-function buildFeatured(liveData: AllReviewsResponse): Array<{ name: string; stars: number; textEn: string; textVi: string; badge: string }> {
-  const allReviews: Array<{ name: string; stars: number; textEn: string; textVi: string; badge: string }> = [];
+function buildFeatured(liveData: AllReviewsResponse): Array<{ name: string; stars: number; textEn: string; textVi: string; badge: string; relativeTime?: string }> {
+  const allReviews: Array<{ name: string; stars: number; textEn: string; textVi: string; badge: string; relativeTime?: string }> = [];
   if (liveData.dallas?.reviews) {
     for (const r of liveData.dallas.reviews) {
-      if (r.text) allReviews.push({ name: r.author_name, stars: r.rating, textEn: r.text, textVi: r.text, badge: "Dallas" });
+      if (r.text) allReviews.push({ name: r.author_name, stars: r.rating, textEn: r.text, textVi: r.text, badge: "Dallas", relativeTime: r.relative_time_description });
     }
   }
   if (liveData.garland?.reviews) {
     for (const r of liveData.garland.reviews) {
-      if (r.text) allReviews.push({ name: r.author_name, stars: r.rating, textEn: r.text, textVi: r.text, badge: "Garland" });
+      if (r.text) allReviews.push({ name: r.author_name, stars: r.rating, textEn: r.text, textVi: r.text, badge: "Garland", relativeTime: r.relative_time_description });
     }
   }
   allReviews.sort((a, b) => b.stars - a.stars);
@@ -342,7 +342,9 @@ export default function Homepage() {
                     </span>
                   </div>
                   <p className="font-bold text-white font-display">{review.name}</p>
-                  <p className="text-white/50 text-sm">{t("Google Customer", "Khách Hàng Google")}</p>
+                  <p className="text-white/50 text-sm">
+                    {review.relativeTime ?? t("Google Customer", "Khách Hàng Google")}
+                  </p>
                 </div>
               </div>
             ))}

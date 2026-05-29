@@ -4,6 +4,7 @@ export interface LiveReview {
   text: string;
   time: number;
   relative_time_description?: string;
+  profile_photo_url?: string;
 }
 
 export interface LocationReviewData {

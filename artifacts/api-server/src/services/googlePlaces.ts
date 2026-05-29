@@ -6,6 +6,7 @@ export interface PlaceReview {
   text: string;
   time: number;
   relative_time_description?: string;
+  profile_photo_url?: string;
 }
 
 export interface PlaceData {
@@ -36,7 +37,7 @@ async function searchPlaceNew(query: string, apiKey: string): Promise<{ placeId:
     headers: {
       "Content-Type": "application/json",
       "X-Goog-Api-Key": apiKey,
-      "X-Goog-FieldMask": "places.id,places.displayName,places.rating,places.userRatingCount,places.reviews",
+      "X-Goog-FieldMask": "places.id,places.displayName,places.rating,places.userRatingCount,places.reviews,places.reviews.authorAttribution",
     },
     body: JSON.stringify({ textQuery: query }),
   });
@@ -49,7 +50,7 @@ async function searchPlaceNew(query: string, apiKey: string): Promise<{ placeId:
       rating?: number;
       userRatingCount?: number;
       reviews?: Array<{
-        authorAttribution?: { displayName?: string };
+        authorAttribution?: { displayName?: string; photoUri?: string };
         rating?: number;
         text?: { text?: string };
         relativePublishTimeDescription?: string;
@@ -69,6 +70,7 @@ async function searchPlaceNew(query: string, apiKey: string): Promise<{ placeId:
       text: r.text?.text ?? "",
       time: r.publishTime ? Math.floor(new Date(r.publishTime).getTime() / 1000) : Date.now() / 1000,
       relative_time_description: r.relativePublishTimeDescription,
+      profile_photo_url: r.authorAttribution?.photoUri,
     }));
 
   return {
