@@ -2,7 +2,7 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import {
   Linking,
   Platform,
@@ -38,14 +38,30 @@ function StarRow({ rating, size = 12 }: { rating: number; size?: number }) {
   );
 }
 
+const REVIEW_TRUNCATE_LINES = 4;
+
 function ReviewCard({ review }: { review: PlaceReview }) {
   const colors = useColors();
+  const [expanded, setExpanded] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(false);
+
   const date = review.relative_time_description
     ? review.relative_time_description
     : new Date(review.time * 1000).toLocaleDateString("en-US", {
         month: "short",
         year: "numeric",
       });
+
+  const handleTextLayout = (e: { nativeEvent: { lines: unknown[] } }) => {
+    if (!expanded) {
+      setIsTruncated(e.nativeEvent.lines.length >= REVIEW_TRUNCATE_LINES);
+    }
+  };
+
+  const toggleExpanded = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setExpanded((prev) => !prev);
+  };
 
   return (
     <View style={[styles.reviewCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
@@ -65,9 +81,25 @@ function ReviewCard({ review }: { review: PlaceReview }) {
           </View>
         </View>
       </View>
-      <Text style={[styles.reviewText, { color: colors.foreground }]} numberOfLines={4}>
+      <Text
+        style={[styles.reviewText, { color: colors.foreground }]}
+        numberOfLines={expanded ? undefined : REVIEW_TRUNCATE_LINES}
+        onTextLayout={handleTextLayout}
+      >
         {review.text}
       </Text>
+      {isTruncated && (
+        <Pressable onPress={toggleExpanded} style={styles.readMoreBtn} hitSlop={8}>
+          <Text style={[styles.readMoreText, { color: colors.navy ?? "#3f5f85" }]}>
+            {expanded ? "Show less" : "Read more"}
+          </Text>
+          <Feather
+            name={expanded ? "chevron-up" : "chevron-down"}
+            size={13}
+            color={colors.navy ?? "#3f5f85"}
+          />
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -624,6 +656,17 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: "Inter_400Regular",
     lineHeight: 19,
+  },
+  readMoreBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
+    alignSelf: "flex-start",
+    marginTop: -4,
+  },
+  readMoreText: {
+    fontSize: 12,
+    fontFamily: "Inter_600SemiBold",
   },
   reviewPlaceholder: {
     borderRadius: 12,
