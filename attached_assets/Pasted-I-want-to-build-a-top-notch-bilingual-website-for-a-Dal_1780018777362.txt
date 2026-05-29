@@ -1,0 +1,136 @@
+I want to build a top-notch bilingual website for a Dallas auto repair business called V V Auto Repair.
+
+Business info:
+- Name: V V Auto Repair
+- Address: 11366 Jupiter Rd, Dallas, TX 75218
+- Phone: (214) 320-2171
+- Business type: Auto repair shop and body work / collision repair
+- Languages: English and Vietnamese
+- Current Google profile rating shown in screenshots: 4.4 stars with 65 reviews
+- The business is known for being honest, genuine, fair, and highly trustworthy. The owner/mechanic has personally helped customers far beyond expectations and has a reputation for not overcharging people.
+
+Goal:
+Create a professional, modern, SEO-focused website that helps V V Auto Repair rank locally in Dallas search results for auto repair, mechanic, body shop, collision repair, oil change, engine replacement, brake repair, diagnostics, and related services.
+
+Before editing or generating code, inspect the existing Replit project and tell me:
+1. What framework / stack is currently being used.
+2. What files you plan to create or edit.
+3. Whether this should be a one-page landing site or multi-page local SEO site.
+4. What SEO pages you recommend for local ranking.
+5. Whether the project already has routing, metadata, sitemap, robots.txt, and schema support.
+
+Build requirements:
+1. Create a clean, modern, mobile-first website for V V Auto Repair.
+2. Make the site bilingual in English and Vietnamese.
+3. Include a language toggle: English / Tiếng Việt.
+4. Create strong local SEO structure.
+5. Include SEO metadata for every page.
+6. Add LocalBusiness / AutoRepair schema markup.
+7. Add Open Graph metadata for social sharing.
+8. Add robots.txt and sitemap.xml if missing.
+9. Make sure the site is fast, responsive, and accessible.
+10. Use the uploaded screenshots/photos as reference for the business identity, signage, location, and existing Google profile.
+
+Suggested site pages:
+- Home
+- Services
+- Auto Repair
+- Body Work / Collision Repair
+- Oil Changes
+- Brake Repair
+- Engine Repair
+- Diagnostics
+- About
+- Reviews
+- Contact
+
+Homepage sections:
+- Hero section with strong headline:
+  “Honest Auto Repair in Dallas, TX”
+- Subheadline:
+  “Trusted local mechanic serving Dallas drivers with fair pricing, reliable repairs, diagnostics, body work, and straightforward service.”
+- Call buttons:
+  “Call Now”
+  “Get Directions”
+- Trust section:
+  “4.4-star Google rating”
+  “65+ Google reviews”
+  “Honest local mechanic”
+  “Auto repair and body work”
+- Services section
+- About section focused on honesty, fairness, and local trust
+- Reviews/testimonials section
+- Bilingual Vietnamese-friendly message
+- Contact section with address, phone, hours, map link, and directions
+
+SEO goals:
+Target local search terms such as:
+- auto repair Dallas TX
+- mechanic Dallas TX
+- honest mechanic Dallas
+- auto repair near White Rock Lake
+- body shop Dallas TX
+- collision repair Dallas
+- brake repair Dallas
+- oil change Dallas
+- engine repair Dallas
+- car diagnostics Dallas
+- V V Auto Repair Dallas
+
+Important:
+Do not make unsupported claims like “#1 mechanic in Dallas” unless written as marketing copy without claiming proof. Use honest phrasing like “trusted,” “local,” “reliable,” “fair,” and “known for honest service.”
+
+Design direction:
+- Modern but not flashy
+- Trustworthy, clean, professional
+- Blue, red, white, and dark navy color palette inspired by the existing V V Auto Repair signage
+- Strong call-to-action buttons
+- Large readable typography
+- Clear service cards
+- Mobile-first layout
+- Vietnamese language support should feel native, not like an afterthought
+
+Logo:
+Create a simple temporary text-based logo concept for “V V Auto Repair” using blue and red. Do not spend too much time on a final logo yet. Build the site so the logo can easily be replaced later.
+
+Local SEO:
+Implement:
+- Title tags
+- Meta descriptions
+- H1/H2 structure
+- Internal links between service pages
+- LocalBusiness schema
+- AutoRepair schema if appropriate
+- NAP consistency: name, address, phone
+- Sitemap
+- Robots.txt
+- SEO-friendly URLs
+- Image alt text
+- Fast-loading images
+
+Competitor / Google audit:
+Create a markdown file at:
+.local/reports/local-seo-audit.md
+
+In that file, explain:
+1. What V V Auto Repair needs to rank better locally.
+2. What competitors are likely doing better.
+3. What pages/content/schema/reviews/signals we should add.
+4. A local SEO checklist.
+5. A recommended next phase for Google Business Profile optimization.
+
+Do not claim you can guarantee first-page ranking. Instead, build the strongest technical and content foundation possible.
+
+Validation:
+After building, run the appropriate checks for this project, such as:
+- npm install if needed
+- npm run build
+- npm run typecheck if available
+- npm run lint if available
+
+When finished, report:
+1. Files changed.
+2. Pages created.
+3. SEO features added.
+4. Any checks that passed or failed.
+5. What I still need to provide, such as real business hours, service list, owner name, photos, Vietnamese translation review, Yelp review excerpts, or Google Business Profile access.

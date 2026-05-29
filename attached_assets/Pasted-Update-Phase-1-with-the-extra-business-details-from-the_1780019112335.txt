@@ -1,0 +1,105 @@
+Update Phase 1 with the extra business details from the business cards and screenshots.
+
+Important: V V has TWO related locations/services, so structure the site around both:
+
+Primary auto repair location:
+- Business name: V V Auto Repair
+- Contact name shown on card: Huong Nguyen
+- Address: 11366 Jupiter Rd, Dallas, TX 75218
+- Main phone: 214-320-2171
+- Cell: 469-258-9356
+- Email: vv.autorepair@yahoo.com
+- Hours shown on card: Mon-Sat 8:00am-6:00pm, Sunday Closed
+- Services shown on card:
+  - Official State Inspection
+  - Computerized Engine Diagnostic Test
+  - Domestic & Foreign vehicles
+  - General auto repair
+
+Body shop / collision repair location:
+- Business name: V V Auto Body Repair
+- Address: 3730 Marquis Dr, Garland, TX 75042
+- Email: vv.autobodycorp@gmail.com
+- Contacts:
+  - Huong: 469-258-9356
+  - David: 469-407-5340
+- Hours shown on card / Google result:
+  - Mon-Fri 8:00am-5:00pm
+  - Saturday & Sunday Closed
+- Services shown:
+  - Collision repair
+  - Paint & body
+  - Body work
+  - Insurance claims
+  - 24-hour towing
+  - Free estimates for claims
+  - Works with any insurance
+
+Update the landing page requirements:
+1. The website should represent both V V Auto Repair and V V Auto Body Repair under one professional brand family.
+2. Add a “Two Locations” section.
+3. Add separate contact cards:
+   - Dallas Auto Repair
+   - Garland Auto Body Repair
+4. Add separate call buttons for:
+   - Dallas shop: 214-320-2171
+   - Huong cell: 469-258-9356
+   - David / body shop: 469-407-5340
+5. Add separate email links:
+   - vv.autorepair@yahoo.com
+   - vv.autobodycorp@gmail.com
+6. Add separate “Get Directions” buttons:
+   - 11366 Jupiter Rd, Dallas, TX 75218
+   - 3730 Marquis Dr, Garland, TX 75042
+7. Update services to clearly separate:
+   Auto Repair Services:
+   - State inspection
+   - Engine diagnostics
+   - Domestic & foreign vehicles
+   - Brake repair
+   - Oil changes
+   - Engine repair
+   - General repair
+
+   Auto Body Services:
+   - Collision repair
+   - Paint and body
+   - Insurance claim repairs
+   - Free estimates for claims
+   - 24-hour towing
+   - Body work
+
+SEO updates:
+1. Include both Dallas and Garland local SEO targets.
+2. Add keywords naturally:
+   - auto repair Dallas TX
+   - mechanic Dallas TX
+   - state inspection Dallas
+   - engine diagnostics Dallas
+   - domestic foreign auto repair Dallas
+   - auto body repair Garland TX
+   - collision repair Garland TX
+   - body shop Garland TX
+   - paint and body Garland TX
+   - insurance claim auto body repair Garland
+3. Schema should include both business locations if possible.
+4. If one schema object cannot handle both cleanly, use separate LocalBusiness/AutoRepair/AutoBodyShop schema objects for each location.
+5. Make sure NAP information is consistent and clearly separated by location.
+6. Update the SEO plan markdown file with both locations and a note that Phase 2 should create separate SEO pages for Dallas auto repair and Garland auto body repair.
+
+Design update:
+Use the business card colors and signage:
+- Deep blue
+- Red
+- White
+- Dark navy
+The logo can remain temporary text-based for now, but it should support both:
+- V V Auto Repair
+- V V Auto Body Repair
+
+Content caution:
+Do not merge the two addresses into one location.
+Do not show the body shop phone/email as the Dallas auto repair contact unless clearly labeled.
+Do not invent reviews or claims.
+Do not say “#1” or guarantee rankings.
+Do not deploy or publish.
