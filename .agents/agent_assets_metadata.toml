@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Lx6t1s407xkBwojMTiXO0"
+uri = "file://artifacts/mockup-sandbox/public/images/vv-hero.png"
+type = "image"
+title = "Auto repair shop hero"
+
+[[generated]]
+id = "5GKr0lu7mlBac56wqeP6k"
+uri = "file://artifacts/mockup-sandbox/public/images/vv-brakes.png"
+type = "image"
+title = "Mechanic working on brakes"
+
+[[generated]]
+id = "idd9SPOfFPI6Ox29VYJ49"
+uri = "file://artifacts/mockup-sandbox/public/images/vv-body.png"
+type = "image"
+title = "Auto body collision repair"
