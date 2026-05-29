@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { Link } from "wouter";
-import { MapPin, Phone, Star, Wrench, ShieldCheck, CheckCircle2, ChevronRight, ArrowRight, Clock, Quote, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Star, Wrench, ShieldCheck, CheckCircle2, ChevronRight, ArrowRight, Clock, Images, Quote, ExternalLink, PenLine } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
+
+const GOOGLE_WRITE_REVIEW_URL =
+  "https://search.google.com/local/writereview?placeid=ChIJrRRUGaDwTIYRqwwKd4Htjl4";
 
 export default function Homepage() {
   const { lang, t } = useLanguage();
@@ -321,13 +324,13 @@ export default function Homepage() {
               <ArrowRight size={20} />
             </Link>
             <a
-              href="https://www.google.com/maps/place/V+V+Auto+Repair/@32.8396,-96.6685,17z/data=!4m8!3m7!1s0x0:0x0!8m2!3d32.8396!4d-96.6685!9m1!1b1"
+              href={GOOGLE_WRITE_REVIEW_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 text-white/80 hover:text-white px-6 py-4 rounded-md font-semibold text-lg transition-all"
+              className="inline-flex items-center gap-2 border border-white/30 hover:bg-white/10 text-white px-6 py-4 rounded-md font-bold text-lg transition-all hover:-translate-y-1"
             >
-              <ExternalLink size={18} />
-              {t("Leave Us a Review", "Để Lại Đánh Giá Cho Chúng Tôi")}
+              <PenLine size={18} />
+              {t("Write a Review", "Viết Đánh Giá")}
             </a>
           </div>
         </div>

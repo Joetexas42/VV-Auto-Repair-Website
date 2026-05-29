@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
-import { Star, ExternalLink, Quote } from "lucide-react";
+import { Star, ExternalLink, Quote, PenLine } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8396,-96.6685,17z/data=!4m8!3m7!1s0x0:0x0!8m2!3d32.8396!4d-96.6685!9m1!1b1";
+
+const GOOGLE_WRITE_REVIEW_URL =
+  "https://search.google.com/local/writereview?placeid=ChIJrRRUGaDwTIYRqwwKd4Htjl4";
 
 interface Review {
   name: string;
@@ -233,15 +236,26 @@ export default function ReviewsPage() {
               {t("· 65+ Google Reviews", "· Hơn 65+ Đánh Giá Google")}
             </span>
           </div>
-          <a
-            href={GOOGLE_MAPS_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-          >
-            <ExternalLink size={18} />
-            {t("See All Reviews on Google Maps", "Xem Tất Cả Đánh Giá Trên Google Maps")}
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={GOOGLE_WRITE_REVIEW_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 bg-[var(--vv-red)] hover:bg-red-500 text-white px-7 py-3.5 rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg"
+            >
+              <PenLine size={18} />
+              {t("Write a Review", "Viết Đánh Giá")}
+            </a>
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3.5 rounded-lg font-semibold transition-colors"
+            >
+              <ExternalLink size={18} />
+              {t("See All Reviews on Google Maps", "Xem Tất Cả Đánh Giá Trên Google Maps")}
+            </a>
+          </div>
         </div>
       </section>
 
@@ -270,6 +284,47 @@ export default function ReviewsPage() {
               <ExternalLink size={20} />
               {t("Read All 65+ Reviews on Google", "Đọc Hơn 65+ Đánh Giá Trên Google")}
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Write a Review CTA Banner */}
+      <section className="py-20 bg-[var(--vv-navy)]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--vv-red)]/20 mb-6">
+            <PenLine size={32} className="text-[var(--vv-red)]" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4 font-display">
+            {t("Had a great experience?", "Bạn hài lòng với dịch vụ của chúng tôi?")}
+          </h2>
+          <p className="text-white/70 text-lg mb-3 leading-relaxed">
+            {t(
+              "Your review helps other drivers in Dallas and Garland find an honest mechanic they can trust. It only takes a minute!",
+              "Đánh giá của bạn giúp các tài xế khác ở Dallas và Garland tìm được thợ máy trung thực. Chỉ mất một phút thôi!"
+            )}
+          </p>
+          <p className="text-white/50 text-base mb-10 italic">
+            {t(
+              "Hài lòng với dịch vụ? Hãy chia sẻ trải nghiệm của bạn — cảm ơn rất nhiều!",
+              "Happy with our service? Share your experience — we appreciate it so much!"
+            )}
+          </p>
+          <a
+            href={GOOGLE_WRITE_REVIEW_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-3 bg-[var(--vv-red)] hover:bg-red-500 text-white px-10 py-5 rounded-xl font-bold text-xl transition-all transform hover:-translate-y-1 shadow-xl"
+          >
+            <PenLine size={24} />
+            {t("Write a Google Review", "Viết Đánh Giá Google")}
+          </a>
+          <div className="mt-8 flex items-center justify-center gap-2 text-white/40 text-sm">
+            <Star size={14} className="text-yellow-400 fill-yellow-400" />
+            <Star size={14} className="text-yellow-400 fill-yellow-400" />
+            <Star size={14} className="text-yellow-400 fill-yellow-400" />
+            <Star size={14} className="text-yellow-400 fill-yellow-400" />
+            <Star size={14} className="text-yellow-400 fill-yellow-400" />
+            <span className="ml-2">{t("Currently 4.4 stars · 65+ reviews", "Hiện tại 4.4 sao · Hơn 65 đánh giá")}</span>
           </div>
         </div>
       </section>
