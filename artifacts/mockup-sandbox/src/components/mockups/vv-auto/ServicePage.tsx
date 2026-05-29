@@ -21,7 +21,7 @@ const Navigation = () => (
             <span className="px-3 py-1 bg-white text-vv-navy rounded-full text-sm font-bold shadow-sm">EN</span>
             <span className="px-3 py-1 text-white/70 text-sm font-medium hover:text-white cursor-pointer transition-colors">VI</span>
           </div>
-          <a href="tel:2143202171" className="bg-vv-red hover:bg-red-700 text-white px-6 py-2.5 rounded font-bold transition-colors flex items-center gap-2">
+          <a href="tel:2143202171" className="bg-vv-red hover:bg-red-500 text-white px-6 py-2.5 rounded font-bold transition-colors flex items-center gap-2">
             <Phone size={18} />
             (214) 320-2171
           </a>
@@ -236,7 +236,7 @@ export function ServicePage() {
                   </div>
                 </div>
 
-                <a href="tel:2143202171" className="block w-full bg-vv-red hover:bg-red-700 text-white text-center py-4 rounded-lg font-bold text-lg transition-colors shadow-lg">
+                <a href="tel:2143202171" className="block w-full bg-vv-red hover:bg-red-500 text-white text-center py-4 rounded-lg font-bold text-lg transition-colors shadow-lg">
                   (214) 320-2171
                 </a>
               </div>

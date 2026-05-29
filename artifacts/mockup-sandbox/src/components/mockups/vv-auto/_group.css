@@ -1,10 +1,10 @@
 :root {
-  --vv-navy: #233a63;
-  --vv-navy-light: #3a5a8a;
+  --vv-navy: #3f5f85;
+  --vv-navy-light: #5580a8;
   --vv-blue: #2260a8;
   --vv-teal: #2aafca;
-  --vv-red: #cc1a1a;
-  --vv-red-light: #e82020;
+  --vv-red: #e63030;
+  --vv-red-light: #f04040;
   --vv-gray: #f0f4f8;
   --vv-white: #ffffff;
 }

@@ -21,7 +21,7 @@ const NavigationVi = () => (
             <span className="px-3 py-1 text-white/70 text-sm font-medium hover:text-white cursor-pointer transition-colors">EN</span>
             <span className="px-3 py-1 bg-white text-vv-navy rounded-full text-sm font-bold shadow-sm">VI</span>
           </div>
-          <a href="tel:2143202171" className="bg-vv-red hover:bg-red-700 text-white px-6 py-2.5 rounded font-bold transition-colors flex items-center gap-2">
+          <a href="tel:2143202171" className="bg-vv-red hover:bg-red-500 text-white px-6 py-2.5 rounded font-bold transition-colors flex items-center gap-2">
             <Phone size={18} />
             (214) 320-2171
           </a>
@@ -142,7 +142,7 @@ export function HomepageVi() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="tel:2143202171" className="bg-vv-red hover:bg-red-700 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-3">
+              <a href="tel:2143202171" className="bg-vv-red hover:bg-red-500 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-3">
                 <Phone size={24} />
                 Gọi Ngay — (214) 320-2171
               </a>
