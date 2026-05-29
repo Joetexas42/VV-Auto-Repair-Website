@@ -1,6 +1,6 @@
-# [Project name]
+# VV Auto Repair
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Bilingual (English / Vietnamese) website design mockup for VV Auto Repair — a two-location Dallas-area auto repair brand with shops in Dallas and Garland, TX.
 
 ## Run & Operate
 
