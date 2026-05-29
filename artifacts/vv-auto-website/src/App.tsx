@@ -14,7 +14,6 @@ import Diagnostics from "@/pages/services/diagnostics";
 import CollisionRepair from "@/pages/services/collision-body-repair";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
-import Gallery from "@/pages/gallery";
 import Reviews from "@/pages/reviews";
 import NotFound from "@/pages/not-found";
 
@@ -33,7 +32,6 @@ function Router() {
       <Route path="/services/collision-body-repair" component={CollisionRepair} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
-      <Route path="/gallery" component={Gallery} />
       <Route path="/reviews" component={Reviews} />
       <Route component={NotFound} />
     </Switch>
