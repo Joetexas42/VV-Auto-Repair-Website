@@ -3,6 +3,26 @@ import { Link } from "wouter";
 import { MapPin, Phone, Clock, Star, CheckCircle2, ChevronRight, CarFront } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
+import { ServiceReviewBadge } from "@/components/service-review-badge";
+
+const COLLISION_REVIEWS = [
+  {
+    name: "Jessica R.",
+    stars: 5,
+    textEn:
+      "Had a fender bender and brought my car to the Garland body shop. The result was flawless — you can't even tell there was damage. They also handled my insurance claim and made the whole process easy.",
+    textVi:
+      "Tôi bị va chạm nhẹ và mang xe đến tiệm đồng sơn Garland. Kết quả hoàn hảo — không thể nhận ra chỗ bị hỏng. Họ còn xử lý hồ sơ bảo hiểm giúp tôi và làm cho cả quá trình trở nên dễ dàng.",
+  },
+  {
+    name: "Huong B.",
+    stars: 5,
+    textEn:
+      "The body shop in Garland repaired my car after a collision and the paint match was perfect. The team was kind, kept me updated, and finished on time. I am very grateful.",
+    textVi:
+      "Tiệm đồng sơn ở Garland sửa xe cho tôi sau tai nạn và màu sơn khớp hoàn hảo. Đội ngũ thân thiện, thông báo tiến độ và hoàn thành đúng hẹn. Tôi rất biết ơn.",
+  },
+];
 
 export default function CollisionRepair() {
   const { t } = useLanguage();
@@ -154,6 +174,9 @@ export default function CollisionRepair() {
           </div>
         </div>
       </section>
+
+      {/* Review Badge */}
+      <ServiceReviewBadge reviews={COLLISION_REVIEWS} />
     </Layout>
   );
 }
