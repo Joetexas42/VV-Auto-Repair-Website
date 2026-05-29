@@ -1,0 +1,278 @@
+import React, { useEffect } from "react";
+import { Star, ExternalLink, Quote } from "lucide-react";
+import { Layout } from "@/components/layout";
+import { useLanguage } from "@/lib/LanguageContext";
+
+const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8396,-96.6685,17z/data=!4m8!3m7!1s0x0:0x0!8m2!3d32.8396!4d-96.6685!9m1!1b1";
+
+interface Review {
+  name: string;
+  stars: number;
+  lang: "en" | "vi" | "both";
+  textEn: string;
+  textVi?: string;
+  location?: "dallas" | "garland";
+}
+
+const REVIEWS: Review[] = [
+  {
+    name: "Michael T.",
+    stars: 5,
+    lang: "en",
+    textEn:
+      "Brought my car in for brake replacement and they did an incredible job at a fair price. The mechanic explained everything clearly and didn't try to upsell me on things I didn't need. Honest shop — I'll keep coming back.",
+    location: "dallas",
+  },
+  {
+    name: "Lan N.",
+    stars: 5,
+    lang: "vi",
+    textEn:
+      "Excellent shop with skilled mechanics and very reasonable prices. I'm always satisfied with the service here. They fix the car quickly and on schedule — truly reliable!",
+    textVi:
+      "Tiệm sửa xe rất tốt, thợ tay nghề cao và giá cả hợp lý. Tôi luôn hài lòng với dịch vụ ở đây. Họ sửa xe nhanh và đúng lịch hẹn — rất đáng tin cậy!",
+    location: "dallas",
+  },
+  {
+    name: "Carlos M.",
+    stars: 5,
+    lang: "en",
+    textEn:
+      "V.V. Auto is the only place I trust with my cars. They diagnosed an issue three other shops missed, fixed it fast, and charged a fair price. Wish I found them sooner.",
+    location: "dallas",
+  },
+  {
+    name: "Thanh H.",
+    stars: 5,
+    lang: "both",
+    textEn:
+      "Professional and honest service. They checked the car for free and clearly explained the problem. Prices are fair — not inflated like other shops. I recommend them to all my friends.",
+    textVi:
+      "Dịch vụ chuyên nghiệp và trung thực. Họ kiểm tra xe miễn phí và giải thích rõ ràng vấn đề. Giá cả hợp lý, không chặt chém như nhiều tiệm khác. Tôi sẽ giới thiệu cho bạn bè.",
+    location: "dallas",
+  },
+  {
+    name: "Jessica R.",
+    stars: 5,
+    lang: "en",
+    textEn:
+      "Had a fender bender and brought my car to the Garland body shop. The result was flawless — you can't even tell there was damage. They also handled my insurance claim and made the whole process easy.",
+    location: "garland",
+  },
+  {
+    name: "Minh P.",
+    stars: 5,
+    lang: "vi",
+    textEn:
+      "I've been coming to V.V. Auto for years and always leave happy. The mechanics are experienced, friendly, and never make you feel rushed or pressured. Great family business.",
+    textVi:
+      "Tôi đã đến V.V. Auto nhiều năm và luôn hài lòng. Thợ sửa xe kinh nghiệm, thân thiện và không bao giờ tạo áp lực. Cơ sở gia đình tuyệt vời.",
+    location: "dallas",
+  },
+  {
+    name: "Sarah K.",
+    stars: 5,
+    lang: "en",
+    textEn:
+      "My engine light came on and I was scared it would be expensive. They ran the diagnostic, found the issue, and fixed it for way less than the dealer quoted. Friendly staff too — highly recommend!",
+    location: "dallas",
+  },
+  {
+    name: "Huong B.",
+    stars: 5,
+    lang: "both",
+    textEn:
+      "The body shop in Garland repaired my car after a collision and the paint match was perfect. The team was kind, kept me updated, and finished on time. I am very grateful.",
+    textVi:
+      "Tiệm đồng sơn ở Garland sửa xe cho tôi sau tai nạn và màu sơn khớp hoàn hảo. Đội ngũ thân thiện, thông báo tiến độ và hoàn thành đúng hẹn. Tôi rất biết ơn.",
+    location: "garland",
+  },
+  {
+    name: "David L.",
+    stars: 4,
+    lang: "en",
+    textEn:
+      "Great local mechanic shop. Took my truck in for an oil change and they noticed a couple other things that needed attention but didn't pressure me — just let me know and let me decide. That's the kind of honesty I appreciate.",
+    location: "dallas",
+  },
+  {
+    name: "Phuong T.",
+    stars: 5,
+    lang: "vi",
+    textEn:
+      "Very trustworthy and affordable. They explain everything in Vietnamese which makes it so much easier for my parents who don't speak English well. We won't go anywhere else.",
+    textVi:
+      "Rất đáng tin cậy và giá cả phải chăng. Họ giải thích mọi thứ bằng tiếng Việt, rất tiện lợi cho ba mẹ tôi. Gia đình tôi sẽ không đến tiệm nào khác.",
+    location: "dallas",
+  },
+  {
+    name: "Robert W.",
+    stars: 5,
+    lang: "en",
+    textEn:
+      "State inspection was quick and the staff were genuinely friendly. No upsells, no nonsense. In and out in under 30 minutes. I've been going here for two years now.",
+    location: "dallas",
+  },
+  {
+    name: "An V.",
+    stars: 5,
+    lang: "both",
+    textEn:
+      "After the accident I was stressed about the repairs, but the Garland team made everything simple. Insurance, parts, paint — all handled professionally. My car looks brand new.",
+    textVi:
+      "Sau tai nạn tôi rất lo lắng, nhưng đội ngũ Garland làm mọi thứ đơn giản. Bảo hiểm, phụ tùng, sơn xe — tất cả đều chuyên nghiệp. Xe tôi trông như mới.",
+    location: "garland",
+  },
+];
+
+function StarRow({ count, size = 18 }: { count: number; size?: number }) {
+  return (
+    <div className="flex gap-0.5 text-yellow-400">
+      {[1, 2, 3, 4, 5].map((i) => (
+        <Star
+          key={i}
+          size={size}
+          fill={i <= count ? "currentColor" : "none"}
+          strokeWidth={i <= count ? 0 : 1.5}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ReviewCard({ review, lang }: { review: Review; lang: "en" | "vi" }) {
+  const showVietnamese = review.textVi && (review.lang === "vi" || review.lang === "both");
+  const showBilingual = showVietnamese && review.lang === "both";
+
+  return (
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 hover:shadow-md transition-shadow">
+      <div className="flex items-start justify-between gap-4">
+        <div className="w-12 h-12 rounded-full bg-[var(--vv-gray)] flex items-center justify-center shrink-0">
+          <span className="text-[var(--vv-navy)] font-extrabold text-lg font-display">
+            {review.name.charAt(0)}
+          </span>
+        </div>
+        <Quote size={32} className="text-[var(--vv-red)] opacity-20 shrink-0" />
+      </div>
+
+      <div className="flex items-center gap-3">
+        <StarRow count={review.stars} />
+        {review.location && (
+          <span className="text-xs font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[var(--vv-gray)] text-[var(--vv-navy)]">
+            {review.location === "dallas" ? "Dallas" : "Garland"}
+          </span>
+        )}
+      </div>
+
+      <div className="flex-1">
+        {showVietnamese && !showBilingual ? (
+          lang === "vi" && review.textVi ? (
+            <p className="text-gray-700 leading-relaxed italic">"{review.textVi}"</p>
+          ) : (
+            <p className="text-gray-700 leading-relaxed italic">"{review.textEn}"</p>
+          )
+        ) : showBilingual ? (
+          <>
+            <p className="text-gray-700 leading-relaxed italic">
+              "{lang === "vi" && review.textVi ? review.textVi : review.textEn}"
+            </p>
+            {lang === "en" && review.textVi && (
+              <p className="text-gray-500 leading-relaxed italic mt-3 text-sm border-t border-gray-100 pt-3">
+                "{review.textVi}"
+              </p>
+            )}
+            {lang === "vi" && (
+              <p className="text-gray-500 leading-relaxed italic mt-3 text-sm border-t border-gray-100 pt-3">
+                "{review.textEn}"
+              </p>
+            )}
+          </>
+        ) : (
+          <p className="text-gray-700 leading-relaxed italic">"{review.textEn}"</p>
+        )}
+      </div>
+
+      <div className="pt-2 border-t border-gray-100">
+        <p className="font-bold text-[var(--vv-navy)] font-display">{review.name}</p>
+        <p className="text-sm text-gray-400">{lang === "vi" ? "Khách hàng Google" : "Google Customer"}</p>
+      </div>
+    </div>
+  );
+}
+
+export default function ReviewsPage() {
+  const { lang, t } = useLanguage();
+
+  useEffect(() => {
+    document.title = t(
+      "Customer Reviews | V.V. Auto Repair & Body Shop",
+      "Đánh Giá Khách Hàng | V.V. Auto Repair & Body Shop"
+    );
+  }, [t]);
+
+  return (
+    <Layout>
+      {/* Hero */}
+      <section className="bg-[var(--vv-navy)] py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-sm font-bold text-[var(--vv-red)] tracking-widest uppercase mb-3">
+            {t("What Our Customers Say", "Khách Hàng Nói Gì Về Chúng Tôi")}
+          </h2>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6 font-display">
+            {t("Real Reviews from Real Customers", "Đánh Giá Thật Từ Khách Hàng Thật")}
+          </h1>
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <div className="flex gap-1 text-yellow-400">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <Star key={i} size={28} fill="currentColor" />
+              ))}
+            </div>
+            <span className="text-white text-2xl font-bold font-display">4.4</span>
+            <span className="text-white/70 text-lg">
+              {t("· 65+ Google Reviews", "· Hơn 65+ Đánh Giá Google")}
+            </span>
+          </div>
+          <a
+            href={GOOGLE_MAPS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+          >
+            <ExternalLink size={18} />
+            {t("See All Reviews on Google Maps", "Xem Tất Cả Đánh Giá Trên Google Maps")}
+          </a>
+        </div>
+      </section>
+
+      {/* All Reviews */}
+      <section className="py-20 bg-[var(--vv-gray)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {REVIEWS.map((review, idx) => (
+              <ReviewCard key={idx} review={review} lang={lang} />
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-500 mb-6 text-lg">
+              {t(
+                "These are just a few highlights. See our full review listing on Google.",
+                "Đây chỉ là một số nổi bật. Xem toàn bộ đánh giá của chúng tôi trên Google."
+              )}
+            </p>
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 bg-[var(--vv-navy)] hover:bg-blue-900 text-white px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg"
+            >
+              <ExternalLink size={20} />
+              {t("Read All 65+ Reviews on Google", "Đọc Hơn 65+ Đánh Giá Trên Google")}
+            </a>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}

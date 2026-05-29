@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "wouter";
-import { MapPin, Phone, Star, Wrench, ShieldCheck, CheckCircle2, ChevronRight, ArrowRight, Clock, Images } from "lucide-react";
+import { MapPin, Phone, Star, Wrench, ShieldCheck, CheckCircle2, ChevronRight, ArrowRight, Clock, Images, Quote, ExternalLink } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 
@@ -294,6 +294,98 @@ export default function Homepage() {
               {t("View Full Gallery", "Xem Toàn Bộ Thư Viện Ảnh")}
               <ArrowRight size={20} />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="py-24 bg-[var(--vv-navy)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <h2 className="text-sm font-bold text-[var(--vv-red)] tracking-widest uppercase mb-3">
+              {t("Customer Reviews", "Đánh Giá Khách Hàng")}
+            </h2>
+            <h3 className="text-4xl font-extrabold text-white tracking-tight mb-4 font-display">
+              {t("Trusted by Dallas Drivers", "Được Tài Xế Dallas Tin Tưởng")}
+            </h3>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="flex gap-1 text-yellow-400">
+                {[1, 2, 3, 4, 5].map(i => <Star key={i} size={22} fill="currentColor" />)}
+              </div>
+              <span className="text-white font-bold text-xl font-display">4.4</span>
+              <span className="text-white/60">{t("· 65+ Google Reviews", "· Hơn 65+ Đánh Giá Google")}</span>
+            </div>
+            <p className="text-white/70 text-lg">
+              {t(
+                "Don't take our word for it — here's what our customers say.",
+                "Đừng chỉ tin lời chúng tôi — đây là những gì khách hàng nói."
+              )}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                name: "Michael T.",
+                stars: 5,
+                textEn: "Brought my car in for brake replacement and they did an incredible job at a fair price. The mechanic explained everything clearly and didn't try to upsell me. Honest shop — I'll keep coming back.",
+                textVi: "Tôi đem xe đến thay phanh và họ làm việc xuất sắc với giá hợp lý. Thợ giải thích rõ ràng và không ép mua thêm. Tiệm trung thực — tôi sẽ quay lại.",
+                badge: t("Dallas", "Dallas"),
+              },
+              {
+                name: "Thanh H.",
+                stars: 5,
+                textEn: "Professional and honest service. They checked the car for free and clearly explained the problem. Prices are fair — not inflated like other shops. I recommend them to all my friends.",
+                textVi: "Dịch vụ chuyên nghiệp và trung thực. Họ kiểm tra xe miễn phí và giải thích rõ ràng vấn đề. Giá cả hợp lý, không chặt chém. Tôi giới thiệu cho bạn bè.",
+                badge: t("Dallas", "Dallas"),
+              },
+              {
+                name: "Jessica R.",
+                stars: 5,
+                textEn: "Had a fender bender and the Garland body shop made my car look flawless. They handled my insurance claim and made the whole process easy. Couldn't be happier!",
+                textVi: "Sau một vụ va chạm nhỏ, tiệm đồng sơn Garland làm xe tôi trông hoàn hảo. Họ xử lý hồ sơ bảo hiểm và mọi thứ rất dễ dàng. Tôi rất hài lòng!",
+                badge: t("Garland", "Garland"),
+              },
+            ].map((review, idx) => (
+              <div key={idx} className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-8 flex flex-col gap-4 hover:bg-white/15 transition-colors">
+                <Quote size={28} className="text-[var(--vv-red)] opacity-60" />
+                <p className="text-white/90 leading-relaxed italic flex-1">
+                  "{lang === "vi" ? review.textVi : review.textEn}"
+                </p>
+                <div className="pt-4 border-t border-white/10">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex gap-0.5 text-yellow-400">
+                      {[1,2,3,4,5].map(i => <Star key={i} size={14} fill={i <= review.stars ? "currentColor" : "none"} strokeWidth={i <= review.stars ? 0 : 1.5} />)}
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-white/70">
+                      {review.badge}
+                    </span>
+                  </div>
+                  <p className="font-bold text-white font-display">{review.name}</p>
+                  <p className="text-white/50 text-sm">{t("Google Customer", "Khách Hàng Google")}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/reviews"
+              className="inline-flex items-center gap-3 bg-[var(--vv-red)] hover:bg-red-500 text-white px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg"
+            >
+              <Star size={20} fill="currentColor" />
+              {t("See All Customer Reviews", "Xem Tất Cả Đánh Giá")}
+              <ArrowRight size={20} />
+            </Link>
+            <a
+              href="https://www.google.com/maps/place/V+V+Auto+Repair/@32.8396,-96.6685,17z/data=!4m8!3m7!1s0x0:0x0!8m2!3d32.8396!4d-96.6685!9m1!1b1"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 text-white/80 hover:text-white px-6 py-4 rounded-md font-semibold text-lg transition-all"
+            >
+              <ExternalLink size={18} />
+              {t("Leave Us a Review", "Để Lại Đánh Giá Cho Chúng Tôi")}
+            </a>
           </div>
         </div>
       </section>

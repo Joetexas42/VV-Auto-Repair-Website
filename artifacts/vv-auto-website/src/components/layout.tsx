@@ -11,6 +11,7 @@ export function Navigation() {
     { href: "/", en: "Home", vi: "Trang Chủ" },
     { href: "/services", en: "Services", vi: "Dịch Vụ" },
     { href: "/gallery", en: "Gallery", vi: "Thư Viện Ảnh" },
+    { href: "/reviews", en: "Reviews", vi: "Đánh Giá" },
     { href: "/about", en: "About", vi: "Giới Thiệu" },
     { href: "/contact", en: "Contact", vi: "Liên Hệ" },
   ];
