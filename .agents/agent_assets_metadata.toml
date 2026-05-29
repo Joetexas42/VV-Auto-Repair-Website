@@ -42,3 +42,9 @@ id = "gmP8PclpZy3tXcThQnlai"
 uri = "file://artifacts/vv-auto-website/public/images/vv-diagnostics.png"
 type = "image"
 title = "Mechanic using computer diagnostic tool"
+
+[[generated]]
+id = "0RacVgHxaib1_vJMaDiiU"
+uri = "file://artifacts/vv-auto-mobile/assets/images/icon.png"
+type = "image"
+title = "generated_image"

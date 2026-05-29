@@ -1,0 +1,1 @@
+- [Expo workflow health check](expo-workflow-health-check.md) — restart_workflow always fails DIDNT_OPEN_A_PORT for Expo; port opens fine, it's a proxy routing limitation not a code bug.

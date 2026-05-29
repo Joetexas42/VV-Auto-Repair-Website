@@ -1,0 +1,27 @@
+kind = "mobile"
+previewPath = "/vv-auto-mobile/"
+title = "VV Auto Mobile App"
+version = "1.0.0"
+id = "artifacts/vv-auto-mobile"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+ensurePreviewReachable = "/status"
+name = "expo"
+paths = [ "/vv-auto-mobile/" ]
+localPort = 24691
+
+[services.development]
+run = "pnpm --filter @workspace/vv-auto-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/vv-auto-mobile", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/vv-auto-mobile", "run", "serve" ]
+
+[services.env]
+PORT = "24691"
+BASE_PATH = "/vv-auto-mobile/"
