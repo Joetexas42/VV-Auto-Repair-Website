@@ -72,13 +72,22 @@ function ReviewCard({ review }: { review: PlaceReview }) {
   );
 }
 
+type LocationFilter = "all" | "dallas" | "garland";
+
 function ReviewsSection() {
   const colors = useColors();
   const { t } = useLanguage();
   const { data, isLoading, isError } = useReviews();
+  const [locationFilter, setLocationFilter] = React.useState<LocationFilter>("all");
 
-  const allReviews = React.useMemo(() => {
+  const filteredReviews = React.useMemo(() => {
     if (!data) return [];
+    if (locationFilter === "dallas") {
+      return (data.dallas?.reviews ?? []).slice(0, 6);
+    }
+    if (locationFilter === "garland") {
+      return (data.garland?.reviews ?? []).slice(0, 6);
+    }
     const dallas = data.dallas?.reviews ?? [];
     const garland = data.garland?.reviews ?? [];
     const seen = new Set<string>();
@@ -91,7 +100,21 @@ function ReviewsSection() {
       }
     }
     return merged.slice(0, 6);
-  }, [data]);
+  }, [data, locationFilter]);
+
+  const displayRating = React.useMemo(() => {
+    if (!data) return null;
+    if (locationFilter === "dallas") return data.dallas?.rating ?? null;
+    if (locationFilter === "garland") return data.garland?.rating ?? null;
+    return data.dallas?.rating ?? data.garland?.rating ?? null;
+  }, [data, locationFilter]);
+
+  const displayCount = React.useMemo(() => {
+    if (!data) return 0;
+    if (locationFilter === "dallas") return data.dallas?.user_ratings_total ?? 0;
+    if (locationFilter === "garland") return data.garland?.user_ratings_total ?? 0;
+    return (data.dallas?.user_ratings_total ?? 0) + (data.garland?.user_ratings_total ?? 0);
+  }, [data, locationFilter]);
 
   if (isLoading) {
     return (
@@ -108,12 +131,15 @@ function ReviewsSection() {
     );
   }
 
-  if (isError || allReviews.length === 0) {
+  if (isError || filteredReviews.length === 0) {
     return null;
   }
 
-  const overallRating = data?.dallas?.rating ?? data?.garland?.rating;
-  const totalCount = (data?.dallas?.user_ratings_total ?? 0) + (data?.garland?.user_ratings_total ?? 0);
+  const tabs: { key: LocationFilter; label: string }[] = [
+    { key: "all", label: t("All", "Tất Cả") },
+    { key: "dallas", label: "Dallas" },
+    { key: "garland", label: "Garland" },
+  ];
 
   return (
     <View style={[styles.section, { backgroundColor: colors.background }]}>
@@ -121,21 +147,52 @@ function ReviewsSection() {
         <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
           {t("Customer Reviews", "Đánh Giá Khách Hàng")}
         </Text>
-        {overallRating != null && (
+        {displayRating != null && (
           <View style={styles.overallRating}>
             <Ionicons name="star" size={14} color="#f5c842" />
             <Text style={[styles.overallRatingText, { color: colors.foreground }]}>
-              {overallRating.toFixed(1)}
+              {displayRating.toFixed(1)}
             </Text>
-            {totalCount > 0 && (
+            {displayCount > 0 && (
               <Text style={[styles.overallRatingCount, { color: colors.mutedForeground }]}>
-                ({totalCount}+)
+                ({displayCount}+)
               </Text>
             )}
           </View>
         )}
       </View>
-      {allReviews.map((review, i) => (
+
+      <View style={[styles.filterTabBar, { backgroundColor: colors.card, borderColor: colors.border }]}>
+        {tabs.map((tab) => {
+          const active = locationFilter === tab.key;
+          return (
+            <Pressable
+              key={tab.key}
+              onPress={() => {
+                Haptics.selectionAsync();
+                setLocationFilter(tab.key);
+              }}
+              style={[
+                styles.filterTab,
+                active && { backgroundColor: colors.navy ?? "#3f5f85" },
+              ]}
+              testID={`review-filter-${tab.key}`}
+            >
+              <Text
+                style={[
+                  styles.filterTabText,
+                  { color: active ? "#fff" : colors.mutedForeground },
+                  active && { fontFamily: "Inter_600SemiBold" },
+                ]}
+              >
+                {tab.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+
+      {filteredReviews.map((review, i) => (
         <ReviewCard key={`${review.author_name}-${review.time}-${i}`} review={review} />
       ))}
     </View>
@@ -577,5 +634,22 @@ const styles = StyleSheet.create({
   reviewPlaceholderText: {
     fontSize: 13,
     fontFamily: "Inter_400Regular",
+  },
+  filterTabBar: {
+    flexDirection: "row",
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: "hidden",
+    marginBottom: 2,
+  },
+  filterTab: {
+    flex: 1,
+    paddingVertical: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  filterTabText: {
+    fontSize: 13,
+    fontFamily: "Inter_500Medium",
   },
 });
