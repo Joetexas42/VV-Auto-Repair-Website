@@ -10,7 +10,7 @@ export const LOCATIONS = {
       vi: "Thứ 2 – Thứ 6: 8:00 – 18:00\nThứ 7 – CN: Đóng cửa",
     },
     mapUrl:
-      "https://maps.google.com/?q=11366+Jupiter+Rd,+Dallas,+TX+75218",
+      "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1",
     color: "#3f5f85",
     tagEn: "Mechanical Repair",
     tagVi: "Sửa Máy",
