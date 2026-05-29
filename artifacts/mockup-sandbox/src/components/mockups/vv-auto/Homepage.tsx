@@ -17,9 +17,9 @@ const Navigation = () => (
           <a href="#" className="hover:text-vv-red transition-colors font-medium">Services</a>
           <a href="#" className="hover:text-vv-red transition-colors font-medium">About</a>
           <a href="#" className="hover:text-vv-red transition-colors font-medium">Contact</a>
-          <div className="flex items-center bg-white/10 rounded-full p-1">
-            <span className="px-3 py-1 bg-white text-vv-navy rounded-full text-sm font-bold shadow-sm">EN</span>
-            <span className="px-3 py-1 text-white/70 text-sm font-medium hover:text-white cursor-pointer transition-colors">VI</span>
+          <div className="flex items-center bg-white/10 rounded p-1 gap-1">
+            <span className="px-6 py-2.5 bg-white text-vv-navy rounded font-bold shadow-sm cursor-pointer">English</span>
+            <span className="px-6 py-2.5 text-white/70 font-bold hover:text-white cursor-pointer transition-colors">Vietnamese</span>
           </div>
           <a href="tel:2143202171" className="bg-vv-red hover:bg-red-500 text-white px-6 py-2.5 rounded font-bold transition-colors flex items-center gap-2">
             <Phone size={18} />
