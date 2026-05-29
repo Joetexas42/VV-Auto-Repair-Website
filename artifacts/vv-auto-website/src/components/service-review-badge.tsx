@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Star, Quote, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -11,7 +11,7 @@ export interface ServiceReview {
 }
 
 interface ServiceReviewBadgeProps {
-  reviews: ServiceReview[];
+  keywords: string[];
 }
 
 function StarRow({ count }: { count: number }) {
@@ -29,8 +29,68 @@ function StarRow({ count }: { count: number }) {
   );
 }
 
-export function ServiceReviewBadge({ reviews }: ServiceReviewBadgeProps) {
+function ReviewCard({ review, lang }: { review: ServiceReview; lang: "en" | "vi" }) {
+  const showVi = lang === "vi" && review.textVi;
+  const displayText = showVi ? review.textVi! : review.textEn;
+  const secondaryText = showVi ? review.textEn : review.textVi;
+  const hasBilingual = !!review.textVi;
+
+  return (
+    <div className="bg-[var(--vv-gray)] rounded-2xl border border-gray-200 p-6 flex flex-col gap-4 relative">
+      <Quote
+        size={36}
+        className="absolute top-5 right-5 text-[var(--vv-red)] opacity-10"
+      />
+
+      <StarRow count={review.stars} />
+
+      <p className="text-gray-800 leading-relaxed font-medium">
+        "{displayText}"
+      </p>
+
+      {hasBilingual && secondaryText && (
+        <p className="text-gray-500 text-sm leading-relaxed italic border-t border-gray-200 pt-3">
+          "{secondaryText}"
+        </p>
+      )}
+
+      <div className="flex items-center gap-3 mt-auto pt-2 border-t border-gray-200">
+        <div className="w-9 h-9 rounded-full bg-[var(--vv-navy)] flex items-center justify-center shrink-0">
+          <span className="text-white font-extrabold text-sm font-display">
+            {review.name.charAt(0)}
+          </span>
+        </div>
+        <div>
+          <p className="font-semibold text-[var(--vv-navy)] text-sm">{review.name}</p>
+          <p className="text-xs text-gray-500">
+            {lang === "vi" ? "Đánh Giá Google" : "Google Review"}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ServiceReviewBadge({ keywords }: ServiceReviewBadgeProps) {
   const { t, lang } = useLanguage();
+  const [reviews, setReviews] = useState<ServiceReview[]>([]);
+
+  useEffect(() => {
+    const params = new URLSearchParams({ limit: "2" });
+    if (keywords.length > 0) {
+      params.set("keywords", keywords.join(","));
+    }
+    fetch(`/api/reviews?${params.toString()}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data.reviews)) {
+          setReviews(data.reviews);
+        }
+      })
+      .catch(() => {});
+  }, [keywords.join(",")]);
+
+  if (reviews.length === 0) return null;
 
   return (
     <section className="py-14 bg-white border-t border-gray-100">
@@ -53,48 +113,9 @@ export function ServiceReviewBadge({ reviews }: ServiceReviewBadgeProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {reviews.map((review, idx) => {
-            const showVi = lang === "vi" && review.textVi;
-            const displayText = showVi ? review.textVi! : review.textEn;
-            const secondaryText = showVi ? review.textEn : review.textVi;
-            const hasBilingual = !!review.textVi;
-
-            return (
-              <div
-                key={idx}
-                className="bg-[var(--vv-gray)] rounded-2xl border border-gray-200 p-6 flex flex-col gap-4 relative"
-              >
-                <Quote
-                  size={36}
-                  className="absolute top-5 right-5 text-[var(--vv-red)] opacity-10"
-                />
-
-                <StarRow count={review.stars} />
-
-                <p className="text-gray-800 leading-relaxed font-medium">
-                  "{displayText}"
-                </p>
-
-                {hasBilingual && secondaryText && (
-                  <p className="text-gray-500 text-sm leading-relaxed italic border-t border-gray-200 pt-3">
-                    "{secondaryText}"
-                  </p>
-                )}
-
-                <div className="flex items-center gap-3 mt-auto pt-2 border-t border-gray-200">
-                  <div className="w-9 h-9 rounded-full bg-[var(--vv-navy)] flex items-center justify-center shrink-0">
-                    <span className="text-white font-extrabold text-sm font-display">
-                      {review.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[var(--vv-navy)] text-sm">{review.name}</p>
-                    <p className="text-xs text-gray-500">{t("Google Review", "Đánh Giá Google")}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {reviews.map((review, idx) => (
+            <ReviewCard key={idx} review={review} lang={lang} />
+          ))}
         </div>
 
         <div className="mt-8 text-center">

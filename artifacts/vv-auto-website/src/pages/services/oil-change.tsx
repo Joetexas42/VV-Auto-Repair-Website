@@ -5,25 +5,6 @@ import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 import { ServiceReviewBadge } from "@/components/service-review-badge";
 
-const OIL_REVIEWS = [
-  {
-    name: "David L.",
-    stars: 4,
-    textEn:
-      "Great local mechanic shop. Took my truck in for an oil change and they noticed a couple other things that needed attention but didn't pressure me — just let me know and let me decide. That's the kind of honesty I appreciate.",
-    textVi:
-      "Tiệm thợ địa phương rất tốt. Tôi mang xe tải đến thay nhớt và họ phát hiện thêm một vài vấn đề cần chú ý nhưng không ép buộc — chỉ thông báo và để tôi tự quyết định. Đó là sự trung thực mà tôi trân trọng.",
-  },
-  {
-    name: "Lan N.",
-    stars: 5,
-    textEn:
-      "Excellent shop with skilled mechanics and very reasonable prices. I'm always satisfied with the service here. They fix the car quickly and on schedule — truly reliable!",
-    textVi:
-      "Tiệm sửa xe rất tốt, thợ tay nghề cao và giá cả hợp lý. Tôi luôn hài lòng với dịch vụ ở đây. Họ sửa xe nhanh và đúng lịch hẹn — rất đáng tin cậy!",
-  },
-];
-
 export default function OilChange() {
   const { t } = useLanguage();
 
@@ -166,7 +147,7 @@ export default function OilChange() {
       </section>
 
       {/* Review Badge */}
-      <ServiceReviewBadge reviews={OIL_REVIEWS} />
+      <ServiceReviewBadge keywords={["oil", "nhớt", "maintenance"]} />
     </Layout>
   );
 }

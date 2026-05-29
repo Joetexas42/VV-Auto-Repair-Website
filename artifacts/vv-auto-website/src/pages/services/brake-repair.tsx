@@ -5,25 +5,6 @@ import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 import { ServiceReviewBadge } from "@/components/service-review-badge";
 
-const BRAKE_REVIEWS = [
-  {
-    name: "Michael T.",
-    stars: 5,
-    textEn:
-      "Brought my car in for brake replacement and they did an incredible job at a fair price. The mechanic explained everything clearly and didn't try to upsell me on things I didn't need. Honest shop — I'll keep coming back.",
-    textVi:
-      "Tôi mang xe đến thay phanh và họ làm rất tuyệt với giá hợp lý. Thợ máy giải thích mọi thứ rõ ràng và không cố bán thêm những thứ không cần thiết. Tiệm uy tín — tôi sẽ tiếp tục quay lại.",
-  },
-  {
-    name: "Thanh H.",
-    stars: 5,
-    textEn:
-      "Professional and honest service. They checked the car for free and clearly explained the problem. Prices are fair — not inflated like other shops. I recommend them to all my friends.",
-    textVi:
-      "Dịch vụ chuyên nghiệp và trung thực. Họ kiểm tra xe miễn phí và giải thích rõ ràng vấn đề. Giá cả hợp lý, không chặt chém như nhiều tiệm khác. Tôi sẽ giới thiệu cho bạn bè.",
-  },
-];
-
 export default function BrakeRepair() {
   const { t } = useLanguage();
 
@@ -182,7 +163,7 @@ export default function BrakeRepair() {
       </section>
 
       {/* Review Badge */}
-      <ServiceReviewBadge reviews={BRAKE_REVIEWS} />
+      <ServiceReviewBadge keywords={["brake", "phanh"]} />
 
       {/* Cross-sell */}
       <section className="py-16 bg-white">

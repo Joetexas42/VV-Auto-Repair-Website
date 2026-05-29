@@ -5,25 +5,6 @@ import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 import { ServiceReviewBadge } from "@/components/service-review-badge";
 
-const ENGINE_REVIEWS = [
-  {
-    name: "Sarah K.",
-    stars: 5,
-    textEn:
-      "My engine light came on and I was scared it would be expensive. They ran the diagnostic, found the issue, and fixed it for way less than the dealer quoted. Friendly staff too — highly recommend!",
-    textVi:
-      "Đèn báo động cơ bật sáng và tôi lo sẽ tốn kém. Họ chạy chẩn đoán, tìm ra vấn đề và sửa với giá thấp hơn nhiều so với đại lý báo. Nhân viên cũng thân thiện — rất khuyến khích!",
-  },
-  {
-    name: "Minh P.",
-    stars: 5,
-    textEn:
-      "I've been coming to V.V. Auto for years and always leave happy. The mechanics are experienced, friendly, and never make you feel rushed or pressured. Great family business.",
-    textVi:
-      "Tôi đã đến V.V. Auto nhiều năm và luôn hài lòng. Thợ sửa xe kinh nghiệm, thân thiện và không bao giờ tạo áp lực. Cơ sở gia đình tuyệt vời.",
-  },
-];
-
 export default function EngineRepair() {
   const { t } = useLanguage();
 
@@ -165,7 +146,7 @@ export default function EngineRepair() {
       </section>
 
       {/* Review Badge */}
-      <ServiceReviewBadge reviews={ENGINE_REVIEWS} />
+      <ServiceReviewBadge keywords={["engine", "diagnostic", "động cơ"]} />
     </Layout>
   );
 }
