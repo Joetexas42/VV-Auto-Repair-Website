@@ -20,7 +20,7 @@ export function Navigation() {
         <div className="flex justify-between h-20 items-center">
           <Link href="/" className="flex items-center gap-2 cursor-pointer" data-testid="link-home-logo">
             <div className="text-3xl font-extrabold tracking-tighter flex items-center font-display">
-              <span className="text-white">V.V.</span>
+              <span className="text-white font-extrabold">V V</span>
               <span className="text-[var(--vv-red)] ml-2 text-xl font-bold uppercase tracking-widest border-l-2 border-white/20 pl-2 font-display">Auto Repair
 </span>
             </div>
