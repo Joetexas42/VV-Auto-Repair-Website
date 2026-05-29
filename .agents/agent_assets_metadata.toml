@@ -18,3 +18,27 @@ id = "idd9SPOfFPI6Ox29VYJ49"
 uri = "file://artifacts/mockup-sandbox/public/images/vv-body.png"
 type = "image"
 title = "Auto body collision repair"
+
+[[generated]]
+id = "XhQo0qYj5BA0pAit0T5G3"
+uri = "file://artifacts/vv-auto-website/public/images/vv-oil.png"
+type = "image"
+title = "Mechanic doing oil change"
+
+[[generated]]
+id = "CLDWukUqy7BB_MCRoMZEF"
+uri = "file://artifacts/vv-auto-website/public/images/vv-engine.png"
+type = "image"
+title = "Mechanic doing engine repair"
+
+[[generated]]
+id = "DuXnAYC2SR02Ob5Si0-rO"
+uri = "file://artifacts/vv-auto-website/public/images/vv-inspection.png"
+type = "image"
+title = "Mechanic doing state inspection"
+
+[[generated]]
+id = "gmP8PclpZy3tXcThQnlai"
+uri = "file://artifacts/vv-auto-website/public/images/vv-diagnostics.png"
+type = "image"
+title = "Mechanic using computer diagnostic tool"
