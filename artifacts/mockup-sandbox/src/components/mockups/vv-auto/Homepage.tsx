@@ -8,8 +8,8 @@ const Navigation = () => (
       <div className="flex justify-between h-20 items-center">
         <div className="flex items-center gap-2">
           <div className="text-3xl font-extrabold tracking-tighter flex items-center">
-            <span className="text-white">V.V.</span>
-            <span className="text-vv-red ml-2 text-xl font-bold uppercase tracking-widest border-l-2 border-white/20 pl-2">Auto</span>
+            <span className="text-white">V V </span>
+            <span className="text-vv-red ml-2 text-xl font-bold uppercase tracking-widest border-l-2 border-white/20 pl-2">Auto repair</span>
           </div>
         </div>
         <div className="hidden md:flex items-center space-x-8">
