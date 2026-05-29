@@ -1,3 +1,5 @@
+import { logger } from "../lib/logger";
+
 export interface PlaceReview {
   author_name: string;
   rating: number;
@@ -120,6 +122,31 @@ async function fetchPlaceDetailsLegacy(placeId: string, apiKey: string): Promise
   return null;
 }
 
+const LOCATIONS = Object.keys(PLACE_QUERIES) as Array<"dallas" | "garland">;
+
+async function refreshAllCaches(): Promise<void> {
+  for (const location of LOCATIONS) {
+    try {
+      await getPlaceData(location);
+    } catch (err) {
+      logger.error({ err, location }, "Background cache refresh failed");
+    }
+  }
+}
+
+export async function preWarmCaches(): Promise<void> {
+  logger.info("Pre-warming review caches before accepting requests");
+  await refreshAllCaches();
+  logger.info("Review cache pre-warm complete");
+}
+
+export function startRefreshInterval(): void {
+  setInterval(() => {
+    logger.info("Running scheduled review cache refresh");
+    void refreshAllCaches();
+  }, CACHE_TTL_MS).unref();
+}
+
 export async function getPlaceData(location: "dallas" | "garland"): Promise<PlaceData | null> {
   const apiKey = process.env["GOOGLE_PLACES_API_KEY"];
   if (!apiKey) return null;
@@ -130,6 +157,8 @@ export async function getPlaceData(location: "dallas" | "garland"): Promise<Plac
   if (cached && now - cached.cachedAt < CACHE_TTL_MS && cached.data) {
     return cached.data;
   }
+
+  logger.info({ location }, "Cache miss — fetching fresh data from Google Places API");
 
   try {
     const query = PLACE_QUERIES[location];
