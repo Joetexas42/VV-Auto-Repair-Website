@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "wouter";
-import { MapPin, Phone, Star, Wrench, ShieldCheck, CheckCircle2, ChevronRight, ArrowRight, Clock } from "lucide-react";
+import { MapPin, Phone, Star, Wrench, ShieldCheck, CheckCircle2, ChevronRight, ArrowRight, Clock, Images } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 
@@ -237,6 +237,63 @@ export default function Homepage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Preview Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-sm font-bold text-[var(--vv-red)] tracking-widest uppercase mb-3">
+              {t("See Our Work", "Xem Công Việc Của Chúng Tôi")}
+            </h2>
+            <h3 className="text-4xl font-extrabold text-[var(--vv-navy)] tracking-tight mb-4 font-display">
+              {t("Inside Our Shops", "Bên Trong Các Tiệm Của Chúng Tôi")}
+            </h3>
+            <p className="text-lg text-gray-600">
+              {t(
+                "Real photos of our shop, our team, and the quality work we deliver every day.",
+                "Ảnh thực tế về tiệm, đội ngũ và chất lượng công việc chúng tôi thực hiện mỗi ngày."
+              )}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+            {[
+              { src: "/images/vv-hero.png", altEn: "V.V. Auto shop exterior", altVi: "Mặt ngoài tiệm V.V. Auto", captionEn: "Our Dallas shop", captionVi: "Tiệm Dallas" },
+              { src: "/images/vv-brakes.png", altEn: "Brake repair in progress", altVi: "Đang sửa phanh xe", captionEn: "Brake repair", captionVi: "Sửa chữa phanh" },
+              { src: "/images/vv-body.png", altEn: "Collision repair and paint", altVi: "Sửa tai nạn và sơn xe", captionEn: "Body & paint work", captionVi: "Đồng sơn" },
+              { src: "/images/vv-engine.png", altEn: "Engine repair", altVi: "Sửa chữa động cơ", captionEn: "Engine service", captionVi: "Dịch vụ động cơ" },
+              { src: "/images/vv-diagnostics.png", altEn: "Computerized diagnostics", altVi: "Chẩn đoán điện tử", captionEn: "Diagnostics", captionVi: "Chẩn đoán" },
+              { src: "/images/vv-oil.png", altEn: "Oil change service", altVi: "Thay nhớt", captionEn: "Oil changes", captionVi: "Thay nhớt" },
+            ].map((photo, idx) => (
+              <Link
+                key={idx}
+                href="/gallery"
+                className="group relative rounded-xl overflow-hidden aspect-[4/3] bg-gray-200 block shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <img
+                  src={photo.src}
+                  alt={t(photo.altEn, photo.altVi)}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <span className="text-white font-semibold text-sm">{t(photo.captionEn, photo.captionVi)}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-3 bg-[var(--vv-navy)] hover:bg-blue-900 text-white px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg"
+            >
+              <Images size={22} />
+              {t("View Full Gallery", "Xem Toàn Bộ Thư Viện Ảnh")}
+              <ArrowRight size={20} />
+            </Link>
           </div>
         </div>
       </section>
