@@ -16,7 +16,131 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useLanguage } from "@/context/LanguageContext";
 import { useColors } from "@/hooks/useColors";
+import { useReviews, type PlaceReview } from "@/hooks/useReviews";
 import { LOCATIONS, STRINGS } from "@/constants/data";
+
+function StarRow({ rating, size = 12 }: { rating: number; size?: number }) {
+  return (
+    <View style={styles.starRow}>
+      {[1, 2, 3, 4, 5].map((i) => {
+        const filled = rating >= i;
+        const half = !filled && rating >= i - 0.5;
+        return (
+          <Ionicons
+            key={i}
+            name={filled ? "star" : half ? "star-half" : "star-outline"}
+            size={size}
+            color="#f5c842"
+          />
+        );
+      })}
+    </View>
+  );
+}
+
+function ReviewCard({ review }: { review: PlaceReview }) {
+  const colors = useColors();
+  const date = review.relative_time_description
+    ? review.relative_time_description
+    : new Date(review.time * 1000).toLocaleDateString("en-US", {
+        month: "short",
+        year: "numeric",
+      });
+
+  return (
+    <View style={[styles.reviewCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+      <View style={styles.reviewHeader}>
+        <View style={[styles.reviewAvatar, { backgroundColor: colors.navy ?? "#3f5f85" }]}>
+          <Text style={styles.reviewAvatarText}>
+            {review.author_name.charAt(0).toUpperCase()}
+          </Text>
+        </View>
+        <View style={styles.reviewMeta}>
+          <Text style={[styles.reviewAuthor, { color: colors.foreground }]} numberOfLines={1}>
+            {review.author_name}
+          </Text>
+          <View style={styles.reviewSubRow}>
+            <StarRow rating={review.rating} size={11} />
+            <Text style={[styles.reviewDate, { color: colors.mutedForeground }]}>{date}</Text>
+          </View>
+        </View>
+      </View>
+      <Text style={[styles.reviewText, { color: colors.foreground }]} numberOfLines={4}>
+        {review.text}
+      </Text>
+    </View>
+  );
+}
+
+function ReviewsSection() {
+  const colors = useColors();
+  const { t } = useLanguage();
+  const { data, isLoading, isError } = useReviews();
+
+  const allReviews = React.useMemo(() => {
+    if (!data) return [];
+    const dallas = data.dallas?.reviews ?? [];
+    const garland = data.garland?.reviews ?? [];
+    const seen = new Set<string>();
+    const merged: PlaceReview[] = [];
+    for (const r of [...dallas, ...garland]) {
+      const key = `${r.author_name}:${r.time}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        merged.push(r);
+      }
+    }
+    return merged.slice(0, 6);
+  }, [data]);
+
+  if (isLoading) {
+    return (
+      <View style={[styles.section, { backgroundColor: colors.background }]}>
+        <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+          {t("Customer Reviews", "Đánh Giá Khách Hàng")}
+        </Text>
+        <View style={[styles.reviewPlaceholder, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.reviewPlaceholderText, { color: colors.mutedForeground }]}>
+            {t("Loading reviews…", "Đang tải đánh giá…")}
+          </Text>
+        </View>
+      </View>
+    );
+  }
+
+  if (isError || allReviews.length === 0) {
+    return null;
+  }
+
+  const overallRating = data?.dallas?.rating ?? data?.garland?.rating;
+  const totalCount = (data?.dallas?.user_ratings_total ?? 0) + (data?.garland?.user_ratings_total ?? 0);
+
+  return (
+    <View style={[styles.section, { backgroundColor: colors.background }]}>
+      <View style={styles.reviewsSectionHeader}>
+        <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+          {t("Customer Reviews", "Đánh Giá Khách Hàng")}
+        </Text>
+        {overallRating != null && (
+          <View style={styles.overallRating}>
+            <Ionicons name="star" size={14} color="#f5c842" />
+            <Text style={[styles.overallRatingText, { color: colors.foreground }]}>
+              {overallRating.toFixed(1)}
+            </Text>
+            {totalCount > 0 && (
+              <Text style={[styles.overallRatingCount, { color: colors.mutedForeground }]}>
+                ({totalCount}+)
+              </Text>
+            )}
+          </View>
+        )}
+      </View>
+      {allReviews.map((review, i) => (
+        <ReviewCard key={`${review.author_name}-${review.time}-${i}`} review={review} />
+      ))}
+    </View>
+  );
+}
 
 function QuickAction({
   icon,
@@ -183,6 +307,8 @@ export default function HomeScreen() {
         <LocationCard locationKey="dallas" />
         <LocationCard locationKey="garland" />
       </View>
+
+      <ReviewsSection />
     </ScrollView>
   );
 }
@@ -372,5 +498,84 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontFamily: "Inter_500Medium",
     color: "#657080",
+  },
+  reviewsSectionHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 4,
+  },
+  overallRating: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  overallRatingText: {
+    fontSize: 14,
+    fontFamily: "Inter_700Bold",
+  },
+  overallRatingCount: {
+    fontSize: 12,
+    fontFamily: "Inter_400Regular",
+  },
+  reviewCard: {
+    borderRadius: 12,
+    borderWidth: 1,
+    padding: 14,
+    gap: 10,
+  },
+  reviewHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  reviewAvatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  },
+  reviewAvatarText: {
+    color: "#fff",
+    fontSize: 15,
+    fontFamily: "Inter_700Bold",
+  },
+  reviewMeta: {
+    flex: 1,
+    gap: 3,
+  },
+  reviewAuthor: {
+    fontSize: 13,
+    fontFamily: "Inter_600SemiBold",
+  },
+  reviewSubRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
+  starRow: {
+    flexDirection: "row",
+    gap: 1,
+  },
+  reviewDate: {
+    fontSize: 11,
+    fontFamily: "Inter_400Regular",
+  },
+  reviewText: {
+    fontSize: 13,
+    fontFamily: "Inter_400Regular",
+    lineHeight: 19,
+  },
+  reviewPlaceholder: {
+    borderRadius: 12,
+    borderWidth: 1,
+    padding: 20,
+    alignItems: "center",
+  },
+  reviewPlaceholderText: {
+    fontSize: 13,
+    fontFamily: "Inter_400Regular",
   },
 });
