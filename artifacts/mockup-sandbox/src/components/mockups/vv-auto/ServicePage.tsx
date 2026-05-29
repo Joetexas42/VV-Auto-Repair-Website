@@ -154,7 +154,7 @@ export function ServicePage() {
                   <Phone size={24} />
                   Call Dallas Shop
                 </a>
-                <a href="#details" className="bg-vv-gray hover:bg-gray-200 text-vv-navy text-center px-8 py-4 rounded-md font-bold text-lg transition-colors flex items-center justify-center">
+                <a href="#details" className="bg-vv-teal hover:bg-teal-400 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-colors flex items-center justify-center">
                   Learn More
                 </a>
               </div>
@@ -256,7 +256,7 @@ export function ServicePage() {
               <h3 className="text-2xl font-bold text-vv-navy mb-2">Need collision or body work?</h3>
               <p className="text-gray-600 max-w-xl">Our Garland location specializes in major collision repair, paint, and insurance claims. We work with all insurance providers.</p>
             </div>
-            <a href="#" className="whitespace-nowrap bg-white border-2 border-vv-navy text-vv-navy hover:bg-vv-navy hover:text-white px-8 py-3 rounded-lg font-bold transition-colors flex items-center gap-2">
+            <a href="#" className="whitespace-nowrap bg-vv-teal hover:bg-teal-400 text-white px-8 py-3 rounded-lg font-bold transition-colors flex items-center gap-2">
               Visit V V Auto Body <ArrowRight size={18} />
             </a>
           </div>

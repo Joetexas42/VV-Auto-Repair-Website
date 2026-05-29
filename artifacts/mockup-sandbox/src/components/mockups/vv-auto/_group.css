@@ -1,25 +1,29 @@
 :root {
-  --vv-navy: #0d1b3e;
-  --vv-navy-light: #2a4a8a;
-  --vv-blue: #1a4ba0;
+  --vv-navy: #233a63;
+  --vv-navy-light: #3a5a8a;
+  --vv-blue: #2260a8;
+  --vv-teal: #2aafca;
   --vv-red: #cc1a1a;
   --vv-red-light: #e82020;
-  --vv-gray: #f4f6f9;
+  --vv-gray: #f0f4f8;
   --vv-white: #ffffff;
 }
 
 .bg-vv-navy { background-color: var(--vv-navy); }
 .bg-vv-blue { background-color: var(--vv-blue); }
+.bg-vv-teal { background-color: var(--vv-teal); }
 .bg-vv-red { background-color: var(--vv-red); }
 .bg-vv-gray { background-color: var(--vv-gray); }
 
 .text-vv-navy { color: var(--vv-navy); }
 .text-vv-blue { color: var(--vv-blue); }
+.text-vv-teal { color: var(--vv-teal); }
 .text-vv-red { color: var(--vv-red); }
 
 .border-vv-navy { border-color: var(--vv-navy); }
+.border-vv-teal { border-color: var(--vv-teal); }
 .border-vv-red { border-color: var(--vv-red); }
 
 .bg-vv-gradient {
-  background: linear-gradient(135deg, var(--vv-navy) 0%, var(--vv-navy-light) 100%);
+  background: radial-gradient(ellipse at 60% 40%, var(--vv-navy-light) 0%, var(--vv-navy) 70%);
 }

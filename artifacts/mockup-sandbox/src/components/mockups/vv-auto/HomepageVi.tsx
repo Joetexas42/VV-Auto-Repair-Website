@@ -146,7 +146,7 @@ export function HomepageVi() {
                 <Phone size={24} />
                 Gọi Ngay — (214) 320-2171
               </a>
-              <a href="#locations" className="bg-white hover:bg-gray-100 text-vv-navy text-center px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-3">
+              <a href="#locations" className="bg-vv-teal hover:bg-teal-400 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-3">
                 <MapPin size={24} className="text-vv-red" />
                 Chỉ Đường
               </a>
@@ -354,7 +354,7 @@ export function HomepageVi() {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <a href="tel:2143202171" className="flex-1 bg-vv-navy hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">Gọi Tiệm Dallas</a>
-                <a href="#" className="flex-1 bg-vv-gray hover:bg-gray-200 text-vv-navy text-center py-3 rounded-lg font-bold transition-colors">Chỉ Đường</a>
+                <a href="#" className="flex-1 bg-vv-teal hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">Chỉ Đường</a>
               </div>
             </div>
 
@@ -398,7 +398,7 @@ export function HomepageVi() {
 
               <div className="flex flex-col sm:flex-row gap-3">
                 <a href="tel:4692589356" className="flex-1 bg-vv-navy hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">Gọi Tiệm Garland</a>
-                <a href="#" className="flex-1 bg-vv-gray hover:bg-gray-200 text-vv-navy text-center py-3 rounded-lg font-bold transition-colors">Chỉ Đường</a>
+                <a href="#" className="flex-1 bg-vv-teal hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">Chỉ Đường</a>
               </div>
             </div>
           </div>
