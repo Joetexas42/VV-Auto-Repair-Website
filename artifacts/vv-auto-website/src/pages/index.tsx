@@ -46,7 +46,7 @@ function buildFeatured(liveData: AllReviewsResponse): Array<{ name: string; star
 }
 
 const GOOGLE_WRITE_REVIEW_URL =
-  "https://search.google.com/local/writereview?placeid=ChIJrRRUGaDwTIYRqwwKd4Htjl4";
+  "https://search.google.com/local/writereview?placeid=ChIJ025JNyKhToYRNRX5NXicpUQ";
 
 export default function Homepage() {
   const { lang, t } = useLanguage();

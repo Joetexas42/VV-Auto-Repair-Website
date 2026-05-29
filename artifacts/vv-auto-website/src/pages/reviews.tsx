@@ -8,7 +8,7 @@ const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8396,-96.6685,17z/data=!4m8!3m7!1s0x0:0x0!8m2!3d32.8396!4d-96.6685!9m1!1b1";
 
 const GOOGLE_WRITE_REVIEW_URL =
-  "https://search.google.com/local/writereview?placeid=ChIJrRRUGaDwTIYRqwwKd4Htjl4";
+  "https://search.google.com/local/writereview?placeid=ChIJ025JNyKhToYRNRX5NXicpUQ";
 
 interface Review {
   name: string;
