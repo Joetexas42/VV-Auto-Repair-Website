@@ -473,7 +473,7 @@ export default function Homepage() {
                 <a href="tel:2143202171" className="flex-1 bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Call Dallas Shop", "Gọi Tiệm Dallas")}
                 </a>
-                <a href="https://maps.google.com/?q=11366+Jupiter+Rd,+Dallas,+TX+75218" target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
+                <a href="https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1" target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Get Directions", "Chỉ Đường")}
                 </a>
               </div>
@@ -523,7 +523,7 @@ export default function Homepage() {
                 <a href="tel:4692589356" className="flex-1 bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Call Garland Shop", "Gọi Tiệm Garland")}
                 </a>
-                <a href="https://maps.google.com/?q=3730+Marquis+Dr,+Garland,+TX+75042" target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
+                <a href="https://maps.google.com/?q=V+V+Auto+Body+Repair,+3730+Marquis+Dr,+Garland,+TX+75042" target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Get Directions", "Chỉ Đường")}
                 </a>
               </div>
