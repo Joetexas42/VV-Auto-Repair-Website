@@ -4,14 +4,17 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import {
+  LayoutAnimation,
   Linking,
   Platform,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
+  UIManager,
   View,
 } from "react-native";
+
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Path, Svg } from "react-native-svg";
 
@@ -19,6 +22,10 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useColors } from "@/hooks/useColors";
 import { useReviews, type PlaceReview } from "@/hooks/useReviews";
 import { LOCATIONS, STRINGS } from "@/constants/data";
+
+if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 const GOOGLE_MAPS_REVIEWS_URL =
   "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1";
@@ -128,6 +135,12 @@ function ReviewCard({ review, isLive = true }: { review: PlaceReview; isLive?: b
 
   const toggleExpanded = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    LayoutAnimation.configureNext({
+      duration: 280,
+      create: { type: "easeInEaseOut", property: "opacity" },
+      update: { type: "easeInEaseOut" },
+      delete: { type: "easeInEaseOut", property: "opacity" },
+    });
     setExpanded((prev) => !prev);
   };
 
