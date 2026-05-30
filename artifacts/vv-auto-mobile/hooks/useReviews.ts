@@ -14,6 +14,7 @@ export interface LocationReviewData {
   rating: number;
   user_ratings_total: number;
   reviews: PlaceReview[];
+  isFallback?: boolean;
 }
 
 export interface AllLocationsReviews {

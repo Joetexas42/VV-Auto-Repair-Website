@@ -181,7 +181,7 @@ function ReviewCard({ review, isLive = true }: { review: PlaceReview; isLive?: b
           />
         </Pressable>
       )}
-      <GoogleReviewBadge isLive={isLive} />
+      <GoogleReviewBadge isLive={isLive} mapsUrl={mapsUrl} />
     </View>
   );
 }
@@ -228,6 +228,12 @@ function ReviewsSection() {
     if (locationFilter === "dallas") return data.dallas?.user_ratings_total ?? 0;
     if (locationFilter === "garland") return data.garland?.user_ratings_total ?? 0;
     return (data.dallas?.user_ratings_total ?? 0) + (data.garland?.user_ratings_total ?? 0);
+  }, [data, locationFilter]);
+
+  const activeIsLive = React.useMemo(() => {
+    if (!data) return false;
+    if (locationFilter === "garland") return !data.garland?.isFallback;
+    return !data.dallas?.isFallback;
   }, [data, locationFilter]);
 
   if (isLoading) {
@@ -307,7 +313,7 @@ function ReviewsSection() {
       </View>
 
       {filteredReviews.map((review, i) => (
-        <ReviewCard key={`${review.author_name}-${review.time}-${i}`} review={review} />
+        <ReviewCard key={`${review.author_name}-${review.time}-${i}`} review={review} isLive={activeIsLive} />
       ))}
     </View>
   );
@@ -769,6 +775,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 20,
     borderWidth: 1,
+    marginTop: 2,
   },
   googleBadgeLive: {
     backgroundColor: "#ffffff",

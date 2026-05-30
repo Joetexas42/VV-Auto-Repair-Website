@@ -53,20 +53,21 @@ router.get("/reviews", async (req, res) => {
     rating: 4.4,
     user_ratings_total: 65,
     reviews: STATIC_REVIEWS,
+    isFallback: true,
   };
 
   try {
     if (location === "dallas" || location === "garland") {
       const data = await getPlaceData(location);
-      res.json({ location, data: data ?? fallback });
+      res.json({ location, data: data ? { ...data, isFallback: false } : fallback });
     } else {
       const [dallas, garland] = await Promise.all([
         getPlaceData("dallas"),
         getPlaceData("garland"),
       ]);
       res.json({
-        dallas: dallas ?? fallback,
-        garland: garland ?? fallback,
+        dallas: dallas ? { ...dallas, isFallback: false } : fallback,
+        garland: garland ? { ...garland, isFallback: false } : fallback,
       });
     }
   } catch {
