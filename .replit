@@ -20,6 +20,14 @@ author = "agent"
 task = "workflow.run"
 args = "garland-maps-url"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "dallas-maps-url"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "contact-details"
+
 [[workflows.workflow]]
 name = "garland-maps-url"
 author = "agent"
@@ -27,6 +35,28 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "node tests/garland-maps-url.test.mjs"
+
+[workflows.workflow.metadata]
+isValidation = true
+
+[[workflows.workflow]]
+name = "dallas-maps-url"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node tests/dallas-maps-url.test.mjs"
+
+[workflows.workflow.metadata]
+isValidation = true
+
+[[workflows.workflow]]
+name = "contact-details"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node tests/contact-details.test.mjs"
 
 [workflows.workflow.metadata]
 isValidation = true
