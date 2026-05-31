@@ -28,9 +28,6 @@ if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-const GOOGLE_MAPS_REVIEWS_URL =
-  "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1";
-
 function GoogleIcon({ live }: { live: boolean }) {
   const muted = "#9ca3af";
   return (
@@ -55,11 +52,11 @@ function GoogleIcon({ live }: { live: boolean }) {
   );
 }
 
-function GoogleReviewBadge({ isLive }: { isLive: boolean }) {
+function GoogleReviewBadge({ isLive, mapsUrl }: { isLive: boolean; mapsUrl: string }) {
   const handlePress = () => {
     if (!isLive) return;
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    Linking.openURL(GOOGLE_MAPS_REVIEWS_URL);
+    Linking.openURL(mapsUrl);
   };
 
   return (
@@ -116,7 +113,9 @@ function StarRow({ rating, size = 12 }: { rating: number; size?: number }) {
 
 const REVIEW_TRUNCATE_LINES = 4;
 
-function ReviewCard({ review, isLive = true }: { review: PlaceReview; isLive?: boolean }) {
+type ReviewWithLocation = PlaceReview & { locationKey: "dallas" | "garland" };
+
+function ReviewCard({ review, isLive = true }: { review: ReviewWithLocation; isLive?: boolean }) {
   const colors = useColors();
   const [expanded, setExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
@@ -190,7 +189,7 @@ function ReviewCard({ review, isLive = true }: { review: PlaceReview; isLive?: b
           />
         </Pressable>
       )}
-      <GoogleReviewBadge isLive={isLive} mapsUrl={mapsUrl} />
+      <GoogleReviewBadge isLive={isLive} mapsUrl={LOCATIONS[review.locationKey].mapUrl} />
     </View>
   );
 }
@@ -203,18 +202,18 @@ function ReviewsSection() {
   const { data, isLoading, isError } = useReviews();
   const [locationFilter, setLocationFilter] = React.useState<LocationFilter>("all");
 
-  const filteredReviews = React.useMemo(() => {
+  const filteredReviews = React.useMemo((): ReviewWithLocation[] => {
     if (!data) return [];
     if (locationFilter === "dallas") {
-      return (data.dallas?.reviews ?? []).slice(0, 6);
+      return (data.dallas?.reviews ?? []).slice(0, 6).map((r) => ({ ...r, locationKey: "dallas" as const }));
     }
     if (locationFilter === "garland") {
-      return (data.garland?.reviews ?? []).slice(0, 6);
+      return (data.garland?.reviews ?? []).slice(0, 6).map((r) => ({ ...r, locationKey: "garland" as const }));
     }
-    const dallas = data.dallas?.reviews ?? [];
-    const garland = data.garland?.reviews ?? [];
+    const dallas = (data.dallas?.reviews ?? []).map((r) => ({ ...r, locationKey: "dallas" as const }));
+    const garland = (data.garland?.reviews ?? []).map((r) => ({ ...r, locationKey: "garland" as const }));
     const seen = new Set<string>();
-    const merged: PlaceReview[] = [];
+    const merged: ReviewWithLocation[] = [];
     for (const r of [...dallas, ...garland]) {
       const key = `${r.author_name}:${r.time}`;
       if (!seen.has(key)) {
