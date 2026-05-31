@@ -727,6 +727,8 @@ const styles = StyleSheet.create({
     height: 36,
     borderRadius: 18,
     flexShrink: 0,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
   },
   reviewAvatarText: {
     color: "#fff",
