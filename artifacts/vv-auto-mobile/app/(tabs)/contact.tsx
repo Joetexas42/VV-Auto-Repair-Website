@@ -164,7 +164,7 @@ function LocationContactCard({ locationKey }: { locationKey: "dallas" | "garland
 export default function ContactScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { t } = useLanguage();
+  const { t, lang, setLang } = useLanguage();
 
   const topPad = Platform.OS === "web" ? 67 : insets.top;
 
@@ -179,12 +179,29 @@ export default function ContactScreen() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={[styles.pageTitle, { color: colors.foreground }]}>
-        {t(STRINGS.contact.en, STRINGS.contact.vi)}
-      </Text>
-      <Text style={[styles.pageSubtitle, { color: colors.mutedForeground }]}>
-        {t("Tap any number to call directly", "Nhấn vào số để gọi ngay")}
-      </Text>
+      <View style={styles.titleRow}>
+        <View style={{ flex: 1 }}>
+          <Text style={[styles.pageTitle, { color: colors.foreground }]}>
+            {t(STRINGS.contact.en, STRINGS.contact.vi)}
+          </Text>
+          <Text style={[styles.pageSubtitle, { color: colors.mutedForeground }]}>
+            {t("Tap any number to call directly", "Nhấn vào số để gọi ngay")}
+          </Text>
+        </View>
+        <Pressable
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            setLang(lang === "en" ? "vi" : "en");
+          }}
+          style={({ pressed }) => [
+            styles.langToggle,
+            { backgroundColor: colors.navy, opacity: pressed ? 0.75 : 1 },
+          ]}
+          testID="language-toggle"
+        >
+          <Text style={styles.langToggleText}>{lang === "en" ? "🇻🇳 VI" : "🇺🇸 EN"}</Text>
+        </Pressable>
+      </View>
 
       <LocationContactCard locationKey="dallas" />
       <LocationContactCard locationKey="garland" />
@@ -203,6 +220,23 @@ export default function ContactScreen() {
 }
 
 const styles = StyleSheet.create({
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    gap: 12,
+  },
+  langToggle: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    marginTop: 4,
+  },
+  langToggleText: {
+    color: "#fff",
+    fontSize: 13,
+    fontFamily: "Inter_600SemiBold",
+  },
   pageTitle: {
     fontSize: 28,
     fontFamily: "Inter_700Bold",

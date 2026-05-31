@@ -1,8 +1,10 @@
 import { Feather } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -66,7 +68,7 @@ function ServiceSection({
 export default function ServicesScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { t } = useLanguage();
+  const { t, lang, setLang } = useLanguage();
 
   const topPad = Platform.OS === "web" ? 67 : insets.top;
 
@@ -81,12 +83,29 @@ export default function ServicesScreen() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={[styles.pageTitle, { color: colors.foreground }]}>
-        {t(STRINGS.services.en, STRINGS.services.vi)}
-      </Text>
-      <Text style={[styles.pageSubtitle, { color: colors.mutedForeground }]}>
-        {t("Two specialized shops for all your auto needs", "Hai cơ sở chuyên biệt cho mọi nhu cầu xe của bạn")}
-      </Text>
+      <View style={styles.titleRow}>
+        <View style={{ flex: 1 }}>
+          <Text style={[styles.pageTitle, { color: colors.foreground }]}>
+            {t(STRINGS.services.en, STRINGS.services.vi)}
+          </Text>
+          <Text style={[styles.pageSubtitle, { color: colors.mutedForeground }]}>
+            {t("Two specialized shops for all your auto needs", "Hai cơ sở chuyên biệt cho mọi nhu cầu xe của bạn")}
+          </Text>
+        </View>
+        <Pressable
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            setLang(lang === "en" ? "vi" : "en");
+          }}
+          style={({ pressed }) => [
+            styles.langToggle,
+            { backgroundColor: colors.navy, opacity: pressed ? 0.75 : 1 },
+          ]}
+          testID="language-toggle"
+        >
+          <Text style={styles.langToggleText}>{lang === "en" ? "🇻🇳 VI" : "🇺🇸 EN"}</Text>
+        </Pressable>
+      </View>
 
       <ServiceSection
         title={t("Dallas — Mechanical Repair", "Dallas — Sửa Máy")}
@@ -108,6 +127,23 @@ export default function ServicesScreen() {
 }
 
 const styles = StyleSheet.create({
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    gap: 12,
+  },
+  langToggle: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    marginTop: 4,
+  },
+  langToggleText: {
+    color: "#fff",
+    fontSize: 13,
+    fontFamily: "Inter_600SemiBold",
+  },
   pageTitle: {
     fontSize: 28,
     fontFamily: "Inter_700Bold",
