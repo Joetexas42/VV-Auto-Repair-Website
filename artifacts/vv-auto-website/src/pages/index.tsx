@@ -131,7 +131,7 @@ export default function Homepage() {
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight font-display">
-              {t("Honest Auto Repair", "Sửa Chữa Ô Tô Uy Tín")} <br/>
+              {t("Trusted Auto Repair", "Sửa Chữa Ô Tô Uy Tín")} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-[var(--vv-red)]">
                 {t("in Dallas, TX", "tại Dallas, TX")}
               </span>
