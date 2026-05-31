@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import {
+  Image,
   LayoutAnimation,
   Linking,
   Platform,
@@ -147,11 +148,19 @@ function ReviewCard({ review, isLive = true }: { review: PlaceReview; isLive?: b
   return (
     <View style={[styles.reviewCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
       <View style={styles.reviewHeader}>
-        <View style={[styles.reviewAvatar, { backgroundColor: colors.navy ?? "#3f5f85" }]}>
-          <Text style={styles.reviewAvatarText}>
-            {review.author_name.charAt(0).toUpperCase()}
-          </Text>
-        </View>
+        {review.profile_photo_url ? (
+          <Image
+            source={{ uri: review.profile_photo_url }}
+            style={styles.reviewAvatarPhoto}
+            accessibilityLabel={`${review.author_name} profile photo`}
+          />
+        ) : (
+          <View style={[styles.reviewAvatar, { backgroundColor: colors.navy ?? "#3f5f85" }]}>
+            <Text style={styles.reviewAvatarText}>
+              {review.author_name.charAt(0).toUpperCase()}
+            </Text>
+          </View>
+        )}
         <View style={styles.reviewMeta}>
           <Text style={[styles.reviewAuthor, { color: colors.foreground }]} numberOfLines={1}>
             {review.author_name}
@@ -712,6 +721,12 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: "center",
     justifyContent: "center",
+    flexShrink: 0,
+  },
+  reviewAvatarPhoto: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     flexShrink: 0,
   },
   reviewAvatarText: {
