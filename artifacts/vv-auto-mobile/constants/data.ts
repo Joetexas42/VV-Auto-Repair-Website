@@ -54,7 +54,7 @@ export const SERVICES = {
 
 export const STRINGS = {
   appName: { en: "VV Auto", vi: "VV Auto" },
-  tagline: { en: "Honest Auto Repair", vi: "Sửa Chữa Ô Tô Uy Tín" },
+  tagline: { en: "Trusted Auto Repair", vi: "Sửa Chữa Ô Tô Uy Tín" },
   subtitle: {
     en: "A mechanic you'd send your mom to",
     vi: "Người thợ mà bạn an tâm giới thiệu cho gia đình",
