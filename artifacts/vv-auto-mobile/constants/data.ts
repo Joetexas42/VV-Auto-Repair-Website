@@ -26,7 +26,7 @@ export const LOCATIONS = {
       vi: "Thứ 2 – Thứ 6: 8:00 – 17:00\nThứ 7 – CN: Đóng cửa",
     },
     mapUrl:
-      "https://maps.google.com/?q=3730+Marquis+Dr,+Garland,+TX+75042",
+      "https://www.google.com/maps/place/V+V+Auto+Body+Repair+Corporation/@32.9016826,-96.6874462,17z/data=!3m1!4b1!4m6!3m5!1s/g/11pzygbgln!8m2!3d32.9016826!4d-96.6874462!16s%2Fg%2F11pzygbgln",
     color: "#e63030",
     tagEn: "Collision & Body",
     tagVi: "Tai Nạn & Sơn",
