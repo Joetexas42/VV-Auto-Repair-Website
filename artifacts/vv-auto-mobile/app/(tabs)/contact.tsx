@@ -12,7 +12,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { LOCATIONS, STRINGS } from "@/constants/data";
 import { useLanguage } from "@/context/LanguageContext";
@@ -166,16 +165,13 @@ function LocationContactCard({ locationKey }: { locationKey: "dallas" | "garland
 
 export default function ContactScreen() {
   const colors = useColors();
-  const insets = useSafeAreaInsets();
-  const { t, lang, setLang } = useLanguage();
-
-  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const { t } = useLanguage();
 
   return (
     <ScrollView
       style={{ backgroundColor: colors.background }}
       contentContainerStyle={{
-        paddingTop: topPad + 8,
+        paddingTop: 8,
         paddingBottom: Platform.OS === "web" ? 34 + 84 : 100,
         padding: 16,
         gap: 16,
@@ -191,19 +187,6 @@ export default function ContactScreen() {
             {t("Tap any number to call directly", "Nhấn vào số để gọi ngay")}
           </Text>
         </View>
-        <Pressable
-          onPress={() => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-            setLang(lang === "en" ? "vi" : "en");
-          }}
-          style={({ pressed }) => [
-            styles.langToggle,
-            { backgroundColor: colors.navy, opacity: pressed ? 0.75 : 1 },
-          ]}
-          testID="language-toggle"
-        >
-          <Text style={styles.langToggleText}>{lang === "en" ? "🇻🇳 VI" : "🇺🇸 EN"}</Text>
-        </Pressable>
       </View>
 
       <LocationContactCard locationKey="dallas" />
@@ -228,17 +211,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "space-between",
     gap: 12,
-  },
-  langToggle: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
-    marginTop: 4,
-  },
-  langToggleText: {
-    color: "#fff",
-    fontSize: 13,
-    fontFamily: "Inter_600SemiBold",
   },
   pageTitle: {
     fontSize: 28,

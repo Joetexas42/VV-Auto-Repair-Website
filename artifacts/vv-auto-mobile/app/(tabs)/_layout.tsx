@@ -19,23 +19,17 @@ import { useColors } from "@/hooks/useColors";
 import { useLanguage } from "@/context/LanguageContext";
 import { STRINGS } from "@/constants/data";
 
-const TAB_BAR_HEIGHT = 56;
-
-function LanguageBadge() {
+function LanguageHeaderButton() {
   const { lang, setLang } = useLanguage();
   const colors = useColors();
-  const insets = useSafeAreaInsets();
   const isVI = lang === "vi";
-
-  const badgeBottom = insets.bottom + TAB_BAR_HEIGHT / 2 - 12;
 
   return (
     <Pressable
       onPress={() => setLang(isVI ? "en" : "vi")}
       style={({ pressed }) => [
-        styles.badge,
+        styles.headerLangBtn,
         {
-          bottom: badgeBottom,
           backgroundColor: isVI ? colors.primary : colors.card,
           borderColor: isVI ? colors.primary : colors.border,
           opacity: pressed ? 0.75 : 1,
@@ -47,7 +41,7 @@ function LanguageBadge() {
     >
       <Text
         style={[
-          styles.badgeText,
+          styles.headerLangText,
           { color: isVI ? "#fff" : colors.mutedForeground },
         ]}
       >
@@ -59,6 +53,7 @@ function LanguageBadge() {
 
 function NativeTabLayout() {
   const { t } = useLanguage();
+  const insets = useSafeAreaInsets();
   return (
     <View style={styles.container}>
       <NativeTabs>
@@ -75,7 +70,9 @@ function NativeTabLayout() {
           <Label>{t(STRINGS.contact.en, STRINGS.contact.vi)}</Label>
         </NativeTabs.Trigger>
       </NativeTabs>
-      <LanguageBadge />
+      <View style={[styles.nativeHeaderBtn, { top: insets.top + 10 }]}>
+        <LanguageHeaderButton />
+      </View>
     </View>
   );
 }
@@ -92,7 +89,12 @@ function ClassicTabLayout() {
     <View style={styles.container}>
       <Tabs
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
+          headerStyle: { backgroundColor: colors.background },
+          headerTintColor: colors.foreground,
+          headerShadowVisible: false,
+          headerRight: () => <LanguageHeaderButton />,
+          headerRightContainerStyle: { paddingRight: 12 },
           tabBarActiveTintColor: colors.primary,
           tabBarInactiveTintColor: colors.mutedForeground,
           tabBarStyle: {
@@ -157,7 +159,6 @@ function ClassicTabLayout() {
           }}
         />
       </Tabs>
-      <LanguageBadge />
     </View>
   );
 }
@@ -173,26 +174,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  badge: {
-    position: "absolute",
-    right: 12,
+  headerLangBtn: {
     minWidth: 36,
-    height: 24,
-    borderRadius: 12,
+    height: 26,
+    borderRadius: 13,
     borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 7,
-    zIndex: 100,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.12,
-    shadowRadius: 2,
-    elevation: 3,
+    paddingHorizontal: 8,
   },
-  badgeText: {
+  headerLangText: {
     fontSize: 11,
     fontWeight: "700",
     letterSpacing: 0.5,
+  },
+  nativeHeaderBtn: {
+    position: "absolute",
+    right: 16,
+    zIndex: 100,
   },
 });

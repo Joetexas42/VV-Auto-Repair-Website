@@ -17,7 +17,6 @@ import {
   View,
 } from "react-native";
 
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Path, Svg } from "react-native-svg";
 
 import { useLanguage } from "@/context/LanguageContext";
@@ -474,10 +473,7 @@ function LocationCard({
 
 export default function HomeScreen() {
   const colors = useColors();
-  const insets = useSafeAreaInsets();
-  const { t, lang, setLang } = useLanguage();
-
-  const topPad = Platform.OS === "web" ? 67 : insets.top;
+  const { t } = useLanguage();
 
   return (
     <ScrollView
@@ -487,7 +483,7 @@ export default function HomeScreen() {
     >
       <LinearGradient
         colors={[colors.navy, colors.navyDark ?? "#2e4a6a"]}
-        style={[styles.hero, { paddingTop: topPad + 16 }]}
+        style={[styles.hero, { paddingTop: 16 }]}
       >
         <View style={styles.heroTopRow}>
           <View style={styles.logoArea}>
@@ -499,17 +495,6 @@ export default function HomeScreen() {
               <Text style={styles.logoTextLight}>REPAIR</Text>
             </View>
           </View>
-
-          <Pressable
-            onPress={() => setLang(lang === "en" ? "vi" : "en")}
-            style={({ pressed }) => [
-              styles.langToggle,
-              { opacity: pressed ? 0.75 : 1 },
-            ]}
-            testID="language-toggle"
-          >
-            <Text style={styles.langToggleText}>{lang === "en" ? "🇻🇳 VI" : "🇺🇸 EN"}</Text>
-          </Pressable>
         </View>
 
         <Text style={styles.tagline}>{t(STRINGS.tagline.en, STRINGS.tagline.vi)}</Text>
@@ -584,17 +569,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: "Inter_500Medium",
     letterSpacing: 3,
-  },
-  langToggle: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 20,
-    backgroundColor: "rgba(255,255,255,0.15)",
-  },
-  langToggleText: {
-    color: "#fff",
-    fontSize: 13,
-    fontFamily: "Inter_600SemiBold",
   },
   tagline: {
     color: "#fff",
