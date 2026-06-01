@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Phone, Menu, MapPin, Clock, Star, ChevronRight } from "lucide-react";
+import { Phone, Menu, X, MapPin, Clock, Star, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export function Navigation() {
   const { lang, setLang, t } = useLanguage();
   const [location] = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
     { href: "/", en: "Home", vi: "Trang Chủ" },
@@ -19,7 +20,7 @@ export function Navigation() {
     <nav className="bg-[var(--vv-navy)] text-white sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
-          <Link href="/" className="flex items-center gap-2 cursor-pointer" data-testid="link-home-logo">
+          <Link href="/" className="flex items-center gap-2 cursor-pointer" data-testid="link-home-logo" onClick={() => setMobileOpen(false)}>
             <div className="text-3xl font-extrabold tracking-tighter flex items-center font-display">
               <span className="text-white font-extrabold">V V</span>
               <span className="text-[var(--vv-red)] ml-2 uppercase tracking-widest border-l-2 border-white/20 pl-2 font-display font-extrabold text-[24px]">Auto Repair
@@ -67,12 +68,66 @@ export function Navigation() {
             </a>
           </div>
           <div className="md:hidden flex items-center">
-            <button className="text-white hover:text-[var(--vv-red)] p-2" data-testid="btn-mobile-menu">
-              <Menu size={28} />
+            <button
+              onClick={() => setMobileOpen((o) => !o)}
+              className="text-white hover:text-[var(--vv-red)] p-2"
+              data-testid="btn-mobile-menu"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </div>
+
+      {/* Mobile dropdown */}
+      {mobileOpen && (
+        <div className="md:hidden bg-[var(--vv-navy)] border-t border-white/10 px-4 pb-6 pt-2" data-testid="mobile-menu">
+          <div className="flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className={`py-3 px-2 text-lg font-medium border-b border-white/10 last:border-0 transition-colors ${
+                  location === link.href ? "text-[var(--vv-red)]" : "text-white hover:text-[var(--vv-red)]"
+                }`}
+                data-testid={`link-mobile-nav-${link.en.toLowerCase()}`}
+              >
+                {t(link.en, link.vi)}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4 flex items-center bg-white/10 rounded-full p-1 w-fit" data-testid="mobile-language-toggle">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
+                lang === "en" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white/70 hover:text-white"
+              }`}
+              data-testid="btn-mobile-lang-en"
+            >
+              English
+            </button>
+            <button
+              onClick={() => setLang("vi")}
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
+                lang === "vi" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white/70 hover:text-white"
+              }`}
+              data-testid="btn-mobile-lang-vi"
+            >
+              Tiếng Việt
+            </button>
+          </div>
+          <a
+            href="tel:2143202171"
+            className="mt-4 w-full flex items-center justify-center gap-2 bg-[var(--vv-red)] hover:bg-red-500 text-white px-6 py-3 rounded font-bold transition-colors"
+            data-testid="btn-mobile-call"
+          >
+            <Phone size={18} />
+            (214) 320-2171
+          </a>
+        </div>
+      )}
     </nav>
   );
 }
