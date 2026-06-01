@@ -5,24 +5,10 @@ import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
 
-const HARDCODED_DEFAULTS = {
-  dallas: {
-    mapsUrl:
-      "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1",
-    writeReviewUrl:
-      "https://search.google.com/local/writereview?placeid=ChIJ025JNyKhToYRNRX5NXicpUQ",
-  },
-  garland: {
-    mapsUrl:
-      "https://www.google.com/maps/place/V+V+Auto+Body+Repair+Corporation/@32.9016826,-96.6874462,17z/data=!3m1!4b1!4m6!3m5!1s/g/11pzygbgln!8m2!3d32.9016826!4d-96.6874462!16s%2Fg%2F11pzygbgln!9m1!1b1",
-    writeReviewUrl: null as string | null,
-  },
-} as const;
-
 const LOCATIONS = ["dallas", "garland"] as const;
 type LocationId = (typeof LOCATIONS)[number];
 
-const ENV_OVERRIDES: Record<
+const ENV_KEYS: Record<
   LocationId,
   { mapsUrl: string; writeReviewUrl: string }
 > = {
@@ -36,14 +22,31 @@ const ENV_OVERRIDES: Record<
   },
 };
 
-function envFallback(locationId: LocationId) {
-  const keys = ENV_OVERRIDES[locationId];
+export function validateLocationConfigEnv(): void {
+  const missing: string[] = [];
+
+  for (const loc of LOCATIONS) {
+    const keys = ENV_KEYS[loc];
+    if (!process.env[keys.mapsUrl]) missing.push(keys.mapsUrl);
+    if (!process.env[keys.writeReviewUrl]) missing.push(keys.writeReviewUrl);
+  }
+
+  if (missing.length > 0) {
+    logger.warn(
+      { missingEnvVars: missing },
+      "Location config env vars are not set — map/review URLs will be null until configured in the database or environment",
+    );
+  }
+}
+
+function envFallback(locationId: LocationId): {
+  mapsUrl: string | null;
+  writeReviewUrl: string | null;
+} {
+  const keys = ENV_KEYS[locationId];
   return {
-    mapsUrl:
-      process.env[keys.mapsUrl] ?? HARDCODED_DEFAULTS[locationId].mapsUrl,
-    writeReviewUrl:
-      process.env[keys.writeReviewUrl] ??
-      HARDCODED_DEFAULTS[locationId].writeReviewUrl,
+    mapsUrl: process.env[keys.mapsUrl] ?? null,
+    writeReviewUrl: process.env[keys.writeReviewUrl] ?? null,
   };
 }
 

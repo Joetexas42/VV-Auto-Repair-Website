@@ -70,7 +70,7 @@ console.log(
   }
 }
 
-// ── 2. API server route has the correct Dallas URL as its default ─────────────
+// ── 2. API server route has no hardcoded Dallas URL (served via env/DB only) ───
 console.log(
   "\n─── API server – location config route (artifacts/api-server/src/routes/locationConfig.ts)"
 );
@@ -79,23 +79,9 @@ console.log(
   if (content) {
     const dallasUrls = extractDallasUrls(content);
     assert(
-      dallasUrls.length >= 1,
-      `At least 1 Dallas maps URL found in locationConfig.ts (got ${dallasUrls.length})`
+      dallasUrls.length === 0,
+      `No hardcoded Dallas maps URL in locationConfig.ts (URL served via env var or DB) (got ${dallasUrls.length})`
     );
-    for (const url of dallasUrls) {
-      assert(
-        url.includes(EXPECTED_COORDS),
-        `URL contains correct coordinates (${EXPECTED_COORDS}): ${url.slice(0, 80)}…`
-      );
-      assert(
-        url.includes(EXPECTED_PLACE_ID),
-        `URL contains place ID (${EXPECTED_PLACE_ID}): ${url.slice(0, 80)}…`
-      );
-      assert(
-        !FORBIDDEN_PATTERN.test(url),
-        `URL does NOT use plain ?q= text-query format`
-      );
-    }
     assert(
       content.includes("DALLAS_MAPS_URL"),
       `Route reads DALLAS_MAPS_URL env var for runtime override`

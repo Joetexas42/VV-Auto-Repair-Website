@@ -1,6 +1,7 @@
 import app from "./app";
 import { logger } from "./lib/logger";
 import { preWarmCaches, startRefreshInterval } from "./services/googlePlaces";
+import { validateLocationConfigEnv } from "./routes/locationConfig";
 
 const rawPort = process.env["PORT"];
 
@@ -17,6 +18,7 @@ if (Number.isNaN(port) || port <= 0) {
 }
 
 async function main() {
+  validateLocationConfigEnv();
   await preWarmCaches();
 
   app.listen(port, (err) => {

@@ -70,7 +70,7 @@ console.log(
   }
 }
 
-// ── 2. API server route has the correct Garland URL as its default ────────────
+// ── 2. API server route has no hardcoded Garland URL (served via env/DB only) ──
 console.log(
   "\n─── API server – location config route (artifacts/api-server/src/routes/locationConfig.ts)"
 );
@@ -79,23 +79,9 @@ console.log(
   if (content) {
     const garlandUrls = extractGarlandUrls(content);
     assert(
-      garlandUrls.length >= 1,
-      `At least 1 Garland maps URL found in locationConfig.ts (got ${garlandUrls.length})`
+      garlandUrls.length === 0,
+      `No hardcoded Garland maps URL in locationConfig.ts (URL served via env var or DB) (got ${garlandUrls.length})`
     );
-    for (const url of garlandUrls) {
-      assert(
-        url.includes(EXPECTED_COORDS),
-        `URL contains correct coordinates (${EXPECTED_COORDS}): ${url.slice(0, 80)}…`
-      );
-      assert(
-        url.includes(EXPECTED_FEATURE_ID),
-        `URL contains place feature-ID (${EXPECTED_FEATURE_ID}): ${url.slice(0, 80)}…`
-      );
-      assert(
-        !FORBIDDEN_PATTERN.test(url),
-        `URL does NOT use plain ?q= text-query format`
-      );
-    }
     assert(
       content.includes("GARLAND_MAPS_URL"),
       `Route reads GARLAND_MAPS_URL env var for runtime override`
