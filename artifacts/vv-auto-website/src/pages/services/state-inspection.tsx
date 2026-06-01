@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { MapPin, Phone, Clock, Star, CheckCircle2, ChevronRight } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
+import { DALLAS_MAPS_URL } from "@/lib/locations";
 
 export default function StateInspection() {
   const { t } = useLanguage();
@@ -52,7 +53,7 @@ export default function StateInspection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1" target="_blank" rel="noreferrer" className="bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-colors flex items-center justify-center gap-3 shadow-lg">
+                <a href={DALLAS_MAPS_URL} target="_blank" rel="noreferrer" className="bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-colors flex items-center justify-center gap-3 shadow-lg">
                   <MapPin size={24} />
                   {t("Get Directions to Shop", "Chỉ Đường Đến Tiệm")}
                 </a>

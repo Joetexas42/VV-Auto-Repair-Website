@@ -1,10 +1,14 @@
 /**
  * Smoke test: Dallas Google Maps URL — coordinates + place-ID format
  *
- * Verifies that every hardcoded Dallas "Get Directions" href in the codebase:
- *   1. Uses the coordinate-based URL format (@lat,lng) — not a plain ?q= text query
- *   2. Contains the correct coordinates for 11366 Jupiter Rd, Dallas TX
- *   3. Contains the correct Google place ID (0x864ea12237496ed3)
+ * Verifies that:
+ *   1. The canonical Dallas "Get Directions" URL in the website's shared
+ *      constants file (src/lib/locations.ts) uses the coordinate-based URL
+ *      format (@lat,lng) — not a plain ?q= text query — and contains the
+ *      correct coordinates and place ID.
+ *   2. Website pages (contact.tsx, index.tsx) import DALLAS_MAPS_URL from
+ *      that shared file instead of hardcoding the URL themselves.
+ *   3. The mobile app data constants still contain the correct Dallas URL.
  *
  * Run with:  node tests/dallas-maps-url.test.mjs
  */
@@ -20,24 +24,6 @@ const EXPECTED_COORDS = "@32.8488156,-96.6827611";
 const EXPECTED_PLACE_ID = "0x864ea12237496ed3";
 const FORBIDDEN_PATTERN = /\?q=/;
 
-const SOURCES = [
-  {
-    label: "Website – contact page (artifacts/vv-auto-website/src/pages/contact.tsx)",
-    file: "artifacts/vv-auto-website/src/pages/contact.tsx",
-    expectedOccurrences: 1,
-  },
-  {
-    label: "Website – homepage (artifacts/vv-auto-website/src/pages/index.tsx)",
-    file: "artifacts/vv-auto-website/src/pages/index.tsx",
-    expectedOccurrences: 1,
-  },
-  {
-    label: "Mobile app – data constants (artifacts/vv-auto-mobile/constants/data.ts)",
-    file: "artifacts/vv-auto-mobile/constants/data.ts",
-    expectedOccurrences: 1,
-  },
-];
-
 let passed = 0;
 let failed = 0;
 
@@ -51,41 +37,112 @@ function assert(condition, message) {
   }
 }
 
-for (const source of SOURCES) {
-  console.log(`\n─── ${source.label}`);
-
-  let content;
+function readFile(relPath) {
   try {
-    content = readFileSync(resolve(root, source.file), "utf8");
+    return readFileSync(resolve(root, relPath), "utf8");
   } catch (err) {
     console.error(`  ✗  Could not read file: ${err.message}`);
     failed++;
-    continue;
+    return null;
   }
+}
 
+function extractDallasUrls(content) {
   const urlRegex = /https:\/\/www\.google\.com\/maps\/[^\s"'>]+/g;
-  const dallasUrls = (content.match(urlRegex) ?? []).filter(
+  return (content.match(urlRegex) ?? []).filter(
     (u) => u.includes(EXPECTED_COORDS) || u.includes(EXPECTED_PLACE_ID)
+  );
+}
+
+// ── 1. Canonical source of truth: website shared constants file ───────────────
+console.log(
+  "\n─── Website – shared constants (artifacts/vv-auto-website/src/lib/locations.ts)"
+);
+{
+  const content = readFile("artifacts/vv-auto-website/src/lib/locations.ts");
+  if (content) {
+    const dallasUrls = extractDallasUrls(content);
+    assert(
+      dallasUrls.length >= 1,
+      `At least 1 Dallas maps URL found in locations.ts (got ${dallasUrls.length})`
+    );
+    for (const url of dallasUrls) {
+      assert(
+        url.includes(EXPECTED_COORDS),
+        `URL contains correct coordinates (${EXPECTED_COORDS}): ${url.slice(0, 80)}…`
+      );
+      assert(
+        url.includes(EXPECTED_PLACE_ID),
+        `URL contains place ID (${EXPECTED_PLACE_ID}): ${url.slice(0, 80)}…`
+      );
+      assert(
+        !FORBIDDEN_PATTERN.test(url),
+        `URL does NOT use plain ?q= text-query format`
+      );
+    }
+  }
+}
+
+// ── 2. Website pages import from the shared file, not hardcode the URL ────────
+const PAGE_SOURCES = [
+  {
+    label: "Website – contact page (artifacts/vv-auto-website/src/pages/contact.tsx)",
+    file: "artifacts/vv-auto-website/src/pages/contact.tsx",
+  },
+  {
+    label: "Website – homepage (artifacts/vv-auto-website/src/pages/index.tsx)",
+    file: "artifacts/vv-auto-website/src/pages/index.tsx",
+  },
+];
+
+for (const source of PAGE_SOURCES) {
+  console.log(`\n─── ${source.label}`);
+  const content = readFile(source.file);
+  if (!content) continue;
+
+  const hardcodedUrls = extractDallasUrls(content);
+  assert(
+    hardcodedUrls.length === 0,
+    `No hardcoded Dallas maps URL in page file (URL lives in shared locations.ts)`
   );
 
   assert(
-    dallasUrls.length >= source.expectedOccurrences,
-    `At least ${source.expectedOccurrences} Dallas maps URL(s) found (got ${dallasUrls.length})`
+    content.includes("DALLAS_MAPS_URL"),
+    `Page references DALLAS_MAPS_URL constant from locations.ts`
   );
 
-  for (const url of dallasUrls) {
+  assert(
+    content.includes("@/lib/locations") || content.includes("lib/locations"),
+    `Page imports from @/lib/locations`
+  );
+}
+
+// ── 3. Mobile app data constants ──────────────────────────────────────────────
+console.log(
+  "\n─── Mobile app – data constants (artifacts/vv-auto-mobile/constants/data.ts)"
+);
+{
+  const content = readFile("artifacts/vv-auto-mobile/constants/data.ts");
+  if (content) {
+    const dallasUrls = extractDallasUrls(content);
     assert(
-      url.includes(EXPECTED_COORDS),
-      `URL contains correct coordinates (${EXPECTED_COORDS}): ${url.slice(0, 80)}…`
+      dallasUrls.length >= 1,
+      `At least 1 Dallas maps URL(s) found (got ${dallasUrls.length})`
     );
-    assert(
-      url.includes(EXPECTED_PLACE_ID),
-      `URL contains place ID (${EXPECTED_PLACE_ID}): ${url.slice(0, 80)}…`
-    );
-    assert(
-      !FORBIDDEN_PATTERN.test(url),
-      `URL does NOT use plain ?q= text-query format`
-    );
+    for (const url of dallasUrls) {
+      assert(
+        url.includes(EXPECTED_COORDS),
+        `URL contains correct coordinates (${EXPECTED_COORDS}): ${url.slice(0, 80)}…`
+      );
+      assert(
+        url.includes(EXPECTED_PLACE_ID),
+        `URL contains place ID (${EXPECTED_PLACE_ID}): ${url.slice(0, 80)}…`
+      );
+      assert(
+        !FORBIDDEN_PATTERN.test(url),
+        `URL does NOT use plain ?q= text-query format`
+      );
+    }
   }
 }
 

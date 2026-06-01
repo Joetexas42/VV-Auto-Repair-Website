@@ -3,12 +3,10 @@ import { Star, ExternalLink, Quote, PenLine } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 import { fetchAllReviews, type AllReviewsResponse } from "@/lib/reviewsApi";
+import { DALLAS_MAPS_URL, DALLAS_WRITE_REVIEW_URL } from "@/lib/locations";
 
-const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1";
-
-const GOOGLE_WRITE_REVIEW_URL =
-  "https://search.google.com/local/writereview?placeid=ChIJ025JNyKhToYRNRX5NXicpUQ";
+const GOOGLE_MAPS_URL = DALLAS_MAPS_URL;
+const GOOGLE_WRITE_REVIEW_URL = DALLAS_WRITE_REVIEW_URL;
 
 interface Review {
   name: string;
@@ -147,13 +145,10 @@ function liveToReview(
   };
 }
 
-const GOOGLE_MAPS_URL_SHORT =
-  "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1";
-
 function GoogleBadge({ live }: { live: boolean }) {
   return (
     <a
-      href={live ? GOOGLE_MAPS_URL_SHORT : undefined}
+      href={live ? GOOGLE_MAPS_URL : undefined}
       target={live ? "_blank" : undefined}
       rel={live ? "noreferrer" : undefined}
       className={[

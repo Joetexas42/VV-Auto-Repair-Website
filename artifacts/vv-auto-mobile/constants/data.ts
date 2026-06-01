@@ -1,3 +1,10 @@
+/**
+ * IMPORTANT: mapUrl values below must stay in sync with the website's
+ * canonical source of truth: artifacts/vv-auto-website/src/lib/locations.ts
+ *   - dallas.mapUrl  → DALLAS_MAPS_URL
+ *   - garland.mapUrl → GARLAND_MAPS_URL
+ * Update both files together whenever a Google Maps link changes.
+ */
 export const LOCATIONS = {
   dallas: {
     name: { en: "Dallas — Auto Repair", vi: "Dallas — Sửa Xe" },
