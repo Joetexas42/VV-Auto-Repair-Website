@@ -3,10 +3,11 @@ import { Link } from "wouter";
 import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
-import { DALLAS_MAPS_URL, GARLAND_MAPS_URL } from "@/lib/locations";
+import { useLocationConfig } from "@/hooks/useLocationConfig";
 
 export default function Contact() {
   const { t } = useLanguage();
+  const { data: locationConfig } = useLocationConfig();
 
   useEffect(() => {
     document.title = t("Contact Us | V.V. Auto Repair & Body Shop", "Liên Hệ | V.V. Auto Repair & Body Shop");
@@ -83,7 +84,7 @@ export default function Contact() {
                 <a href="tel:2143202171" className="flex-1 bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Call Dallas Shop", "Gọi Tiệm Dallas")}
                 </a>
-                <a href={DALLAS_MAPS_URL} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
+                <a href={locationConfig?.dallas.mapsUrl} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Get Directions", "Chỉ Đường")}
                 </a>
               </div>
@@ -140,7 +141,7 @@ export default function Contact() {
                 <a href="tel:4692589356" className="flex-1 bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Call Garland Shop", "Gọi Tiệm Garland")}
                 </a>
-                <a href={GARLAND_MAPS_URL} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
+                <a href={locationConfig?.garland.mapsUrl} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Get Directions", "Chỉ Đường")}
                 </a>
               </div>

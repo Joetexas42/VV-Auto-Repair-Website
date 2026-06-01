@@ -6,9 +6,11 @@
  *      constants file (src/lib/locations.ts) uses the coordinate-based URL
  *      format (@lat,lng) — not a plain ?q= text query — and contains the
  *      correct coordinates and place feature-ID.
- *   2. Website pages (contact.tsx, index.tsx) import GARLAND_MAPS_URL from
- *      that shared file instead of hardcoding the URL themselves.
- *   3. The mobile app data constants still contain the correct Garland URL.
+ *   2. The API route (artifacts/api-server/src/routes/locationConfig.ts) has
+ *      the correct Garland URL as its hardcoded default.
+ *   3. Website pages (contact.tsx, index.tsx) do NOT hardcode the URL and
+ *      instead use the runtime location config hook (useLocationConfig).
+ *   4. The mobile app data constants still contain the correct Garland URL.
  *
  * Run with:  node tests/garland-maps-url.test.mjs
  */
@@ -83,7 +85,40 @@ console.log(
   }
 }
 
-// ── 2. Website pages import from the shared file, not hardcode the URL ────────
+// ── 2. API server route has the correct Garland URL as its default ────────────
+console.log(
+  "\n─── API server – location config route (artifacts/api-server/src/routes/locationConfig.ts)"
+);
+{
+  const content = readFile("artifacts/api-server/src/routes/locationConfig.ts");
+  if (content) {
+    const garlandUrls = extractGarlandUrls(content);
+    assert(
+      garlandUrls.length >= 1,
+      `At least 1 Garland maps URL found in locationConfig.ts (got ${garlandUrls.length})`
+    );
+    for (const url of garlandUrls) {
+      assert(
+        url.includes(EXPECTED_COORDS),
+        `URL contains correct coordinates (${EXPECTED_COORDS}): ${url.slice(0, 80)}…`
+      );
+      assert(
+        url.includes(EXPECTED_FEATURE_ID),
+        `URL contains place feature-ID (${EXPECTED_FEATURE_ID}): ${url.slice(0, 80)}…`
+      );
+      assert(
+        !FORBIDDEN_PATTERN.test(url),
+        `URL does NOT use plain ?q= text-query format`
+      );
+    }
+    assert(
+      content.includes("GARLAND_MAPS_URL"),
+      `Route reads GARLAND_MAPS_URL env var for runtime override`
+    );
+  }
+}
+
+// ── 3. Website pages use runtime hook, not hardcoded URL ─────────────────────
 const PAGE_SOURCES = [
   {
     label: "Website – contact page (artifacts/vv-auto-website/src/pages/contact.tsx)",
@@ -103,21 +138,21 @@ for (const source of PAGE_SOURCES) {
   const hardcodedUrls = extractGarlandUrls(content);
   assert(
     hardcodedUrls.length === 0,
-    `No hardcoded Garland maps URL in page file (URL lives in shared locations.ts)`
+    `No hardcoded Garland maps URL in page file (URL served from API at runtime)`
   );
 
   assert(
-    content.includes("GARLAND_MAPS_URL"),
-    `Page references GARLAND_MAPS_URL constant from locations.ts`
+    content.includes("useLocationConfig"),
+    `Page uses useLocationConfig hook for runtime URL`
   );
 
   assert(
-    content.includes("@/lib/locations") || content.includes("lib/locations"),
-    `Page imports from @/lib/locations`
+    content.includes("locationConfig"),
+    `Page reads locationConfig data for map link`
   );
 }
 
-// ── 3. Mobile app data constants ──────────────────────────────────────────────
+// ── 4. Mobile app data constants ──────────────────────────────────────────────
 console.log(
   "\n─── Mobile app – data constants (artifacts/vv-auto-mobile/constants/data.ts)"
 );

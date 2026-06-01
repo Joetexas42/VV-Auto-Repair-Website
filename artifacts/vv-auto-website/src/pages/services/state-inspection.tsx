@@ -3,10 +3,11 @@ import { Link } from "wouter";
 import { MapPin, Phone, Clock, Star, CheckCircle2, ChevronRight } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
-import { DALLAS_MAPS_URL } from "@/lib/locations";
+import { useLocationConfig } from "@/hooks/useLocationConfig";
 
 export default function StateInspection() {
   const { t } = useLanguage();
+  const { data: locationConfig } = useLocationConfig();
 
   useEffect(() => {
     document.title = t("TX State Inspection Dallas TX | V.V. Auto", "Kiểm Định Tiểu Bang TX Dallas | V.V. Auto");
@@ -53,7 +54,7 @@ export default function StateInspection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href={DALLAS_MAPS_URL} target="_blank" rel="noreferrer" className="bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-colors flex items-center justify-center gap-3 shadow-lg">
+                <a href={locationConfig?.dallas.mapsUrl} target="_blank" rel="noreferrer" className="bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-colors flex items-center justify-center gap-3 shadow-lg">
                   <MapPin size={24} />
                   {t("Get Directions to Shop", "Chỉ Đường Đến Tiệm")}
                 </a>

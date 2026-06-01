@@ -17,6 +17,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LOCATIONS, STRINGS } from "@/constants/data";
 import { useLanguage } from "@/context/LanguageContext";
 import { useColors } from "@/hooks/useColors";
+import { useLocationConfig } from "@/hooks/useLocationConfig";
 
 function PhoneRow({
   phone,
@@ -62,10 +63,12 @@ function LocationContactCard({ locationKey }: { locationKey: "dallas" | "garland
   const colors = useColors();
   const { t } = useLanguage();
   const loc = LOCATIONS[locationKey];
+  const { data: locationConfig } = useLocationConfig();
+  const mapsUrl = locationConfig?.[locationKey].mapsUrl ?? loc.mapUrl;
 
   const openMaps = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    Linking.openURL(loc.mapUrl);
+    Linking.openURL(mapsUrl);
   };
 
   const openEmail = () => {

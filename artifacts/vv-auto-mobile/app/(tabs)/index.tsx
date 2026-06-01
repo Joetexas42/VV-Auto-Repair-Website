@@ -23,6 +23,7 @@ import { Path, Svg } from "react-native-svg";
 import { useLanguage } from "@/context/LanguageContext";
 import { useColors } from "@/hooks/useColors";
 import { useReviews, type PlaceReview } from "@/hooks/useReviews";
+import { useLocationConfig } from "@/hooks/useLocationConfig";
 import { LOCATIONS, STRINGS } from "@/constants/data";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -126,6 +127,7 @@ function ReviewCard({
   index?: number;
 }) {
   const colors = useColors();
+  const { data: locationConfig } = useLocationConfig();
   const [expanded, setExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
 
@@ -220,7 +222,7 @@ function ReviewCard({
           />
         </Pressable>
       )}
-      <GoogleReviewBadge isLive={isLive} mapsUrl={LOCATIONS[review.locationKey].mapUrl} />
+      <GoogleReviewBadge isLive={isLive} mapsUrl={locationConfig?.[review.locationKey].mapsUrl ?? LOCATIONS[review.locationKey].mapUrl} />
     </View>
     </Animated.View>
   );
@@ -397,6 +399,8 @@ function LocationCard({
   const colors = useColors();
   const { t } = useLanguage();
   const loc = LOCATIONS[locationKey];
+  const { data: locationConfig } = useLocationConfig();
+  const mapsUrl = locationConfig?.[locationKey].mapsUrl ?? loc.mapUrl;
 
   const call = (phone: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -405,7 +409,7 @@ function LocationCard({
 
   const directions = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    Linking.openURL(loc.mapUrl);
+    Linking.openURL(mapsUrl);
   };
 
   return (

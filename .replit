@@ -92,3 +92,10 @@ externalPort = 3001
 [[ports]]
 localPort = 24692
 externalPort = 3003
+
+[userenv]
+
+[userenv.shared]
+DALLAS_MAPS_URL = "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1"
+DALLAS_WRITE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJ025JNyKhToYRNRX5NXicpUQ"
+GARLAND_MAPS_URL = "https://www.google.com/maps/place/V+V+Auto+Body+Repair+Corporation/@32.9016826,-96.6874462,17z/data=!3m1!4b1!4m6!3m5!1s/g/11pzygbgln!8m2!3d32.9016826!4d-96.6874462!16s%2Fg%2F11pzygbgln!9m1!1b1"

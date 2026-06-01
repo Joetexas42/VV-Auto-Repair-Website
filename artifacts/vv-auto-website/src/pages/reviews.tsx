@@ -3,10 +3,7 @@ import { Star, ExternalLink, Quote, PenLine } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 import { fetchAllReviews, type AllReviewsResponse } from "@/lib/reviewsApi";
-import { DALLAS_MAPS_URL, DALLAS_WRITE_REVIEW_URL } from "@/lib/locations";
-
-const GOOGLE_MAPS_URL = DALLAS_MAPS_URL;
-const GOOGLE_WRITE_REVIEW_URL = DALLAS_WRITE_REVIEW_URL;
+import { useLocationConfig } from "@/hooks/useLocationConfig";
 
 interface Review {
   name: string;
@@ -145,10 +142,10 @@ function liveToReview(
   };
 }
 
-function GoogleBadge({ live }: { live: boolean }) {
+function GoogleBadge({ live, mapsUrl }: { live: boolean; mapsUrl?: string | null }) {
   return (
     <a
-      href={live ? GOOGLE_MAPS_URL : undefined}
+      href={live && mapsUrl ? mapsUrl : undefined}
       target={live ? "_blank" : undefined}
       rel={live ? "noreferrer" : undefined}
       className={[
@@ -197,7 +194,7 @@ function StarRow({ count, size = 18 }: { count: number; size?: number }) {
   );
 }
 
-function ReviewCard({ review, lang, isLive }: { review: Review; lang: "en" | "vi"; isLive: boolean }) {
+function ReviewCard({ review, lang, isLive, mapsUrl }: { review: Review; lang: "en" | "vi"; isLive: boolean; mapsUrl?: string | null }) {
   const showVietnamese = review.textVi && (review.lang === "vi" || review.lang === "both");
   const showBilingual = showVietnamese && review.lang === "both";
 
@@ -272,7 +269,7 @@ function ReviewCard({ review, lang, isLive }: { review: Review; lang: "en" | "vi
             ? review.relativeTime
             : (lang === "vi" ? "Khách hàng Google" : "Google Customer")}
         </p>
-        <GoogleBadge live={isLive} />
+        <GoogleBadge live={isLive} mapsUrl={mapsUrl} />
       </div>
     </div>
   );
@@ -296,6 +293,7 @@ function buildDisplayReviews(liveData: AllReviewsResponse): Review[] {
 
 export default function ReviewsPage() {
   const { lang, t } = useLanguage();
+  const { data: locationConfig } = useLocationConfig();
   const [liveData, setLiveData] = useState<AllReviewsResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -350,7 +348,7 @@ export default function ReviewsPage() {
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={GOOGLE_WRITE_REVIEW_URL}
+              href={locationConfig?.dallas.writeReviewUrl ?? undefined}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 bg-[var(--vv-red)] hover:bg-red-500 text-white px-7 py-3.5 rounded-lg font-bold transition-all transform hover:-translate-y-1 shadow-lg"
@@ -359,7 +357,7 @@ export default function ReviewsPage() {
               {t("Write a Review", "Viết Đánh Giá")}
             </a>
             <a
-              href={GOOGLE_MAPS_URL}
+              href={locationConfig?.dallas.mapsUrl}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3.5 rounded-lg font-semibold transition-colors"
@@ -387,7 +385,7 @@ export default function ReviewsPage() {
               )}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {displayReviews.map((review, idx) => (
-                  <ReviewCard key={idx} review={review} lang={lang} isLive={!!hasLiveReviews} />
+                  <ReviewCard key={idx} review={review} lang={lang} isLive={!!hasLiveReviews} mapsUrl={locationConfig?.dallas.mapsUrl} />
                 ))}
               </div>
             </>
@@ -401,7 +399,7 @@ export default function ReviewsPage() {
               )}
             </p>
             <a
-              href={GOOGLE_MAPS_URL}
+              href={locationConfig?.dallas.mapsUrl}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-3 bg-[var(--vv-navy)] hover:bg-blue-900 text-white px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg"
@@ -438,7 +436,7 @@ export default function ReviewsPage() {
             )}
           </p>
           <a
-            href={GOOGLE_WRITE_REVIEW_URL}
+            href={locationConfig?.dallas.writeReviewUrl ?? undefined}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-3 bg-[var(--vv-red)] hover:bg-red-500 text-white px-10 py-5 rounded-xl font-bold text-xl transition-all transform hover:-translate-y-1 shadow-xl"

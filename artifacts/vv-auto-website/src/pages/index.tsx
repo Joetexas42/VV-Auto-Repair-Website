@@ -4,7 +4,7 @@ import { MapPin, Phone, Star, Wrench, ShieldCheck, CheckCircle2, ChevronRight, A
 import { Layout } from "@/components/layout";
 import { useLanguage } from "@/lib/LanguageContext";
 import { fetchAllReviews, type AllReviewsResponse } from "@/lib/reviewsApi";
-import { DALLAS_MAPS_URL, GARLAND_MAPS_URL, DALLAS_WRITE_REVIEW_URL } from "@/lib/locations";
+import { useLocationConfig } from "@/hooks/useLocationConfig";
 
 const FALLBACK_FEATURED = [
   {
@@ -46,13 +46,10 @@ function buildFeatured(liveData: AllReviewsResponse): Array<{ name: string; star
   return allReviews.slice(0, 3);
 }
 
-const GOOGLE_WRITE_REVIEW_URL = DALLAS_WRITE_REVIEW_URL;
-const GOOGLE_MAPS_URL = DALLAS_MAPS_URL;
-
-function GoogleBadge({ live }: { live: boolean }) {
+function GoogleBadge({ live, mapsUrl }: { live: boolean; mapsUrl?: string | null }) {
   return (
     <a
-      href={live ? GOOGLE_MAPS_URL : undefined}
+      href={live && mapsUrl ? mapsUrl : undefined}
       target={live ? "_blank" : undefined}
       rel={live ? "noreferrer" : undefined}
       className={[
@@ -88,6 +85,7 @@ function GoogleBadge({ live }: { live: boolean }) {
 
 export default function Homepage() {
   const { lang, t } = useLanguage();
+  const { data: locationConfig } = useLocationConfig();
   const [liveReviewData, setLiveReviewData] = useState<AllReviewsResponse | null>(null);
 
   useEffect(() => {
@@ -383,7 +381,7 @@ export default function Homepage() {
                   <p className="text-white/50 text-sm">
                     {review.relativeTime ?? t("Google Customer", "Khách Hàng Google")}
                   </p>
-                  <GoogleBadge live={!!liveReviewData} />
+                  <GoogleBadge live={!!liveReviewData} mapsUrl={locationConfig?.dallas.mapsUrl} />
                 </div>
               </div>
             ))}
@@ -399,7 +397,7 @@ export default function Homepage() {
               <ArrowRight size={20} />
             </Link>
             <a
-              href={GOOGLE_WRITE_REVIEW_URL}
+              href={locationConfig?.dallas.writeReviewUrl ?? undefined}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 border border-white/30 hover:bg-white/10 text-white px-6 py-4 rounded-md font-bold text-lg transition-all hover:-translate-y-1"
@@ -471,7 +469,7 @@ export default function Homepage() {
                 <a href="tel:2143202171" className="flex-1 bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Call Dallas Shop", "Gọi Tiệm Dallas")}
                 </a>
-                <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
+                <a href={locationConfig?.dallas.mapsUrl} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Get Directions", "Chỉ Đường")}
                 </a>
               </div>
@@ -521,7 +519,7 @@ export default function Homepage() {
                 <a href="tel:4692589356" className="flex-1 bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Call Garland Shop", "Gọi Tiệm Garland")}
                 </a>
-                <a href={GARLAND_MAPS_URL} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
+                <a href={locationConfig?.garland.mapsUrl} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Get Directions", "Chỉ Đường")}
                 </a>
               </div>
