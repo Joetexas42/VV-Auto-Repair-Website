@@ -2,8 +2,9 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
+  Animated,
   Image,
   LayoutAnimation,
   Linking,
@@ -115,10 +116,39 @@ const REVIEW_TRUNCATE_LINES = 4;
 
 type ReviewWithLocation = PlaceReview & { locationKey: "dallas" | "garland" };
 
-function ReviewCard({ review, isLive = true }: { review: ReviewWithLocation; isLive?: boolean }) {
+function ReviewCard({
+  review,
+  isLive = true,
+  index = 0,
+}: {
+  review: ReviewWithLocation;
+  isLive?: boolean;
+  index?: number;
+}) {
   const colors = useColors();
   const [expanded, setExpanded] = useState(false);
   const [isTruncated, setIsTruncated] = useState(false);
+
+  const opacity = useRef(new Animated.Value(0)).current;
+  const translateY = useRef(new Animated.Value(12)).current;
+
+  useEffect(() => {
+    const delay = index * 55;
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 260,
+        delay,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY, {
+        toValue: 0,
+        duration: 260,
+        delay,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
 
   const date = review.relative_time_description
     ? review.relative_time_description
@@ -145,6 +175,7 @@ function ReviewCard({ review, isLive = true }: { review: ReviewWithLocation; isL
   };
 
   return (
+    <Animated.View style={{ opacity, transform: [{ translateY }] }}>
     <View style={[styles.reviewCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
       <View style={styles.reviewHeader}>
         {review.profile_photo_url ? (
@@ -191,6 +222,7 @@ function ReviewCard({ review, isLive = true }: { review: ReviewWithLocation; isL
       )}
       <GoogleReviewBadge isLive={isLive} mapsUrl={LOCATIONS[review.locationKey].mapUrl} />
     </View>
+    </Animated.View>
   );
 }
 
@@ -201,6 +233,7 @@ function ReviewsSection() {
   const { t } = useLanguage();
   const { data, isLoading, isError } = useReviews();
   const [locationFilter, setLocationFilter] = React.useState<LocationFilter>("all");
+  const [listKey, setListKey] = React.useState(0);
 
   const filteredReviews = React.useMemo((): ReviewWithLocation[] => {
     if (!data) return [];
@@ -299,6 +332,7 @@ function ReviewsSection() {
               onPress={() => {
                 Haptics.selectionAsync();
                 setLocationFilter(tab.key);
+                setListKey((k) => k + 1);
               }}
               style={[
                 styles.filterTab,
@@ -321,7 +355,12 @@ function ReviewsSection() {
       </View>
 
       {filteredReviews.map((review, i) => (
-        <ReviewCard key={`${review.author_name}-${review.time}-${i}`} review={review} isLive={activeIsLive} />
+        <ReviewCard
+          key={`${listKey}-${review.author_name}-${review.time}-${i}`}
+          review={review}
+          isLive={activeIsLive}
+          index={i}
+        />
       ))}
     </View>
   );
