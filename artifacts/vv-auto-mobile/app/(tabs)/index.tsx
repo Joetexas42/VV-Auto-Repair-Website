@@ -237,6 +237,14 @@ function ReviewsSection() {
   const [locationFilter, setLocationFilter] = React.useState<LocationFilter>("all");
   const [listKey, setListKey] = React.useState(0);
 
+  const dataLoadedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (data && !dataLoadedRef.current) {
+      dataLoadedRef.current = true;
+      setListKey((k) => k + 1);
+    }
+  }, [data]);
+
   const filteredReviews = React.useMemo((): ReviewWithLocation[] => {
     if (!data) return [];
     if (locationFilter === "dallas") {
