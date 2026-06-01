@@ -17,3 +17,39 @@ export const GARLAND_MAPS_URL =
 
 export const DALLAS_WRITE_REVIEW_URL =
   "https://search.google.com/local/writereview?placeid=ChIJ025JNyKhToYRNRX5NXicpUQ";
+
+/**
+ * Validates that the Dallas and Garland map URLs still contain the expected
+ * coordinate and place-ID fragments. Call this once at app start in
+ * development mode to catch accidental typos before they go live.
+ *
+ * Expected fragments:
+ *   Dallas  — latitude 32.8488156, longitude -96.6827611
+ *   Garland — place ID fragment 11pzygbgln, latitude 32.9016826
+ */
+export function validateLocationUrls(): void {
+  const checks: Array<{ name: string; url: string; fragments: string[] }> = [
+    {
+      name: "DALLAS_MAPS_URL",
+      url: DALLAS_MAPS_URL,
+      fragments: ["32.8488156", "-96.6827611"],
+    },
+    {
+      name: "GARLAND_MAPS_URL",
+      url: GARLAND_MAPS_URL,
+      fragments: ["11pzygbgln", "32.9016826"],
+    },
+  ];
+
+  for (const { name, url, fragments } of checks) {
+    for (const fragment of fragments) {
+      if (!url.includes(fragment)) {
+        console.warn(
+          `[VV Auto] ${name} may be invalid — expected to find "${fragment}" in the URL.\n` +
+            `  Current value: ${url}\n` +
+            `  Check locations.ts and confirm the URL points to the correct place.`
+        );
+      }
+    }
+  }
+}
