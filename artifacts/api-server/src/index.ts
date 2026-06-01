@@ -19,17 +19,24 @@ if (Number.isNaN(port) || port <= 0) {
 
 async function main() {
   validateLocationConfigEnv();
-  await preWarmCaches();
 
-  app.listen(port, (err) => {
-    if (err) {
-      logger.error({ err }, "Error listening on port");
-      process.exit(1);
-    }
-
-    logger.info({ port }, "Server listening");
-    startRefreshInterval();
+  await new Promise<void>((resolve, reject) => {
+    app.listen(port, (err) => {
+      if (err) {
+        logger.error({ err }, "Error listening on port");
+        reject(err);
+        return;
+      }
+      logger.info({ port }, "Server listening");
+      resolve();
+    });
   });
+
+  // Warm caches after the server is already accepting requests so the
+  // startup health probe is not blocked by external API calls.
+  preWarmCaches()
+    .then(() => startRefreshInterval())
+    .catch((err) => logger.error({ err }, "Cache pre-warm failed"));
 }
 
 main().catch((err) => {
