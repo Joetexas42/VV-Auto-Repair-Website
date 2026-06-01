@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { Platform } from "react-native";
-import { LOCATIONS } from "@/constants/data";
 
 export interface LocationUrlConfig {
   mapsUrl: string;
@@ -25,11 +24,11 @@ function getApiBaseUrl(): string {
 
 const FALLBACK: LocationConfigResponse = {
   dallas: {
-    mapsUrl: LOCATIONS.dallas.mapUrl,
+    mapsUrl: "",
     writeReviewUrl: null,
   },
   garland: {
-    mapsUrl: LOCATIONS.garland.mapUrl,
+    mapsUrl: "",
     writeReviewUrl: null,
   },
 };

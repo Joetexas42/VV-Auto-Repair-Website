@@ -222,7 +222,7 @@ function ReviewCard({
           />
         </Pressable>
       )}
-      <GoogleReviewBadge isLive={isLive} mapsUrl={locationConfig?.[review.locationKey].mapsUrl ?? LOCATIONS[review.locationKey].mapUrl} />
+      <GoogleReviewBadge isLive={isLive} mapsUrl={locationConfig?.[review.locationKey].mapsUrl ?? ""} />
     </View>
     </Animated.View>
   );
@@ -408,7 +408,7 @@ function LocationCard({
   const { t } = useLanguage();
   const loc = LOCATIONS[locationKey];
   const { data: locationConfig } = useLocationConfig();
-  const mapsUrl = locationConfig?.[locationKey].mapsUrl ?? loc.mapUrl;
+  const mapsUrl = locationConfig?.[locationKey].mapsUrl ?? "";
 
   const call = (phone: string) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);

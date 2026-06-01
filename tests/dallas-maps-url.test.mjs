@@ -2,15 +2,14 @@
  * Smoke test: Dallas Google Maps URL — coordinates + place-ID format
  *
  * Verifies that:
- *   1. The canonical Dallas "Get Directions" URL in the website's shared
- *      constants file (src/lib/locations.ts) uses the coordinate-based URL
- *      format (@lat,lng) — not a plain ?q= text query — and contains the
- *      correct coordinates and place ID.
+ *   1. The website's shared constants file (src/lib/locations.ts) does NOT
+ *      contain any hardcoded Dallas map URL (removed in favour of API-served config).
  *   2. The API route (artifacts/api-server/src/routes/locationConfig.ts) has
- *      the correct Dallas URL as its hardcoded default.
+ *      the correct Dallas URL as its hardcoded default and reads the env var.
  *   3. Website pages (contact.tsx, index.tsx) do NOT hardcode the URL and
  *      instead use the runtime location config hook (useLocationConfig).
- *   4. The mobile app data constants still contain the correct Dallas URL.
+ *   4. The mobile app data constants (data.ts) do NOT hardcode mapUrl fields
+ *      (URLs are now served exclusively by the API).
  *
  * Run with:  node tests/dallas-maps-url.test.mjs
  */
@@ -56,7 +55,7 @@ function extractDallasUrls(content) {
   );
 }
 
-// ── 1. Canonical source of truth: website shared constants file ───────────────
+// ── 1. Website shared constants — URLs must have been removed ─────────────────
 console.log(
   "\n─── Website – shared constants (artifacts/vv-auto-website/src/lib/locations.ts)"
 );
@@ -65,23 +64,9 @@ console.log(
   if (content) {
     const dallasUrls = extractDallasUrls(content);
     assert(
-      dallasUrls.length >= 1,
-      `At least 1 Dallas maps URL found in locations.ts (got ${dallasUrls.length})`
+      dallasUrls.length === 0,
+      `No hardcoded Dallas maps URL in locations.ts (URLs are served by the API) (got ${dallasUrls.length})`
     );
-    for (const url of dallasUrls) {
-      assert(
-        url.includes(EXPECTED_COORDS),
-        `URL contains correct coordinates (${EXPECTED_COORDS}): ${url.slice(0, 80)}…`
-      );
-      assert(
-        url.includes(EXPECTED_PLACE_ID),
-        `URL contains place ID (${EXPECTED_PLACE_ID}): ${url.slice(0, 80)}…`
-      );
-      assert(
-        !FORBIDDEN_PATTERN.test(url),
-        `URL does NOT use plain ?q= text-query format`
-      );
-    }
   }
 }
 
@@ -152,7 +137,7 @@ for (const source of PAGE_SOURCES) {
   );
 }
 
-// ── 4. Mobile app data constants ──────────────────────────────────────────────
+// ── 4. Mobile app data constants — mapUrl field must have been removed ────────
 console.log(
   "\n─── Mobile app – data constants (artifacts/vv-auto-mobile/constants/data.ts)"
 );
@@ -161,23 +146,13 @@ console.log(
   if (content) {
     const dallasUrls = extractDallasUrls(content);
     assert(
-      dallasUrls.length >= 1,
-      `At least 1 Dallas maps URL(s) found (got ${dallasUrls.length})`
+      dallasUrls.length === 0,
+      `No hardcoded Dallas maps URL in data.ts (URLs are served by the API) (got ${dallasUrls.length})`
     );
-    for (const url of dallasUrls) {
-      assert(
-        url.includes(EXPECTED_COORDS),
-        `URL contains correct coordinates (${EXPECTED_COORDS}): ${url.slice(0, 80)}…`
-      );
-      assert(
-        url.includes(EXPECTED_PLACE_ID),
-        `URL contains place ID (${EXPECTED_PLACE_ID}): ${url.slice(0, 80)}…`
-      );
-      assert(
-        !FORBIDDEN_PATTERN.test(url),
-        `URL does NOT use plain ?q= text-query format`
-      );
-    }
+    assert(
+      !content.includes("mapUrl"),
+      `data.ts does not contain a mapUrl field (removed in favour of API-served config)`
+    );
   }
 }
 

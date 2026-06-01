@@ -1,9 +1,3 @@
-import {
-  DALLAS_MAPS_URL,
-  DALLAS_WRITE_REVIEW_URL,
-  GARLAND_MAPS_URL,
-} from "@/lib/locations";
-
 export interface LocationConfig {
   mapsUrl: string;
   writeReviewUrl: string | null;
@@ -16,11 +10,11 @@ export interface LocationConfigResponse {
 
 const FALLBACK: LocationConfigResponse = {
   dallas: {
-    mapsUrl: DALLAS_MAPS_URL,
-    writeReviewUrl: DALLAS_WRITE_REVIEW_URL,
+    mapsUrl: "",
+    writeReviewUrl: null,
   },
   garland: {
-    mapsUrl: GARLAND_MAPS_URL,
+    mapsUrl: "",
     writeReviewUrl: null,
   },
 };

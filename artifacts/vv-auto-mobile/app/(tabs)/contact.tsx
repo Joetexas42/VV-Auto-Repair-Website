@@ -64,7 +64,7 @@ function LocationContactCard({ locationKey }: { locationKey: "dallas" | "garland
   const { t } = useLanguage();
   const loc = LOCATIONS[locationKey];
   const { data: locationConfig } = useLocationConfig();
-  const mapsUrl = locationConfig?.[locationKey].mapsUrl ?? loc.mapUrl;
+  const mapsUrl = locationConfig?.[locationKey].mapsUrl ?? "";
 
   const openMaps = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

@@ -1,9 +1,9 @@
 /**
- * IMPORTANT: mapUrl values below must stay in sync with the website's
- * canonical source of truth: artifacts/vv-auto-website/src/lib/locations.ts
- *   - dallas.mapUrl  → DALLAS_MAPS_URL
- *   - garland.mapUrl → GARLAND_MAPS_URL
- * Update both files together whenever a Google Maps link changes.
+ * Static location data (address, phone, hours, branding).
+ * Map and review URLs are served exclusively by the API server via
+ * /api/location-config and managed through the DALLAS_MAPS_URL,
+ * GARLAND_MAPS_URL, DALLAS_WRITE_REVIEW_URL, and GARLAND_WRITE_REVIEW_URL
+ * environment variables. Do not add map link fields here.
  */
 export const LOCATIONS = {
   dallas: {
@@ -16,8 +16,6 @@ export const LOCATIONS = {
       en: "Mon – Fri: 8:00 am – 6:00 pm\nSat – Sun: Closed",
       vi: "Thứ 2 – Thứ 6: 8:00 – 18:00\nThứ 7 – CN: Đóng cửa",
     },
-    mapUrl:
-      "https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1",
     color: "#3f5f85",
     tagEn: "Mechanical Repair",
     tagVi: "Sửa Máy",
@@ -32,8 +30,6 @@ export const LOCATIONS = {
       en: "Mon – Fri: 8:00 am – 5:00 pm\nSat – Sun: Closed",
       vi: "Thứ 2 – Thứ 6: 8:00 – 17:00\nThứ 7 – CN: Đóng cửa",
     },
-    mapUrl:
-      "https://www.google.com/maps/place/V+V+Auto+Body+Repair+Corporation/@32.9016826,-96.6874462,17z/data=!3m1!4b1!4m6!3m5!1s/g/11pzygbgln!8m2!3d32.9016826!4d-96.6874462!16s%2Fg%2F11pzygbgln!9m1!1b1",
     color: "#e63030",
     tagEn: "Collision & Body",
     tagVi: "Tai Nạn & Sơn",
