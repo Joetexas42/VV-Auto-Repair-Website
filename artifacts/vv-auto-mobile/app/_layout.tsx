@@ -8,7 +8,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -36,13 +36,26 @@ export default function RootLayout() {
     Inter_700Bold,
   });
 
-  useEffect(() => {
-    if (fontsLoaded || fontError) {
+  const langReadyRef = useRef(false);
+  const fontsReadyRef = useRef(false);
+
+  const maybeHideSplash = useCallback(() => {
+    if (langReadyRef.current && fontsReadyRef.current) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, fontError]);
+  }, []);
 
-  if (!fontsLoaded && !fontError) return null;
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      fontsReadyRef.current = true;
+      maybeHideSplash();
+    }
+  }, [fontsLoaded, fontError, maybeHideSplash]);
+
+  const handleLangReady = useCallback(() => {
+    langReadyRef.current = true;
+    maybeHideSplash();
+  }, [maybeHideSplash]);
 
   return (
     <SafeAreaProvider>
@@ -50,7 +63,7 @@ export default function RootLayout() {
         <QueryClientProvider client={queryClient}>
           <GestureHandlerRootView>
             <KeyboardProvider>
-              <LanguageProvider>
+              <LanguageProvider onReady={handleLangReady}>
                 <RootLayoutNav />
               </LanguageProvider>
             </KeyboardProvider>

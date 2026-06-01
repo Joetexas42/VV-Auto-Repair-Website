@@ -17,14 +17,18 @@ const LanguageContext = createContext<LanguageContextValue>({
 
 const STORAGE_KEY = "@vvauto_lang";
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+interface LanguageProviderProps {
+  children: React.ReactNode;
+  onReady?: () => void;
+}
+
+export function LanguageProvider({ children, onReady }: LanguageProviderProps) {
   const [lang, setLangState] = useState<Language>("en");
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     AsyncStorage.getItem(STORAGE_KEY).then((val) => {
       if (val === "en" || val === "vi") setLangState(val);
-      setIsReady(true);
+      onReady?.();
     });
   }, []);
 
@@ -37,8 +41,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     (en: string, vi: string) => (lang === "vi" ? vi : en),
     [lang]
   );
-
-  if (!isReady) return null;
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>
