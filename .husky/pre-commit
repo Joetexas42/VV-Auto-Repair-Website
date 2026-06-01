@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Pre-commit hook: validate Google Maps URLs and contact details
+# Blocks commits if any hardcoded map link or contact info is wrong.
+#
+echo "Checking Google Maps URLs and contact details…"
+pnpm run test:links
