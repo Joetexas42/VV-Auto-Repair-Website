@@ -38,7 +38,7 @@ export function Navigation() {
                 {t(link.en, link.vi)}
               </Link>
             ))}
-            <div className="flex items-center bg-white/20 ring-1 ring-white/50 transition-all duration-300 rounded-full p-1" data-testid="language-toggle">
+            <div className="flex items-center bg-white/20 hover:bg-white/30 ring-1 ring-white/50 transition-all duration-300 rounded-full p-1" data-testid="language-toggle">
               <button
                 onClick={() => setLang("en")}
                 className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
@@ -98,7 +98,7 @@ export function Navigation() {
               </Link>
             ))}
           </div>
-          <div className="mt-4 flex items-center bg-white/20 ring-1 ring-white/50 transition-all duration-300 rounded-full p-1 w-fit" data-testid="mobile-language-toggle">
+          <div className="mt-4 flex items-center bg-white/20 hover:bg-white/30 ring-1 ring-white/50 transition-all duration-300 rounded-full p-1 w-fit" data-testid="mobile-language-toggle">
             <button
               onClick={() => setLang("en")}
               className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
