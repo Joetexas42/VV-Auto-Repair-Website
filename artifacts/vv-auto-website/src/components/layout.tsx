@@ -222,10 +222,18 @@ export function Footer() {
         </div>
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm">
           <p>&copy; {new Date().getFullYear()} {t("V.V. Auto Repair & Body Shop. All rights reserved.", "V.V. Auto Repair & Body Shop. Đã đăng ký bản quyền.")}</p>
-          <p className="mt-2">
-            <Link href="/built-by" className="text-white/30 hover:text-white/50 transition-colors text-xs">
-              Site by Paper Street Software Co.
-            </Link>
+          <p className="mt-2 text-white/30 text-xs">
+            Website built by Paper Street Software Co. for a truly good friend.
+          </p>
+          <p className="mt-1 text-white/30 text-xs">
+            If you&apos;d like a website, contact us at{" "}
+            <a href="mailto:paperstreetsoftware@gmail.com" className="hover:text-white/50 transition-colors">
+              paperstreetsoftware@gmail.com
+            </a>
+            {" "}or{" "}
+            <a href="https://paperstreet.online" target="_blank" rel="noopener noreferrer" className="hover:text-white/50 transition-colors">
+              paperstreet.online
+            </a>
           </p>
         </div>
       </div>
