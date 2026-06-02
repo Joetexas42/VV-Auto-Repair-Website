@@ -55,7 +55,7 @@ export default function BuiltByPage() {
             <p className="text-lg text-gray-600 leading-relaxed mb-6">
               This website was designed and developed by{" "}
               <strong className="text-[var(--vv-navy)]">Paper Street Software Co.</strong> — a small,
-              independent software studio that builds custom websites, mobile apps, and digital tools
+              independent software studio that builds custom websites and digital tools
               for local businesses.
             </p>
 
@@ -73,10 +73,6 @@ export default function BuiltByPage() {
                   {
                     title: "Bilingual Website",
                     desc: "Full English & Vietnamese support with a smooth, one-tap language toggle — no page reload, no separate URLs.",
-                  },
-                  {
-                    title: "Mobile App (iOS & Android)",
-                    desc: "A companion app for customers to browse services, read reviews, get directions, and call the shop.",
                   },
                   {
                     title: "Live Review Feed",
@@ -111,7 +107,9 @@ export default function BuiltByPage() {
               <ul className="space-y-3">
                 {[
                   "Custom websites for local businesses",
-                  "Mobile apps for iOS and Android",
+                  "AI Receptionist",
+                  "AI Answering Service",
+                  "AI Customer Support",
                   "Online booking and scheduling systems",
                   "Review and reputation management tools",
                   "Bilingual and multilingual experiences",
