@@ -1,8 +1,21 @@
 import { Router, type IRouter } from "express";
+import { rateLimit } from "express-rate-limit";
 import nodemailer from "nodemailer";
 import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
+
+const contactLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 5,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: { error: "Too many contact requests. Please try again later." },
+  handler(req, res, next, options) {
+    logger.warn({ ip: req.ip }, "Contact form rate limit exceeded");
+    res.status(options.statusCode).json(options.message);
+  },
+});
 
 const RECIPIENT = "Paperstreetsoftware@gmail.com";
 
@@ -20,7 +33,7 @@ function createTransporter() {
   });
 }
 
-router.post("/contact", async (req, res) => {
+router.post("/contact", contactLimiter, async (req, res) => {
   const { name, email, message } = req.body as {
     name?: string;
     email?: string;
