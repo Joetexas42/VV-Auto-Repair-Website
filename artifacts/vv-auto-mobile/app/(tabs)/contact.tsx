@@ -63,9 +63,11 @@ function LocationContactCard({ locationKey }: { locationKey: "dallas" | "garland
   const { t } = useLanguage();
   const loc = LOCATIONS[locationKey];
   const { data: locationConfig } = useLocationConfig();
+  const mapsUrlLoading = locationConfig === undefined;
   const mapsUrl = locationConfig?.[locationKey].mapsUrl ?? "";
 
   const openMaps = () => {
+    if (!mapsUrl) return;
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     Linking.openURL(mapsUrl);
   };
@@ -83,25 +85,42 @@ function LocationContactCard({ locationKey }: { locationKey: "dallas" | "garland
       </LinearGradient>
 
       <View style={styles.cardBody}>
-        <Pressable
-          onPress={openMaps}
-          style={({ pressed }) => [
-            styles.infoRow,
-            { borderBottomColor: colors.border, opacity: pressed ? 0.7 : 1 },
-          ]}
-          testID={`maps-${locationKey}`}
-        >
-          <View style={[styles.infoIcon, { backgroundColor: colors.muted }]}>
-            <Feather name="map-pin" size={16} color={loc.color} />
+        {mapsUrl ? (
+          <Pressable
+            onPress={openMaps}
+            style={({ pressed }) => [
+              styles.infoRow,
+              { borderBottomColor: colors.border, opacity: pressed ? 0.7 : 1 },
+            ]}
+            testID={`maps-${locationKey}`}
+          >
+            <View style={[styles.infoIcon, { backgroundColor: colors.muted }]}>
+              <Feather name="map-pin" size={16} color={loc.color} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>
+                {t("Address", "Địa Chỉ")}
+              </Text>
+              <Text style={[styles.infoValue, { color: colors.foreground }]}>{loc.address}</Text>
+            </View>
+            <Feather name="external-link" size={14} color={colors.mutedForeground} />
+          </Pressable>
+        ) : (
+          <View
+            style={[styles.infoRow, { borderBottomColor: colors.border }]}
+            testID={`maps-${locationKey}`}
+          >
+            <View style={[styles.infoIcon, { backgroundColor: colors.muted }]}>
+              <Feather name="map-pin" size={16} color={mapsUrlLoading ? colors.mutedForeground : loc.color} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>
+                {t("Address", "Địa Chỉ")}
+              </Text>
+              <Text style={[styles.infoValue, { color: colors.foreground }]}>{loc.address}</Text>
+            </View>
           </View>
-          <View style={{ flex: 1 }}>
-            <Text style={[styles.infoLabel, { color: colors.mutedForeground }]}>
-              {t("Address", "Địa Chỉ")}
-            </Text>
-            <Text style={[styles.infoValue, { color: colors.foreground }]}>{loc.address}</Text>
-          </View>
-          <Feather name="external-link" size={14} color={colors.mutedForeground} />
-        </Pressable>
+        )}
 
         <View style={[styles.infoRow, { borderBottomColor: colors.border }]}>
           <View style={[styles.infoIcon, { backgroundColor: colors.muted }]}>
@@ -145,19 +164,31 @@ function LocationContactCard({ locationKey }: { locationKey: "dallas" | "garland
           <PhoneRow phone={loc.phone2} color={loc.color} />
         </View>
 
-        <Pressable
-          onPress={openMaps}
-          style={({ pressed }) => [
-            styles.directionsBtn,
-            { backgroundColor: loc.color, opacity: pressed ? 0.85 : 1 },
-          ]}
-          testID={`directions-btn-${locationKey}`}
-        >
-          <Feather name="navigation" size={16} color="#fff" />
-          <Text style={styles.directionsBtnText}>
-            {t(STRINGS.getDirections.en, STRINGS.getDirections.vi)}
-          </Text>
-        </Pressable>
+        {mapsUrlLoading ? (
+          <View
+            style={[styles.directionsBtn, { backgroundColor: colors.muted }]}
+            testID={`directions-btn-${locationKey}`}
+          >
+            <Feather name="navigation" size={16} color={colors.mutedForeground} />
+            <Text style={[styles.directionsBtnText, { color: colors.mutedForeground }]}>
+              {t(STRINGS.getDirections.en, STRINGS.getDirections.vi)}
+            </Text>
+          </View>
+        ) : mapsUrl ? (
+          <Pressable
+            onPress={openMaps}
+            style={({ pressed }) => [
+              styles.directionsBtn,
+              { backgroundColor: loc.color, opacity: pressed ? 0.85 : 1 },
+            ]}
+            testID={`directions-btn-${locationKey}`}
+          >
+            <Feather name="navigation" size={16} color="#fff" />
+            <Text style={styles.directionsBtnText}>
+              {t(STRINGS.getDirections.en, STRINGS.getDirections.vi)}
+            </Text>
+          </Pressable>
+        ) : null}
       </View>
     </View>
   );

@@ -356,15 +356,17 @@ export default function ReviewsPage() {
               <PenLine size={18} />
               {t("Write a Review", "Viết Đánh Giá")}
             </a>
-            <a
-              href={locationConfig?.dallas.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3.5 rounded-lg font-semibold transition-colors"
-            >
-              <ExternalLink size={18} />
-              {t("See All Reviews on Google Maps", "Xem Tất Cả Đánh Giá Trên Google Maps")}
-            </a>
+            {locationConfig?.dallas.mapsUrl && (
+              <a
+                href={locationConfig.dallas.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3.5 rounded-lg font-semibold transition-colors"
+              >
+                <ExternalLink size={18} />
+                {t("See All Reviews on Google Maps", "Xem Tất Cả Đánh Giá Trên Google Maps")}
+              </a>
+            )}
           </div>
         </div>
       </section>
@@ -398,18 +400,20 @@ export default function ReviewsPage() {
                 "Đây chỉ là một số nổi bật. Xem toàn bộ đánh giá của chúng tôi trên Google."
               )}
             </p>
-            <a
-              href={locationConfig?.dallas.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-3 bg-[var(--vv-navy)] hover:bg-blue-900 text-white px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg"
-            >
-              <ExternalLink size={20} />
-              {t(
-                `Read All ${displayCount} Reviews on Google`,
-                `Đọc Hơn ${displayCount} Đánh Giá Trên Google`
-              )}
-            </a>
+            {locationConfig?.dallas.mapsUrl && (
+              <a
+                href={locationConfig.dallas.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 bg-[var(--vv-navy)] hover:bg-blue-900 text-white px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg"
+              >
+                <ExternalLink size={20} />
+                {t(
+                  `Read All ${displayCount} Reviews on Google`,
+                  `Đọc Hơn ${displayCount} Đánh Giá Trên Google`
+                )}
+              </a>
+            )}
           </div>
         </div>
       </section>

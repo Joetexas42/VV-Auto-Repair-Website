@@ -490,9 +490,11 @@ export default function Homepage() {
                 <a href="tel:2143202171" className="flex-1 bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Call Dallas Shop", "Gọi Tiệm Dallas")}
                 </a>
-                <a href={locationConfig?.dallas.mapsUrl} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
-                  {t("Get Directions", "Chỉ Đường")}
-                </a>
+                {locationConfig?.dallas.mapsUrl && (
+                  <a href={locationConfig.dallas.mapsUrl} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
+                    {t("Get Directions", "Chỉ Đường")}
+                  </a>
+                )}
               </div>
             </div>
 
@@ -540,9 +542,11 @@ export default function Homepage() {
                 <a href="tel:4692589356" className="flex-1 bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center py-3 rounded-lg font-bold transition-colors">
                   {t("Call Garland Shop", "Gọi Tiệm Garland")}
                 </a>
-                <a href={locationConfig?.garland.mapsUrl} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
-                  {t("Get Directions", "Chỉ Đường")}
-                </a>
+                {locationConfig?.garland.mapsUrl && (
+                  <a href={locationConfig.garland.mapsUrl} target="_blank" rel="noreferrer" className="flex-1 bg-[var(--vv-teal)] hover:bg-teal-400 text-white text-center py-3 rounded-lg font-bold transition-colors">
+                    {t("Get Directions", "Chỉ Đường")}
+                  </a>
+                )}
               </div>
             </div>
           </div>

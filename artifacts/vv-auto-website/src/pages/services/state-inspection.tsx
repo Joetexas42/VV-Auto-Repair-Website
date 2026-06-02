@@ -53,12 +53,14 @@ export default function StateInspection() {
                 )}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href={locationConfig?.dallas.mapsUrl} target="_blank" rel="noreferrer" className="bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-colors flex items-center justify-center gap-3 shadow-lg">
-                  <MapPin size={24} />
-                  {t("Get Directions to Shop", "Chỉ Đường Đến Tiệm")}
-                </a>
-              </div>
+              {locationConfig?.dallas.mapsUrl && (
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href={locationConfig.dallas.mapsUrl} target="_blank" rel="noreferrer" className="bg-[var(--vv-navy)] hover:bg-blue-900 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-colors flex items-center justify-center gap-3 shadow-lg">
+                    <MapPin size={24} />
+                    {t("Get Directions to Shop", "Chỉ Đường Đến Tiệm")}
+                  </a>
+                </div>
+              )}
             </div>
 
             <div className="relative">

@@ -407,6 +407,7 @@ function LocationCard({
   const { t } = useLanguage();
   const loc = LOCATIONS[locationKey];
   const { data: locationConfig } = useLocationConfig();
+  const mapsUrlLoading = locationConfig === undefined;
   const mapsUrl = locationConfig?.[locationKey].mapsUrl ?? "";
 
   const call = (phone: string) => {
@@ -415,6 +416,7 @@ function LocationCard({
   };
 
   const directions = () => {
+    if (!mapsUrl) return;
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     Linking.openURL(mapsUrl);
   };
@@ -452,6 +454,17 @@ function LocationCard({
             <Text style={styles.callBtnText}>{loc.phone1.display}</Text>
           </Pressable>
 
+        {mapsUrlLoading ? (
+          <View
+            style={[styles.dirBtn, { borderColor: colors.border, flex: 1 }]}
+            testID={`directions-${locationKey}`}
+          >
+            <Feather name="navigation" size={14} color={colors.mutedForeground} />
+            <Text style={[styles.dirBtnText, { color: colors.mutedForeground }]}>
+              {t(STRINGS.getDirections.en, STRINGS.getDirections.vi)}
+            </Text>
+          </View>
+        ) : mapsUrl ? (
           <Pressable
             onPress={directions}
             style={({ pressed }) => [
@@ -465,6 +478,7 @@ function LocationCard({
               {t(STRINGS.getDirections.en, STRINGS.getDirections.vi)}
             </Text>
           </Pressable>
+        ) : null}
         </View>
       </View>
     </View>
