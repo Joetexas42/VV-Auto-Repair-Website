@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout } from "@/components/layout";
 
 type FormState = "idle" | "submitting" | "success" | "error" | "rate-limited";
@@ -9,6 +9,17 @@ export default function BuiltByPage() {
   const [message, setMessage] = useState("");
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    document.title = "Web & AI Solutions | Paper Street Software Co.";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        "Custom websites and AI-powered tools for local businesses. Paper Street Software Co. builds bilingual sites, AI receptionists, and digital solutions that help local businesses grow."
+      );
+    }
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
