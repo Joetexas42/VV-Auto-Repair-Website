@@ -31,6 +31,7 @@ function LanguageHeaderButton() {
   const { lang, setLang } = useLanguage();
   const colors = useColors();
   const isVI = lang === "vi";
+  const btnBg = colors.primary;
   const badgeScale = useSharedValue(1);
   const pressScale = useSharedValue(1);
   const glowOpacity = useSharedValue(0);
@@ -52,7 +53,7 @@ function LanguageHeaderButton() {
 
   const pressAnimStyle = useAnimatedStyle(() => ({
     transform: [{ scale: pressScale.value }],
-    shadowColor: colors.primary,
+    shadowColor: btnBg,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: glowOpacity.value * 0.85,
     shadowRadius: 10,
@@ -83,7 +84,7 @@ function LanguageHeaderButton() {
         style={[
           styles.headerLangBtn,
           {
-            backgroundColor: colors.primary,
+            backgroundColor: btnBg,
             borderColor: colors.primaryForeground,
           },
         ]}
