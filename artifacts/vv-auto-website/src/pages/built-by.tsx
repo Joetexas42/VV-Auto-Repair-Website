@@ -47,7 +47,7 @@ export default function BuiltByPage() {
       <section className="py-20 bg-[var(--vv-gray)] min-h-[70vh]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 md:p-14">
-            <p className="text-xs font-bold text-[var(--vv-red)] tracking-widest uppercase mb-4">Web Design & Development</p>
+            <p className="text-xs font-bold text-[var(--vv-red)] tracking-widest uppercase mb-4">Web & AI Solutions</p>
             <h1 className="text-4xl md:text-5xl font-extrabold text-[var(--vv-navy)] tracking-tight mb-6 font-display">
               Built With Pride
             </h1>
