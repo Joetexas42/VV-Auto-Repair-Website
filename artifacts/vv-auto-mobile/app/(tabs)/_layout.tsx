@@ -33,6 +33,7 @@ function LanguageHeaderButton() {
   const isVI = lang === "vi";
   const badgeScale = useSharedValue(1);
   const pressScale = useSharedValue(1);
+  const glowOpacity = useSharedValue(0);
 
   useEffect(() => {
     badgeScale.value = withSequence(
@@ -47,14 +48,21 @@ function LanguageHeaderButton() {
 
   const pressAnimStyle = useAnimatedStyle(() => ({
     transform: [{ scale: pressScale.value }],
+    shadowColor: colors.primary,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: glowOpacity.value * 0.85,
+    shadowRadius: 10,
+    elevation: glowOpacity.value * 10,
   }));
 
   function handlePressIn() {
     pressScale.value = withTiming(0.88, { duration: 100, easing: Easing.out(Easing.quad) });
+    glowOpacity.value = withTiming(1, { duration: 100, easing: Easing.out(Easing.quad) });
   }
 
   function handlePressOut() {
     pressScale.value = withTiming(1, { duration: 150, easing: Easing.out(Easing.quad) });
+    glowOpacity.value = withTiming(0, { duration: 250, easing: Easing.out(Easing.quad) });
   }
 
   function handlePress() {
