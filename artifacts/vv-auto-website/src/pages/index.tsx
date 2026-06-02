@@ -127,7 +127,7 @@ export default function Homepage() {
                 }`}
                 data-testid="btn-hero-lang-en"
               >
-                EN
+                English
               </button>
               <button
                 onClick={() => setLang("vi")}
@@ -136,7 +136,7 @@ export default function Homepage() {
                 }`}
                 data-testid="btn-hero-lang-vi"
               >
-                VI
+                Tiếng Việt
               </button>
             </div>
 
