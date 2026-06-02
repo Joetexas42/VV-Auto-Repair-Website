@@ -55,8 +55,8 @@ function LanguageHeaderButton() {
       style={({ pressed }) => [
         styles.headerLangBtn,
         {
-          backgroundColor: isVI ? colors.primary : colors.card,
-          borderColor: "#fff",
+          backgroundColor: colors.primary,
+          borderColor: colors.primaryForeground,
           opacity: pressed ? 0.75 : 1,
         },
       ]}
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     minWidth: 36,
     height: 26,
     borderRadius: 13,
-    borderWidth: 1,
+    borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 8,
