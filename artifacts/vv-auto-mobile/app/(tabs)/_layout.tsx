@@ -31,18 +31,31 @@ function LanguageHeaderButton() {
   const { lang, setLang } = useLanguage();
   const colors = useColors();
   const isVI = lang === "vi";
-  const scale = useSharedValue(1);
+  const badgeScale = useSharedValue(1);
+  const pressScale = useSharedValue(1);
 
   useEffect(() => {
-    scale.value = withSequence(
+    badgeScale.value = withSequence(
       withTiming(1.3, { duration: 100, easing: Easing.out(Easing.quad) }),
       withTiming(1, { duration: 150, easing: Easing.out(Easing.quad) })
     );
   }, [lang]);
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
+  const badgeAnimStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: badgeScale.value }],
   }));
+
+  const pressAnimStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: pressScale.value }],
+  }));
+
+  function handlePressIn() {
+    pressScale.value = withTiming(0.88, { duration: 100, easing: Easing.out(Easing.quad) });
+  }
+
+  function handlePressOut() {
+    pressScale.value = withTiming(1, { duration: 150, easing: Easing.out(Easing.quad) });
+  }
 
   function handlePress() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -50,31 +63,34 @@ function LanguageHeaderButton() {
   }
 
   return (
-    <Pressable
-      onPress={handlePress}
-      style={({ pressed }) => [
-        styles.headerLangBtn,
-        {
-          backgroundColor: colors.primary,
-          borderColor: colors.primaryForeground,
-          opacity: pressed ? 0.75 : 1,
-        },
-      ]}
-      accessibilityRole="button"
-      accessibilityLabel={`Switch language. Currently ${isVI ? "Vietnamese" : "English"}`}
-      hitSlop={8}
-    >
-      <Animated.View style={animatedStyle}>
-        <Text
-          style={[
-            styles.headerLangText,
-            { color: "#fff" },
-          ]}
-        >
-          {isVI ? "VI" : "EN"}
-        </Text>
-      </Animated.View>
-    </Pressable>
+    <Animated.View style={pressAnimStyle}>
+      <Pressable
+        onPress={handlePress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        style={[
+          styles.headerLangBtn,
+          {
+            backgroundColor: colors.primary,
+            borderColor: colors.primaryForeground,
+          },
+        ]}
+        accessibilityRole="button"
+        accessibilityLabel={`Switch language. Currently ${isVI ? "Vietnamese" : "English"}`}
+        hitSlop={8}
+      >
+        <Animated.View style={badgeAnimStyle}>
+          <Text
+            style={[
+              styles.headerLangText,
+              { color: "#fff" },
+            ]}
+          >
+            {isVI ? "VI" : "EN"}
+          </Text>
+        </Animated.View>
+      </Pressable>
+    </Animated.View>
   );
 }
 
