@@ -56,7 +56,7 @@ function LanguageHeaderButton() {
         styles.headerLangBtn,
         {
           backgroundColor: isVI ? colors.primary : colors.card,
-          borderColor: isVI ? colors.primary : colors.border,
+          borderColor: "#fff",
           opacity: pressed ? 0.75 : 1,
         },
       ]}
@@ -68,7 +68,7 @@ function LanguageHeaderButton() {
         <Text
           style={[
             styles.headerLangText,
-            { color: isVI ? "#fff" : colors.mutedForeground },
+            { color: "#fff" },
           ]}
         >
           {isVI ? "VI" : "EN"}
