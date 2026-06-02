@@ -131,9 +131,7 @@ export default function Homepage() {
               </button>
               <button
                 onClick={() => setLang("vi")}
-                className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
-                  lang === "vi" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white/70 hover:text-white"
-                }`}
+                className="px-4 py-2 rounded-full text-sm font-bold transition-colors hover:text-white text-[#ffffffff]"
                 data-testid="btn-hero-lang-vi"
               >
                 Tiếng Việt
@@ -179,7 +177,6 @@ export default function Homepage() {
           </div>
         </div>
       </section>
-
       {/* Trust & Welcome Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -246,7 +243,6 @@ export default function Homepage() {
           </div>
         </div>
       </section>
-
       {/* Services Section */}
       <section className="py-24 bg-[var(--vv-gray)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -350,7 +346,6 @@ export default function Homepage() {
           </div>
         </div>
       </section>
-
       {/* Reviews Section */}
       <section className="py-24 bg-[var(--vv-navy)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -429,7 +424,6 @@ export default function Homepage() {
           </div>
         </div>
       </section>
-
       {/* Locations Section */}
       <section id="locations" className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -552,7 +546,6 @@ export default function Homepage() {
           </div>
         </div>
       </section>
-
       {/* CTA Banner */}
       <section className="bg-[var(--vv-red)] py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')]"></div>
