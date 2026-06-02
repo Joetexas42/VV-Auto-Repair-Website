@@ -23,6 +23,7 @@ const root = resolve(__dirname, "..");
 
 const EXPECTED_COORDS = "@32.9016826,-96.6874462";
 const EXPECTED_FEATURE_ID = "11pzygbgln";
+const EXPECTED_FEATURE_PATH = "/g/11pzygbgln";
 const FORBIDDEN_PATTERN = /\?q=/;
 
 let passed = 0;
@@ -138,6 +139,35 @@ console.log(
     assert(
       !content.includes("mapUrl"),
       `data.ts does not contain a mapUrl field (removed in favour of API-served config)`
+    );
+  }
+}
+
+// ── 5. Env var GARLAND_MAPS_URL must contain the correct place identifiers ─────
+console.log(
+  "\n─── Env var – GARLAND_MAPS_URL (must contain verified Place identifiers)"
+);
+{
+  const garlandEnvUrl = process.env["GARLAND_MAPS_URL"] ?? null;
+  if (garlandEnvUrl === null) {
+    console.warn(
+      "  ⚠  GARLAND_MAPS_URL is not set in the environment — skipping content checks"
+    );
+  } else {
+    const urlsInEnvVar = extractGarlandUrls(garlandEnvUrl);
+    assert(
+      urlsInEnvVar.length > 0 ||
+        garlandEnvUrl.includes(EXPECTED_FEATURE_ID) ||
+        garlandEnvUrl.includes(EXPECTED_FEATURE_PATH),
+      `GARLAND_MAPS_URL contains the known Garland feature identifier (${EXPECTED_FEATURE_ID})`
+    );
+    assert(
+      !FORBIDDEN_PATTERN.test(garlandEnvUrl),
+      "GARLAND_MAPS_URL does not use the coordinate-only ?q= format that shows 'invalid coord'"
+    );
+    assert(
+      garlandEnvUrl.includes(EXPECTED_COORDS),
+      `GARLAND_MAPS_URL contains the expected coordinates (${EXPECTED_COORDS})`
     );
   }
 }

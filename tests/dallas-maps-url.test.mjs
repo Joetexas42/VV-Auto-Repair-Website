@@ -23,6 +23,7 @@ const root = resolve(__dirname, "..");
 
 const EXPECTED_COORDS = "@32.8488156,-96.6827611";
 const EXPECTED_PLACE_ID = "0x864ea12237496ed3";
+const EXPECTED_SECONDARY_CID = "0x44a59c7835f91535";
 const FORBIDDEN_PATTERN = /\?q=/;
 
 let passed = 0;
@@ -138,6 +139,35 @@ console.log(
     assert(
       !content.includes("mapUrl"),
       `data.ts does not contain a mapUrl field (removed in favour of API-served config)`
+    );
+  }
+}
+
+// ── 5. Env var DALLAS_MAPS_URL must contain the correct place identifiers ──────
+console.log(
+  "\n─── Env var – DALLAS_MAPS_URL (must contain verified Place identifiers)"
+);
+{
+  const dallasEnvUrl = process.env["DALLAS_MAPS_URL"] ?? null;
+  if (dallasEnvUrl === null) {
+    console.warn(
+      "  ⚠  DALLAS_MAPS_URL is not set in the environment — skipping content checks"
+    );
+  } else {
+    const urlsInEnvVar = extractDallasUrls(dallasEnvUrl);
+    assert(
+      urlsInEnvVar.length > 0 ||
+        dallasEnvUrl.includes(EXPECTED_PLACE_ID) ||
+        dallasEnvUrl.includes(EXPECTED_SECONDARY_CID),
+      `DALLAS_MAPS_URL contains a known Dallas place identifier (${EXPECTED_PLACE_ID} or ${EXPECTED_SECONDARY_CID})`
+    );
+    assert(
+      !FORBIDDEN_PATTERN.test(dallasEnvUrl),
+      "DALLAS_MAPS_URL does not use the coordinate-only ?q= format that shows 'invalid coord'"
+    );
+    assert(
+      dallasEnvUrl.includes(EXPECTED_COORDS),
+      `DALLAS_MAPS_URL contains the expected coordinates (${EXPECTED_COORDS})`
     );
   }
 }
