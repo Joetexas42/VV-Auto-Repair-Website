@@ -223,7 +223,7 @@ export function Footer() {
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm">
           <p>&copy; {new Date().getFullYear()} {t("V.V. Auto Repair & Body Shop. All rights reserved.", "V.V. Auto Repair & Body Shop. Đã đăng ký bản quyền.")}</p>
           <p className="mt-2 text-white/30 text-xs">
-            Website built by Paper Street Software Co. for a truly good friend.
+            Website built by <Link to="/built-by" className="hover:text-white/50 transition-colors">Paper Street Software Co.</Link> for a truly good friend.
           </p>
           <p className="mt-1 text-white/30 text-xs">
             If you&apos;d like a website, contact us at{" "}
