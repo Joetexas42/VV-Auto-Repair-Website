@@ -488,6 +488,19 @@ function LocationCard({
 export default function HomeScreen() {
   const colors = useColors();
   const { t } = useLanguage();
+  const { data: locationConfig } = useLocationConfig();
+  const dallasMapsUrl = locationConfig?.dallas.mapsUrl ?? "";
+
+  const callDallas = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    Linking.openURL(`tel:${LOCATIONS.dallas.phone1.number}`);
+  };
+
+  const getDallasDirections = () => {
+    if (!dallasMapsUrl) return;
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Linking.openURL(dallasMapsUrl);
+  };
 
   return (
     <ScrollView
@@ -511,9 +524,6 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <Text style={styles.tagline}>{t(STRINGS.tagline.en, STRINGS.tagline.vi)}</Text>
-        <Text style={styles.subtitle}>{t(STRINGS.subtitle.en, STRINGS.subtitle.vi)}</Text>
-
         <View style={styles.ratingRow}>
           <Ionicons name="star" size={14} color="#f5c842" />
           <Ionicons name="star" size={14} color="#f5c842" />
@@ -522,6 +532,31 @@ export default function HomeScreen() {
           <Ionicons name="star-half" size={14} color="#f5c842" />
           <Text style={styles.ratingText}>{t(STRINGS.rating.en, STRINGS.rating.vi)}</Text>
         </View>
+
+        <Pressable
+          onPress={callDallas}
+          style={({ pressed }) => [styles.heroCTACall, { opacity: pressed ? 0.82 : 1 }]}
+          accessibilityRole="button"
+          accessibilityLabel={`Call Now — ${LOCATIONS.dallas.phone1.display}`}
+        >
+          <Feather name="phone" size={16} color="#fff" />
+          <Text style={styles.heroCTACallText}>
+            {t("Call Now", "Gọi Ngay")} — {LOCATIONS.dallas.phone1.display}
+          </Text>
+        </Pressable>
+
+        <Pressable
+          onPress={getDallasDirections}
+          style={({ pressed }) => [styles.heroCTADir, { opacity: pressed ? 0.82 : 1 }]}
+          accessibilityRole="button"
+          accessibilityLabel="Get Directions"
+        >
+          <Feather name="navigation" size={16} color="#0e2a3a" />
+          <Text style={styles.heroCTADirText}>{t("Get Directions", "Chỉ Đường")}</Text>
+        </Pressable>
+
+        <Text style={styles.tagline}>{t(STRINGS.tagline.en, STRINGS.tagline.vi)}</Text>
+        <Text style={styles.subtitle}>{t(STRINGS.subtitle.en, STRINGS.subtitle.vi)}</Text>
 
         <View style={styles.badgeRow}>
           <View style={styles.badge}>
@@ -601,7 +636,39 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 3,
-    marginBottom: 12,
+    marginBottom: 14,
+  },
+  heroCTACall: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    backgroundColor: "#c0392b",
+    borderRadius: 10,
+    paddingVertical: 13,
+    marginBottom: 10,
+  },
+  heroCTACallText: {
+    color: "#fff",
+    fontSize: 15,
+    fontFamily: "Inter_700Bold",
+    letterSpacing: 0.2,
+  },
+  heroCTADir: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    backgroundColor: "#22d3ee",
+    borderRadius: 10,
+    paddingVertical: 13,
+    marginBottom: 20,
+  },
+  heroCTADirText: {
+    color: "#0e2a3a",
+    fontSize: 15,
+    fontFamily: "Inter_700Bold",
+    letterSpacing: 0.2,
   },
   ratingText: {
     color: "rgba(255,255,255,0.85)",
