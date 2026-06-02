@@ -41,8 +41,8 @@ export function Navigation() {
             <div className="flex items-center bg-white/20 hover:bg-white/30 ring-1 ring-white/50 transition-all duration-300 rounded-full p-1" data-testid="language-toggle">
               <button
                 onClick={() => setLang("en")}
-                className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
-                  lang === "en" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white hover:text-white"
+                className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-150 active:scale-95 ${
+                  lang === "en" ? "bg-white text-[var(--vv-navy)] shadow-sm active:bg-white/80" : "text-white hover:text-white active:bg-white/40"
                 }`}
                 data-testid="btn-lang-en"
               >
@@ -50,8 +50,8 @@ export function Navigation() {
               </button>
               <button
                 onClick={() => setLang("vi")}
-                className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
-                  lang === "vi" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white hover:text-white"
+                className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-150 active:scale-95 ${
+                  lang === "vi" ? "bg-white text-[var(--vv-navy)] shadow-sm active:bg-white/80" : "text-white hover:text-white active:bg-white/40"
                 }`}
                 data-testid="btn-lang-vi"
               >
@@ -101,8 +101,8 @@ export function Navigation() {
           <div className="mt-4 flex items-center bg-white/20 hover:bg-white/30 ring-1 ring-white/50 transition-all duration-300 rounded-full p-1 w-fit" data-testid="mobile-language-toggle">
             <button
               onClick={() => setLang("en")}
-              className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
-                lang === "en" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white hover:text-white"
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-150 active:scale-95 ${
+                lang === "en" ? "bg-white text-[var(--vv-navy)] shadow-sm active:bg-white/80" : "text-white hover:text-white active:bg-white/40"
               }`}
               data-testid="btn-mobile-lang-en"
             >
@@ -110,8 +110,8 @@ export function Navigation() {
             </button>
             <button
               onClick={() => setLang("vi")}
-              className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
-                lang === "vi" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white hover:text-white"
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-150 active:scale-95 ${
+                lang === "vi" ? "bg-white text-[var(--vv-navy)] shadow-sm active:bg-white/80" : "text-white hover:text-white active:bg-white/40"
               }`}
               data-testid="btn-mobile-lang-vi"
             >
