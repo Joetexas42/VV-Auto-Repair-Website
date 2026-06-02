@@ -8,7 +8,7 @@
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
-    "test:links": "node tests/garland-maps-url.test.mjs && node tests/dallas-maps-url.test.mjs && node tests/contact-details.test.mjs"
+    "test:links": "node tests/garland-maps-url.test.mjs && node tests/dallas-maps-url.test.mjs && node tests/contact-details.test.mjs && node tests/maps-url-live.test.mjs"
   },
   "private": true,
   "devDependencies": {
