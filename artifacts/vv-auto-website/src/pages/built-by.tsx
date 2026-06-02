@@ -1,7 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "@/components/layout";
 
+type FormState = "idle" | "submitting" | "success" | "error";
+
 export default function BuiltByPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [formState, setFormState] = useState<FormState>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setFormState("submitting");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (!res.ok) {
+        const body = (await res.json()) as { error?: string };
+        throw new Error(body.error ?? "Something went wrong.");
+      }
+
+      setFormState("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setFormState("error");
+    }
+  }
+
   return (
     <Layout>
       <section className="py-20 bg-[var(--vv-gray)] min-h-[70vh]">
@@ -44,7 +79,7 @@ export default function BuiltByPage() {
               </ul>
             </div>
 
-            <div className="bg-[var(--vv-gray)] rounded-xl p-8 border-l-4 border-[var(--vv-navy)]">
+            <div className="bg-[var(--vv-gray)] rounded-xl p-8 border-l-4 border-[var(--vv-navy)] mb-10">
               <h2 className="text-xl font-bold text-[var(--vv-navy)] mb-4 font-display">Get In Touch</h2>
               <p className="text-gray-600 mb-4">
                 Interested in working together? We'd love to hear from you.
@@ -71,6 +106,105 @@ export default function BuiltByPage() {
                   </a>
                 </p>
               </div>
+            </div>
+
+            <div className="border-t border-gray-100 pt-10">
+              <h2 className="text-2xl font-bold text-[var(--vv-navy)] mb-2 font-display">Send Us a Message</h2>
+              <p className="text-gray-600 mb-6">
+                Fill out the form below and we'll get back to you shortly.
+              </p>
+
+              {formState === "success" ? (
+                <div className="rounded-xl bg-green-50 border border-green-200 p-6 text-center">
+                  <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-bold text-green-800 mb-1">Message Sent!</h3>
+                  <p className="text-green-700 text-sm">
+                    Thanks for reaching out. We'll be in touch soon.
+                  </p>
+                  <button
+                    onClick={() => setFormState("idle")}
+                    className="mt-4 text-sm text-green-700 underline hover:text-green-900 transition-colors"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="ps-name" className="block text-sm font-semibold text-[var(--vv-navy)] mb-1.5">
+                        Name <span className="text-[var(--vv-red)]">*</span>
+                      </label>
+                      <input
+                        id="ps-name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        placeholder="Your name"
+                        className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-gray-800 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--vv-navy)] focus:border-transparent transition"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="ps-email" className="block text-sm font-semibold text-[var(--vv-navy)] mb-1.5">
+                        Email <span className="text-[var(--vv-red)]">*</span>
+                      </label>
+                      <input
+                        id="ps-email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        placeholder="you@example.com"
+                        className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-gray-800 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--vv-navy)] focus:border-transparent transition"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="ps-message" className="block text-sm font-semibold text-[var(--vv-navy)] mb-1.5">
+                      Message <span className="text-[var(--vv-red)]">*</span>
+                    </label>
+                    <textarea
+                      id="ps-message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                      rows={5}
+                      placeholder="Tell us about your project..."
+                      className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-gray-800 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--vv-navy)] focus:border-transparent transition resize-none"
+                    />
+                  </div>
+
+                  {formState === "error" && (
+                    <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+                      {errorMsg || "Something went wrong. Please try again."}
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={formState === "submitting"}
+                    className="inline-flex items-center gap-2 bg-[var(--vv-navy)] hover:bg-[var(--vv-blue)] text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {formState === "submitting" ? (
+                      <>
+                        <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Sending…
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
