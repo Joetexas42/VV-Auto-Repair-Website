@@ -16,6 +16,7 @@ import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Reviews from "@/pages/reviews";
 import NotFound from "@/pages/not-found";
+import BuiltByPage from "@/pages/built-by";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/reviews" component={Reviews} />
+      <Route path="/built-by" component={BuiltByPage} />
       <Route component={NotFound} />
     </Switch>
   );
