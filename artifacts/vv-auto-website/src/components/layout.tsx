@@ -222,18 +222,17 @@ export function Footer() {
         </div>
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm">
           <p>&copy; {new Date().getFullYear()} {t("V.V. Auto Repair & Body Shop. All rights reserved.", "V.V. Auto Repair & Body Shop. Đã đăng ký bản quyền.")}</p>
-          <p className="mt-2 text-white/30 text-xs">
-            Website built by <Link to="/built-by" className="hover:text-white/50 transition-colors">Paper Street Software Co.</Link> for a truly good friend.
+          <p className="mt-4 text-white/60 text-xs">
+            Need a website or app for your business?
           </p>
-          <p className="mt-1 text-white/30 text-xs">
-            If you&apos;d like a website, contact us at{" "}
-            <a href="mailto:paperstreetsoftware@gmail.com" className="hover:text-white/50 transition-colors">
-              paperstreetsoftware@gmail.com
-            </a>
-            {" "}or{" "}
-            <a href="https://paperstreet.online" target="_blank" rel="noopener noreferrer" className="hover:text-white/50 transition-colors">
-              paperstreet.online
-            </a>
+          <p className="mt-1.5">
+            <Link
+              to="/built-by"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/80 hover:text-white border border-white/20 hover:border-white/50 rounded-full px-4 py-1.5 transition-all duration-200 hover:bg-white/10"
+            >
+              Built by Paper Street Software Co.
+              <ChevronRight size={13} className="text-[var(--vv-red)]" />
+            </Link>
           </p>
         </div>
       </div>

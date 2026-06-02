@@ -66,6 +66,47 @@ export default function BuiltByPage() {
             </p>
 
             <div className="border-t border-gray-100 pt-10 mb-10">
+              <h2 className="text-2xl font-bold text-[var(--vv-navy)] mb-3 font-display">What We Built for V.V. Auto</h2>
+              <p className="text-gray-500 text-sm mb-6">Here's a look at what went into this project — a real example of what we deliver.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                {[
+                  {
+                    title: "Bilingual Website",
+                    desc: "Full English & Vietnamese support with a smooth, one-tap language toggle — no page reload, no separate URLs.",
+                  },
+                  {
+                    title: "Mobile App (iOS & Android)",
+                    desc: "A companion app for customers to browse services, read reviews, get directions, and call the shop.",
+                  },
+                  {
+                    title: "Live Review Feed",
+                    desc: "Google reviews pulled automatically and surfaced on both the website and app so the shop's reputation speaks for itself.",
+                  },
+                  {
+                    title: "Service Pages with SEO",
+                    desc: "Dedicated pages for brake repair, collision work, oil changes, and state inspections — built to rank locally.",
+                  },
+                  {
+                    title: "Two-Location Support",
+                    desc: "Dallas and Garland locations each get their own info, maps, and hours — cleanly organized in one site.",
+                  },
+                  {
+                    title: "Contact & Directions",
+                    desc: "Embedded Google Maps, click-to-call buttons, and a contact form — every friction point removed.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="rounded-xl border border-gray-100 bg-[var(--vv-gray)] p-5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="w-2 h-2 rounded-full bg-[var(--vv-red)] shrink-0" />
+                      <span className="font-bold text-[var(--vv-navy)] text-sm">{item.title}</span>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-gray-100 pt-10 mb-10">
               <h2 className="text-2xl font-bold text-[var(--vv-navy)] mb-6 font-display">What We Build</h2>
               <ul className="space-y-3">
                 {[
