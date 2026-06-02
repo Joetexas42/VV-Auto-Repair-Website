@@ -79,7 +79,6 @@ export function Navigation() {
           </div>
         </div>
       </div>
-
       {/* Mobile dropdown */}
       {mobileOpen && (
         <div className="md:hidden bg-[var(--vv-navy)] border-t border-white/10 px-4 pb-6 pt-2" data-testid="mobile-menu">
@@ -110,9 +109,7 @@ export function Navigation() {
             </button>
             <button
               onClick={() => setLang("vi")}
-              className={`px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 ${
-                lang === "vi" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white/55 font-bold hover:text-white/80 active:bg-white/40"
-              }`}
+              className="px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 font-bold hover:text-white/80 active:bg-white/40 text-[#ffffffff]"
               data-testid="btn-mobile-lang-vi"
             >
               Tiếng Việt
