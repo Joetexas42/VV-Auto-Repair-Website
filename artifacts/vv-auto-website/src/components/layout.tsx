@@ -23,7 +23,7 @@ export function Navigation() {
           <Link href="/" className="flex items-center gap-2 cursor-pointer" data-testid="link-home-logo" onClick={() => setMobileOpen(false)}>
             <div className="text-3xl font-extrabold tracking-tighter flex items-center font-display">
               <span className="text-white font-extrabold">V V</span>
-              <span className="text-[var(--vv-red)] ml-2 uppercase tracking-widest border-l-2 border-white/20 pl-2 font-display font-extrabold text-[24px]">Auto Repair
+              <span className="text-[var(--vv-red)] red-stroke-white ml-2 uppercase tracking-widest border-l-2 border-white/20 pl-2 font-display font-extrabold text-[24px]">Auto Repair
 </span>
             </div>
           </Link>
@@ -32,7 +32,7 @@ export function Navigation() {
               <Link 
                 key={link.href} 
                 href={link.href}
-                className={`hover:text-[var(--vv-red)] transition-colors font-medium ${location === link.href ? 'text-[var(--vv-red)]' : ''}`}
+                className={`hover:text-[var(--vv-red)] transition-colors font-medium ${location === link.href ? 'text-[var(--vv-red)] red-stroke-white' : ''}`}
                 data-testid={`link-nav-${link.en.toLowerCase()}`}
               >
                 {t(link.en, link.vi)}
@@ -90,7 +90,7 @@ export function Navigation() {
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 className={`py-3 px-2 text-lg font-medium border-b border-white/10 last:border-0 transition-colors ${
-                  location === link.href ? "text-[var(--vv-red)]" : "text-white hover:text-[var(--vv-red)]"
+                  location === link.href ? "text-[var(--vv-red)] red-stroke-white" : "text-white hover:text-[var(--vv-red)]"
                 }`}
                 data-testid={`link-mobile-nav-${link.en.toLowerCase()}`}
               >

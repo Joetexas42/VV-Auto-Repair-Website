@@ -255,6 +255,11 @@
 }
 
 @layer utilities {
+  .red-stroke-white {
+    -webkit-text-stroke: 1px white;
+    paint-order: stroke fill;
+  }
+
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden;
   }
