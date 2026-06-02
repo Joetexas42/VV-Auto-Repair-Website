@@ -490,9 +490,44 @@ export default function HomeScreen() {
   const { t } = useLanguage();
   const { data: locationConfig } = useLocationConfig();
   const [heroLocation, setHeroLocation] = useState<"dallas" | "garland">("dallas");
+  const [toggleWidth, setToggleWidth] = useState(0);
+
+  const slideAnim = useRef(new Animated.Value(0)).current;
+  const ctaOpacity = useRef(new Animated.Value(1)).current;
 
   const activeLoc = LOCATIONS[heroLocation];
   const activeMapsUrl = locationConfig?.[heroLocation].mapsUrl ?? "";
+
+  const tabWidth = toggleWidth > 0 ? (toggleWidth - 6) / 2 : 0;
+  const pillTranslateX = slideAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, tabWidth],
+  });
+
+  const handleToggle = (loc: "dallas" | "garland") => {
+    if (loc === heroLocation) return;
+    Haptics.selectionAsync();
+    const toValue = loc === "dallas" ? 0 : 1;
+    Animated.spring(slideAnim, {
+      toValue,
+      useNativeDriver: true,
+      tension: 72,
+      friction: 11,
+    }).start();
+    Animated.sequence([
+      Animated.timing(ctaOpacity, {
+        toValue: 0,
+        duration: 110,
+        useNativeDriver: true,
+      }),
+      Animated.timing(ctaOpacity, {
+        toValue: 1,
+        duration: 180,
+        useNativeDriver: true,
+      }),
+    ]).start();
+    setTimeout(() => setHeroLocation(loc), 110);
+  };
 
   const callActive = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -536,21 +571,27 @@ export default function HomeScreen() {
           <Text style={styles.ratingText}>{t(STRINGS.rating.en, STRINGS.rating.vi)}</Text>
         </View>
 
-        <View style={styles.heroLocationToggle}>
+        <View
+          style={styles.heroLocationToggle}
+          onLayout={(e) => setToggleWidth(e.nativeEvent.layout.width)}
+        >
+          {tabWidth > 0 && (
+            <Animated.View
+              style={[
+                styles.heroLocationPill,
+                { width: tabWidth, transform: [{ translateX: pillTranslateX }] },
+              ]}
+              pointerEvents="none"
+            />
+          )}
           {(["dallas", "garland"] as const).map((loc) => {
             const active = heroLocation === loc;
             const label = loc === "dallas" ? "Dallas" : "Garland";
             return (
               <Pressable
                 key={loc}
-                onPress={() => {
-                  Haptics.selectionAsync();
-                  setHeroLocation(loc);
-                }}
-                style={[
-                  styles.heroLocationTab,
-                  active && styles.heroLocationTabActive,
-                ]}
+                onPress={() => handleToggle(loc)}
+                style={styles.heroLocationTab}
                 accessibilityRole="button"
                 accessibilityState={{ selected: active }}
                 accessibilityLabel={`Show ${label} location`}
@@ -564,29 +605,31 @@ export default function HomeScreen() {
           })}
         </View>
 
-        <Pressable
-          onPress={callActive}
-          style={({ pressed }) => [styles.heroCTACall, { opacity: pressed ? 0.82 : 1 }]}
-          accessibilityRole="button"
-          accessibilityLabel={`Call Now — ${activeLoc.phone1.display}`}
-          testID="hero-call-now"
-        >
-          <Feather name="phone" size={16} color="#fff" />
-          <Text style={styles.heroCTACallText}>
-            {t("Call Now", "Gọi Ngay")} — {activeLoc.phone1.display}
-          </Text>
-        </Pressable>
+        <Animated.View style={{ opacity: ctaOpacity }}>
+          <Pressable
+            onPress={callActive}
+            style={({ pressed }) => [styles.heroCTACall, { opacity: pressed ? 0.82 : 1 }]}
+            accessibilityRole="button"
+            accessibilityLabel={`Call Now — ${activeLoc.phone1.display}`}
+            testID="hero-call-now"
+          >
+            <Feather name="phone" size={16} color="#fff" />
+            <Text style={styles.heroCTACallText}>
+              {t("Call Now", "Gọi Ngay")} — {activeLoc.phone1.display}
+            </Text>
+          </Pressable>
 
-        <Pressable
-          onPress={getActiveDirections}
-          style={({ pressed }) => [styles.heroCTADir, { opacity: pressed ? 0.82 : 1 }]}
-          accessibilityRole="button"
-          accessibilityLabel={`Get Directions to ${heroLocation === "dallas" ? "Dallas" : "Garland"}`}
-          testID="hero-get-directions"
-        >
-          <Feather name="navigation" size={16} color="#0e2a3a" />
-          <Text style={styles.heroCTADirText}>{t("Get Directions", "Chỉ Đường")}</Text>
-        </Pressable>
+          <Pressable
+            onPress={getActiveDirections}
+            style={({ pressed }) => [styles.heroCTADir, { opacity: pressed ? 0.82 : 1 }]}
+            accessibilityRole="button"
+            accessibilityLabel={`Get Directions to ${heroLocation === "dallas" ? "Dallas" : "Garland"}`}
+            testID="hero-get-directions"
+          >
+            <Feather name="navigation" size={16} color="#0e2a3a" />
+            <Text style={styles.heroCTADirText}>{t("Get Directions", "Chỉ Đường")}</Text>
+          </Pressable>
+        </Animated.View>
 
         <Text style={styles.tagline}>{t(STRINGS.tagline.en, STRINGS.tagline.vi)}</Text>
         <Text style={styles.subtitle}>{t(STRINGS.subtitle.en, STRINGS.subtitle.vi)}</Text>
@@ -709,15 +752,22 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 3,
     marginBottom: 12,
+    position: "relative",
+  },
+  heroLocationPill: {
+    position: "absolute",
+    top: 3,
+    left: 3,
+    bottom: 3,
+    borderRadius: 6,
+    backgroundColor: "rgba(255,255,255,0.22)",
   },
   heroLocationTab: {
     flex: 1,
     paddingVertical: 7,
     borderRadius: 6,
     alignItems: "center",
-  },
-  heroLocationTabActive: {
-    backgroundColor: "rgba(255,255,255,0.22)",
+    zIndex: 1,
   },
   heroLocationTabText: {
     color: "rgba(255,255,255,0.6)",
