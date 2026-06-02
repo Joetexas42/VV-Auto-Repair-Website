@@ -109,7 +109,9 @@ export function Navigation() {
             </button>
             <button
               onClick={() => setLang("vi")}
-              className="px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 font-bold hover:text-white/80 active:bg-white/40 text-[#ffffffff]"
+              className={`px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 ${
+                lang === "vi" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white/55 font-bold hover:text-white/80 active:bg-white/40"
+              }`}
               data-testid="btn-mobile-lang-vi"
             >
               Tiếng Việt
