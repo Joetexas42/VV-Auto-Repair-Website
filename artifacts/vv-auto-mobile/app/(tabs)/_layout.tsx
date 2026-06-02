@@ -1,10 +1,11 @@
 import { BlurView } from "expo-blur";
 import { isLiquidGlassAvailable } from "expo-glass-effect";
+import * as Haptics from "expo-haptics";
 import { Tabs } from "expo-router";
 import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
 import { SymbolView } from "expo-symbols";
 import { Feather } from "@expo/vector-icons";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Platform,
   Pressable,
@@ -13,6 +14,13 @@ import {
   View,
   useColorScheme,
 } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSequence,
+  withTiming,
+  Easing,
+} from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useColors } from "@/hooks/useColors";
@@ -23,10 +31,27 @@ function LanguageHeaderButton() {
   const { lang, setLang } = useLanguage();
   const colors = useColors();
   const isVI = lang === "vi";
+  const scale = useSharedValue(1);
+
+  useEffect(() => {
+    scale.value = withSequence(
+      withTiming(1.3, { duration: 100, easing: Easing.out(Easing.quad) }),
+      withTiming(1, { duration: 150, easing: Easing.out(Easing.quad) })
+    );
+  }, [lang]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
+  function handlePress() {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setLang(isVI ? "en" : "vi");
+  }
 
   return (
     <Pressable
-      onPress={() => setLang(isVI ? "en" : "vi")}
+      onPress={handlePress}
       style={({ pressed }) => [
         styles.headerLangBtn,
         {
@@ -39,14 +64,16 @@ function LanguageHeaderButton() {
       accessibilityLabel={`Switch language. Currently ${isVI ? "Vietnamese" : "English"}`}
       hitSlop={8}
     >
-      <Text
-        style={[
-          styles.headerLangText,
-          { color: isVI ? "#fff" : colors.mutedForeground },
-        ]}
-      >
-        {isVI ? "VI" : "EN"}
-      </Text>
+      <Animated.View style={animatedStyle}>
+        <Text
+          style={[
+            styles.headerLangText,
+            { color: isVI ? "#fff" : colors.mutedForeground },
+          ]}
+        >
+          {isVI ? "VI" : "EN"}
+        </Text>
+      </Animated.View>
     </Pressable>
   );
 }
