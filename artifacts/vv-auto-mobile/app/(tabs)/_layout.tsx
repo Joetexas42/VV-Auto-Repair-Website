@@ -40,6 +40,10 @@ function LanguageHeaderButton() {
       withTiming(1.3, { duration: 100, easing: Easing.out(Easing.quad) }),
       withTiming(1, { duration: 150, easing: Easing.out(Easing.quad) })
     );
+    glowOpacity.value = withSequence(
+      withTiming(1, { duration: 80, easing: Easing.out(Easing.quad) }),
+      withTiming(0, { duration: 350, easing: Easing.out(Easing.quad) })
+    );
   }, [lang]);
 
   const badgeAnimStyle = useAnimatedStyle(() => ({
