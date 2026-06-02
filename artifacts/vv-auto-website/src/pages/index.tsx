@@ -147,13 +147,6 @@ export default function Homepage() {
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-medium max-w-2xl">
-              {t(
-                "Trusted local mechanic serving Dallas drivers with fair pricing, reliable repairs, diagnostics, body work, and straightforward service.",
-                "Gara địa phương đáng tin cậy phục vụ tài xế Dallas với giá cả công bằng, sửa chữa đảm bảo, chẩn đoán lỗi, làm đồng sơn và dịch vụ trung thực."
-              )}
-            </p>
-
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium text-sm mb-8">
               <Star size={16} className="text-yellow-400 fill-current" />
               <span>{t("4.4 Stars (65+ Reviews)", "4.4 Sao (Hơn 65+ Đánh giá)")}</span>
@@ -171,6 +164,13 @@ export default function Homepage() {
                 {t("Get Directions", "Chỉ Đường")}
               </a>
             </div>
+
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-medium max-w-2xl mt-8">
+              {t(
+                "Trusted local mechanic serving Dallas drivers with fair pricing, reliable repairs, diagnostics, body work, and straightforward service.",
+                "Gara địa phương đáng tin cậy phục vụ tài xế Dallas với giá cả công bằng, sửa chữa đảm bảo, chẩn đoán lỗi, làm đồng sơn và dịch vụ trung thực."
+              )}
+            </p>
             
             <div className="mt-12 flex items-center gap-4 text-white/80 text-sm font-medium">
               <div className="flex items-center gap-2"><CheckCircle2 size={18} className="text-[var(--vv-red)]"/> {t("Honest Pricing", "Giá Cả Trung Thực")}</div>
