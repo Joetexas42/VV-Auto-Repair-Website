@@ -260,6 +260,11 @@
     paint-order: stroke fill;
   }
 
+  .hover-red-stroke-white:hover {
+    -webkit-text-stroke: 1px white;
+    paint-order: stroke fill;
+  }
+
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden;
   }

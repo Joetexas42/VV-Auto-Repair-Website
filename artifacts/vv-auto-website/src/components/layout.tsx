@@ -32,7 +32,7 @@ export function Navigation() {
               <Link 
                 key={link.href} 
                 href={link.href}
-                className={`hover:text-[var(--vv-red)] transition-colors font-medium ${location === link.href ? 'text-[var(--vv-red)] red-stroke-white' : ''}`}
+                className={`hover:text-[var(--vv-red)] hover-red-stroke-white transition-colors font-medium ${location === link.href ? 'text-[var(--vv-red)] red-stroke-white' : ''}`}
                 data-testid={`link-nav-${link.en.toLowerCase()}`}
               >
                 {t(link.en, link.vi)}
@@ -89,7 +89,7 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`py-3 px-2 text-lg font-medium border-b border-white/10 last:border-0 transition-colors ${
+                className={`py-3 px-2 text-lg font-medium border-b border-white/10 last:border-0 transition-colors hover-red-stroke-white ${
                   location === link.href ? "text-[var(--vv-red)] red-stroke-white" : "text-white hover:text-[var(--vv-red)]"
                 }`}
                 data-testid={`link-mobile-nav-${link.en.toLowerCase()}`}
