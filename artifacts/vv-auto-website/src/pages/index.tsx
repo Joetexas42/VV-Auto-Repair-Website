@@ -84,7 +84,7 @@ function GoogleBadge({ live, mapsUrl }: { live: boolean; mapsUrl?: string | null
 }
 
 export default function Homepage() {
-  const { lang, t } = useLanguage();
+  const { lang, setLang, t } = useLanguage();
   const { data: locationConfig } = useLocationConfig();
   const [liveReviewData, setLiveReviewData] = useState<AllReviewsResponse | null>(null);
 
@@ -119,13 +119,27 @@ export default function Homepage() {
         
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium text-sm mb-8">
-              <Star size={16} className="text-yellow-400 fill-current" />
-              <span>{t("4.4 Stars (65+ Reviews)", "4.4 Sao (Hơn 65+ Đánh giá)")}</span>
-              <span className="w-1 h-1 rounded-full bg-white/50 mx-2"></span>
-              <span>{t("Serving Dallas & Garland", "Phục vụ Dallas & Garland")}</span>
+            <div className="flex items-center bg-white/10 rounded-full p-1 w-fit mb-8" data-testid="hero-language-toggle">
+              <button
+                onClick={() => setLang("en")}
+                className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
+                  lang === "en" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white/70 hover:text-white"
+                }`}
+                data-testid="btn-hero-lang-en"
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLang("vi")}
+                className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
+                  lang === "vi" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white/70 hover:text-white"
+                }`}
+                data-testid="btn-hero-lang-vi"
+              >
+                VI
+              </button>
             </div>
-            
+
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight font-display">
               {t("Trusted Auto Repair", "Sửa Chữa Ô Tô Uy Tín")} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-[var(--vv-red)]">
@@ -133,12 +147,19 @@ export default function Homepage() {
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed font-medium max-w-2xl">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-medium max-w-2xl">
               {t(
                 "Trusted local mechanic serving Dallas drivers with fair pricing, reliable repairs, diagnostics, body work, and straightforward service.",
                 "Gara địa phương đáng tin cậy phục vụ tài xế Dallas với giá cả công bằng, sửa chữa đảm bảo, chẩn đoán lỗi, làm đồng sơn và dịch vụ trung thực."
               )}
             </p>
+
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium text-sm mb-8">
+              <Star size={16} className="text-yellow-400 fill-current" />
+              <span>{t("4.4 Stars (65+ Reviews)", "4.4 Sao (Hơn 65+ Đánh giá)")}</span>
+              <span className="w-1 h-1 rounded-full bg-white/50 mx-2"></span>
+              <span>{t("Serving Dallas & Garland", "Phục vụ Dallas & Garland")}</span>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="tel:2143202171" className="bg-[var(--vv-red)] hover:bg-red-500 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg flex items-center justify-center gap-3">
