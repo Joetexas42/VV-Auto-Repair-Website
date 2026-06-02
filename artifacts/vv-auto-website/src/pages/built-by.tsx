@@ -55,8 +55,8 @@ export default function BuiltByPage() {
             <p className="text-lg text-gray-600 leading-relaxed mb-6">
               This website was designed and developed by{" "}
               <strong className="text-[var(--vv-navy)]">Paper Street Software Co.</strong> — a small,
-              independent software studio that builds custom websites and digital tools
-              for local businesses.
+              independent software studio that builds custom websites, AI-powered tools,
+              and digital solutions for local businesses.
             </p>
 
             <p className="text-lg text-gray-600 leading-relaxed mb-10">
