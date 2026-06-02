@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Layout } from "@/components/layout";
 
-type FormState = "idle" | "submitting" | "success" | "error";
+type FormState = "idle" | "submitting" | "success" | "error" | "rate-limited";
 
 export default function BuiltByPage() {
   const [name, setName] = useState("");
@@ -21,6 +21,11 @@ export default function BuiltByPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
+
+      if (res.status === 429) {
+        setFormState("rate-limited");
+        return;
+      }
 
       if (!res.ok) {
         const body = (await res.json()) as { error?: string };
@@ -180,6 +185,17 @@ export default function BuiltByPage() {
                     />
                   </div>
 
+                  {formState === "rate-limited" && (
+                    <div className="rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 flex items-start gap-3">
+                      <svg className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                      </svg>
+                      <p className="text-sm text-amber-800">
+                        <strong>You've sent too many messages</strong> — please wait an hour and try again.
+                      </p>
+                    </div>
+                  )}
+
                   {formState === "error" && (
                     <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
                       {errorMsg || "Something went wrong. Please try again."}
@@ -188,7 +204,7 @@ export default function BuiltByPage() {
 
                   <button
                     type="submit"
-                    disabled={formState === "submitting"}
+                    disabled={formState === "submitting" || formState === "rate-limited"}
                     className="inline-flex items-center gap-2 bg-[var(--vv-navy)] hover:bg-[var(--vv-blue)] text-white font-semibold text-sm px-6 py-3 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {formState === "submitting" ? (
