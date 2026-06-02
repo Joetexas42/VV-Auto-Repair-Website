@@ -489,17 +489,20 @@ export default function HomeScreen() {
   const colors = useColors();
   const { t } = useLanguage();
   const { data: locationConfig } = useLocationConfig();
-  const dallasMapsUrl = locationConfig?.dallas.mapsUrl ?? "";
+  const [heroLocation, setHeroLocation] = useState<"dallas" | "garland">("dallas");
 
-  const callDallas = () => {
+  const activeLoc = LOCATIONS[heroLocation];
+  const activeMapsUrl = locationConfig?.[heroLocation].mapsUrl ?? "";
+
+  const callActive = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    Linking.openURL(`tel:${LOCATIONS.dallas.phone1.number}`);
+    Linking.openURL(`tel:${activeLoc.phone1.number}`);
   };
 
-  const getDallasDirections = () => {
-    if (!dallasMapsUrl) return;
+  const getActiveDirections = () => {
+    if (!activeMapsUrl) return;
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    Linking.openURL(dallasMapsUrl);
+    Linking.openURL(activeMapsUrl);
   };
 
   return (
@@ -533,23 +536,53 @@ export default function HomeScreen() {
           <Text style={styles.ratingText}>{t(STRINGS.rating.en, STRINGS.rating.vi)}</Text>
         </View>
 
+        <View style={styles.heroLocationToggle}>
+          {(["dallas", "garland"] as const).map((loc) => {
+            const active = heroLocation === loc;
+            const label = loc === "dallas" ? "Dallas" : "Garland";
+            return (
+              <Pressable
+                key={loc}
+                onPress={() => {
+                  Haptics.selectionAsync();
+                  setHeroLocation(loc);
+                }}
+                style={[
+                  styles.heroLocationTab,
+                  active && styles.heroLocationTabActive,
+                ]}
+                accessibilityRole="button"
+                accessibilityState={{ selected: active }}
+                accessibilityLabel={`Show ${label} location`}
+                testID={`hero-location-toggle-${loc}`}
+              >
+                <Text style={[styles.heroLocationTabText, active && styles.heroLocationTabTextActive]}>
+                  {label}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+
         <Pressable
-          onPress={callDallas}
+          onPress={callActive}
           style={({ pressed }) => [styles.heroCTACall, { opacity: pressed ? 0.82 : 1 }]}
           accessibilityRole="button"
-          accessibilityLabel={`Call Now — ${LOCATIONS.dallas.phone1.display}`}
+          accessibilityLabel={`Call Now — ${activeLoc.phone1.display}`}
+          testID="hero-call-now"
         >
           <Feather name="phone" size={16} color="#fff" />
           <Text style={styles.heroCTACallText}>
-            {t("Call Now", "Gọi Ngay")} — {LOCATIONS.dallas.phone1.display}
+            {t("Call Now", "Gọi Ngay")} — {activeLoc.phone1.display}
           </Text>
         </Pressable>
 
         <Pressable
-          onPress={getDallasDirections}
+          onPress={getActiveDirections}
           style={({ pressed }) => [styles.heroCTADir, { opacity: pressed ? 0.82 : 1 }]}
           accessibilityRole="button"
-          accessibilityLabel="Get Directions"
+          accessibilityLabel={`Get Directions to ${heroLocation === "dallas" ? "Dallas" : "Garland"}`}
+          testID="hero-get-directions"
         >
           <Feather name="navigation" size={16} color="#0e2a3a" />
           <Text style={styles.heroCTADirText}>{t("Get Directions", "Chỉ Đường")}</Text>
@@ -669,6 +702,31 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "Inter_700Bold",
     letterSpacing: 0.2,
+  },
+  heroLocationToggle: {
+    flexDirection: "row",
+    backgroundColor: "rgba(255,255,255,0.12)",
+    borderRadius: 8,
+    padding: 3,
+    marginBottom: 12,
+  },
+  heroLocationTab: {
+    flex: 1,
+    paddingVertical: 7,
+    borderRadius: 6,
+    alignItems: "center",
+  },
+  heroLocationTabActive: {
+    backgroundColor: "rgba(255,255,255,0.22)",
+  },
+  heroLocationTabText: {
+    color: "rgba(255,255,255,0.6)",
+    fontSize: 13,
+    fontFamily: "Inter_600SemiBold",
+    letterSpacing: 0.3,
+  },
+  heroLocationTabTextActive: {
+    color: "#fff",
   },
   ratingText: {
     color: "rgba(255,255,255,0.85)",
