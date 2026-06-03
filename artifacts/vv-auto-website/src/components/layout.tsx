@@ -42,7 +42,7 @@ export function Navigation() {
               <button
                 onClick={() => setLang("en")}
                 className={`px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 ${
-                  lang === "en" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white/55 font-bold hover:text-white/80 active:bg-white/40"
+                  lang === "en" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white font-bold hover:text-white active:bg-white/40"
                 }`}
                 data-testid="btn-lang-en"
               >
@@ -51,7 +51,7 @@ export function Navigation() {
               <button
                 onClick={() => setLang("vi")}
                 className={`px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 ${
-                  lang === "vi" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white/55 font-bold hover:text-white/80 active:bg-white/40"
+                  lang === "vi" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white font-bold hover:text-white active:bg-white/40"
                 }`}
                 data-testid="btn-lang-vi"
               >
@@ -101,7 +101,7 @@ export function Navigation() {
             <button
               onClick={() => setLang("en")}
               className={`px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 ${
-                lang === "en" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white/55 font-bold hover:text-white/80 active:bg-white/40"
+                lang === "en" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white font-bold hover:text-white active:bg-white/40"
               }`}
               data-testid="btn-mobile-lang-en"
             >
@@ -110,7 +110,7 @@ export function Navigation() {
             <button
               onClick={() => setLang("vi")}
               className={`px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 ${
-                lang === "vi" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white/55 font-bold hover:text-white/80 active:bg-white/40"
+                lang === "vi" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white font-bold hover:text-white active:bg-white/40"
               }`}
               data-testid="btn-mobile-lang-vi"
             >

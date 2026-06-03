@@ -119,11 +119,11 @@ export default function Homepage() {
         
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 lg:py-40">
           <div className="max-w-3xl">
-            <div className="flex items-center bg-white/10 rounded-full p-1 w-fit mb-8" data-testid="hero-language-toggle">
+            <div className="flex items-center bg-white/40 hover:bg-white/50 ring-2 ring-white/80 transition-all duration-300 rounded-full p-1 w-fit mb-8" data-testid="hero-language-toggle">
               <button
                 onClick={() => setLang("en")}
-                className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
-                  lang === "en" ? "bg-white text-[var(--vv-navy)] shadow-sm" : "text-white/70 hover:text-white"
+                className={`px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 ${
+                  lang === "en" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white font-bold hover:text-white active:bg-white/40"
                 }`}
                 data-testid="btn-hero-lang-en"
               >
@@ -131,7 +131,9 @@ export default function Homepage() {
               </button>
               <button
                 onClick={() => setLang("vi")}
-                className="px-4 py-2 rounded-full text-sm font-bold transition-colors hover:text-white text-[#ffffffff]"
+                className={`px-4 py-2 rounded-full text-sm transition-all duration-150 active:scale-95 ${
+                  lang === "vi" ? "bg-white text-[var(--vv-navy)] font-extrabold shadow-md drop-shadow-md active:bg-white/80" : "text-white font-bold hover:text-white active:bg-white/40"
+                }`}
                 data-testid="btn-hero-lang-vi"
               >
                 Tiếng Việt
