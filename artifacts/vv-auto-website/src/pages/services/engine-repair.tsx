@@ -10,6 +10,13 @@ export default function EngineRepair() {
 
   useEffect(() => {
     document.title = t("Engine Repair & Rebuilds Dallas TX | V.V. Auto", "Sửa Chữa & Phục Hồi Động Cơ Dallas TX | V.V. Auto");
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t(
+        "Expert engine repair and rebuilds in Dallas, TX. V.V. Auto handles timing belts, head gaskets, oil leaks, full engine rebuilds, and more — with honest diagnosis and fair pricing.",
+        "Sửa chữa và phục hồi động cơ chuyên nghiệp tại Dallas, TX. V.V. Auto xử lý dây curoa cam, ron nắp quy lát, rò nhớt, phục hồi toàn bộ động cơ và nhiều hơn nữa — chẩn đoán trung thực, giá cả hợp lý."
+      ));
+    }
   }, [t]);
 
   return (

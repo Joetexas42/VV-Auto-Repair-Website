@@ -11,6 +11,13 @@ export default function Contact() {
 
   useEffect(() => {
     document.title = t("Contact Us | V.V. Auto Repair & Body Shop", "Liên Hệ | V.V. Auto Repair & Body Shop");
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t(
+        "Contact V.V. Auto Repair in Dallas (214-320-2171) or V.V. Auto Body in Garland (469-258-9356). Two locations serving all your auto repair and body shop needs.",
+        "Liên hệ V.V. Auto Repair tại Dallas (214-320-2171) hoặc V.V. Auto Body tại Garland (469-258-9356). Hai cơ sở phục vụ mọi nhu cầu sửa chữa ô tô của bạn."
+      ));
+    }
   }, [t]);
 
   return (

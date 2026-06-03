@@ -9,6 +9,13 @@ export default function Diagnostics() {
 
   useEffect(() => {
     document.title = t("Computer Diagnostics Dallas TX | V.V. Auto", "Chẩn Đoán Máy Tính Dallas TX | V.V. Auto");
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t(
+        "Check engine light on? Get accurate computer diagnostics in Dallas, TX at V.V. Auto Repair. We find the root cause — not just clear the code — and fix it for a fair price.",
+        "Đèn báo lỗi động cơ sáng? Chẩn đoán máy tính chính xác tại Dallas, TX tại V.V. Auto Repair. Chúng tôi tìm nguyên nhân gốc rễ — không chỉ xóa mã lỗi — và sửa chữa với giá hợp lý."
+      ));
+    }
   }, [t]);
 
   return (

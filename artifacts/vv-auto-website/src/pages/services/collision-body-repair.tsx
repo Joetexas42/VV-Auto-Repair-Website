@@ -10,6 +10,13 @@ export default function CollisionRepair() {
 
   useEffect(() => {
     document.title = t("Collision & Body Repair Garland TX | V.V. Auto Body", "Đồng Sơn & Phục Hồi Tai Nạn Garland TX | V.V. Auto Body");
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t(
+        "Collision and body repair in Garland, TX at V.V. Auto Body. We handle insurance claims, frame straightening, computerized paint matching, and dent removal. Free estimates.",
+        "Sửa chữa tai nạn và đồng sơn tại Garland, TX tại V.V. Auto Body. Chúng tôi xử lý bảo hiểm, nắn khung sườn, pha màu sơn bằng máy tính và xóa vết móp. Báo giá miễn phí."
+      ));
+    }
   }, [t]);
 
   return (

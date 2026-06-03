@@ -10,6 +10,13 @@ export default function OilChange() {
 
   useEffect(() => {
     document.title = t("Oil Change & Maintenance Dallas TX | V.V. Auto", "Thay Nhớt & Bảo Dưỡng Dallas TX | V.V. Auto");
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t(
+        "Affordable oil changes in Dallas, TX at V.V. Auto Repair. Full synthetic, synthetic blend, high mileage, and conventional options. Every change includes a free multi-point inspection.",
+        "Thay nhớt giá phải chăng tại Dallas, TX tại V.V. Auto Repair. Nhớt tổng hợp toàn phần, bán tổng hợp, cao cấp và thông thường. Mỗi lần thay nhớt bao gồm kiểm tra đa điểm miễn phí."
+      ));
+    }
   }, [t]);
 
   return (

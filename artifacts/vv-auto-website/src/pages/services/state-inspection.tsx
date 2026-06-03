@@ -11,6 +11,13 @@ export default function StateInspection() {
 
   useEffect(() => {
     document.title = t("TX State Inspection Dallas TX | V.V. Auto", "Kiểm Định Tiểu Bang TX Dallas | V.V. Auto");
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t(
+        "Official Texas vehicle safety and emissions inspection in Dallas, TX. V.V. Auto Repair is a certified inspection station — fast service, no appointment needed.",
+        "Kiểm định an toàn và khí thải xe tiểu bang Texas chính thức tại Dallas, TX. V.V. Auto Repair là trạm kiểm định được chứng nhận — phục vụ nhanh, không cần đặt lịch."
+      ));
+    }
   }, [t]);
 
   return (

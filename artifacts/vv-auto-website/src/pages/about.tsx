@@ -9,6 +9,13 @@ export default function About() {
 
   useEffect(() => {
     document.title = t("About Us | V.V. Auto Repair & Body Shop", "Về Chúng Tôi | V.V. Auto Repair & Body Shop");
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t(
+        "Learn about V.V. Auto — a family-owned shop serving Dallas and Garland with honest, no-upsell auto repair. We speak English and Vietnamese.",
+        "Tìm hiểu về V.V. Auto — cơ sở gia đình phục vụ Dallas và Garland với dịch vụ sửa chữa ô tô trung thực, không ép bán thêm. Giao tiếp tiếng Anh và tiếng Việt."
+      ));
+    }
   }, [t]);
 
   return (

@@ -302,6 +302,13 @@ export default function ReviewsPage() {
       "Customer Reviews | V.V. Auto Repair & Body Shop",
       "Đánh Giá Khách Hàng | V.V. Auto Repair & Body Shop"
     );
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", t(
+        "Read real customer reviews for V.V. Auto Repair in Dallas and V.V. Auto Body in Garland. Rated 4.4 stars on Google with 65+ honest reviews from satisfied drivers.",
+        "Đọc đánh giá thực của khách hàng về V.V. Auto Repair tại Dallas và V.V. Auto Body tại Garland. Đánh giá 4.4 sao trên Google với hơn 65 nhận xét từ khách hàng hài lòng."
+      ));
+    }
   }, [t]);
 
   useEffect(() => {
