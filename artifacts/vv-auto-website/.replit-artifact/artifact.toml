@@ -18,13 +18,48 @@ localPort = 21511
 run = "pnpm --filter @workspace/vv-auto-website run dev"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/vv-auto-website", "run", "build" ]
-publicDir = "artifacts/vv-auto-website/dist/public"
+publicDir = "artifacts/vv-auto-website"
 serve = "static"
 
 [[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
+from = "/about"
+to = "/about.html"
+
+[[services.production.rewrites]]
+from = "/contact"
+to = "/contact.html"
+
+[[services.production.rewrites]]
+from = "/built-by"
+to = "/built-by.html"
+
+[[services.production.rewrites]]
+from = "/services"
+to = "/services/index.html"
+
+[[services.production.rewrites]]
+from = "/services/brake-repair"
+to = "/services/brake-repair.html"
+
+[[services.production.rewrites]]
+from = "/services/collision-body-repair"
+to = "/services/collision-body-repair.html"
+
+[[services.production.rewrites]]
+from = "/services/diagnostics"
+to = "/services/diagnostics.html"
+
+[[services.production.rewrites]]
+from = "/services/engine-repair"
+to = "/services/engine-repair.html"
+
+[[services.production.rewrites]]
+from = "/services/oil-change"
+to = "/services/oil-change.html"
+
+[[services.production.rewrites]]
+from = "/services/state-inspection"
+to = "/services/state-inspection.html"
 
 [services.env]
 PORT = "21511"
