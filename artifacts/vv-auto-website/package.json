@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "npx serve . --listen tcp://0.0.0.0:$PORT --no-clipboard",
-    "deploy": "wrangler pages deploy . --project-name vv-auto --commit-dirty=true"
+    "deploy": "npx wrangler@3 pages deploy . --project-name vv-auto --commit-dirty=true"
   },
   "devDependencies": {
-    "serve": "^14.2.4",
-    "wrangler": "^3.0.0"
+    "serve": "^14.2.4"
   }
 }
