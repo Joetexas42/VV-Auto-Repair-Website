@@ -14,3 +14,10 @@ if [ -n "$GITHUB_TOKEN_1" ]; then
 else
   echo "GITHUB_TOKEN_1 is not set — skipping GitHub push"
 fi
+
+if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
+  echo "Deploying VV Auto website to Cloudflare Pages..."
+  pnpm --filter @workspace/vv-auto-website run deploy
+else
+  echo "CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID not set — skipping Cloudflare Pages deploy"
+fi
