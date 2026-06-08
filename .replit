@@ -117,3 +117,6 @@ GARLAND_MAPS_URL = "https://www.google.com/maps/place/V+V+Auto+Body+Repair+Corpo
 
 [nix]
 channel = "stable-25_05"
+
+[objectStorage]
+defaultBucketID = "replit-objstore-3efbbee6-5dd9-498f-a119-fb363d4979f9"
