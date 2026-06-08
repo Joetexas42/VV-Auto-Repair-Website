@@ -3,11 +3,12 @@
  *
  * Verifies that:
  *   1. The website's shared constants file (src/lib/locations.ts) does NOT
- *      contain any hardcoded Dallas map URL (removed in favour of API-served config).
+ *      contain any hardcoded Dallas map URL — or the file no longer exists
+ *      (static HTML site has no shared constants layer).
  *   2. The API route (artifacts/api-server/src/routes/locationConfig.ts) has
  *      the correct Dallas URL as its hardcoded default and reads the env var.
- *   3. Website pages (contact.tsx, index.tsx) do NOT hardcode the URL and
- *      instead use the runtime location config hook (useLocationConfig).
+ *   3. Static website pages (contact.html, index.html) contain the correct
+ *      Dallas maps URL with verified coordinates and place identifier.
  *   4. The mobile app data constants (data.ts) do NOT hardcode mapUrl fields
  *      (URLs are now served exclusively by the API).
  *
@@ -39,10 +40,14 @@ function assert(condition, message) {
   }
 }
 
-function readFile(relPath) {
+function readFile(relPath, { optional = false } = {}) {
   try {
     return readFileSync(resolve(root, relPath), "utf8");
   } catch (err) {
+    if (optional) {
+      console.log(`  ℹ  File not present (skipping): ${relPath}`);
+      return null;
+    }
     console.error(`  ✗  Could not read file: ${err.message}`);
     failed++;
     return null;
@@ -56,18 +61,21 @@ function extractDallasUrls(content) {
   );
 }
 
-// ── 1. Website shared constants — URLs must have been removed ─────────────────
+// ── 1. Website shared constants — URLs must have been removed (or file gone) ──
 console.log(
   "\n─── Website – shared constants (artifacts/vv-auto-website/src/lib/locations.ts)"
 );
 {
-  const content = readFile("artifacts/vv-auto-website/src/lib/locations.ts");
+  const content = readFile("artifacts/vv-auto-website/src/lib/locations.ts", { optional: true });
   if (content) {
     const dallasUrls = extractDallasUrls(content);
     assert(
       dallasUrls.length === 0,
       `No hardcoded Dallas maps URL in locations.ts (URLs are served by the API) (got ${dallasUrls.length})`
     );
+  } else {
+    console.log("  ✓  locations.ts removed — no hardcoded Dallas URL possible");
+    passed++;
   }
 }
 
@@ -90,15 +98,15 @@ console.log(
   }
 }
 
-// ── 3. Website pages use runtime hook, not hardcoded URL ─────────────────────
+// ── 3. Static website HTML pages contain the correct Dallas URL ───────────────
 const PAGE_SOURCES = [
   {
-    label: "Website – contact page (artifacts/vv-auto-website/src/pages/contact.tsx)",
-    file: "artifacts/vv-auto-website/src/pages/contact.tsx",
+    label: "Website – contact page (artifacts/vv-auto-website/contact.html)",
+    file: "artifacts/vv-auto-website/contact.html",
   },
   {
-    label: "Website – homepage (artifacts/vv-auto-website/src/pages/index.tsx)",
-    file: "artifacts/vv-auto-website/src/pages/index.tsx",
+    label: "Website – homepage (artifacts/vv-auto-website/index.html)",
+    file: "artifacts/vv-auto-website/index.html",
   },
 ];
 
@@ -107,21 +115,22 @@ for (const source of PAGE_SOURCES) {
   const content = readFile(source.file);
   if (!content) continue;
 
-  const hardcodedUrls = extractDallasUrls(content);
+  const dallasUrls = extractDallasUrls(content);
   assert(
-    hardcodedUrls.length === 0,
-    `No hardcoded Dallas maps URL in page file (URL served from API at runtime)`
+    dallasUrls.length > 0,
+    `Page contains a Dallas maps URL with correct coordinates or place ID`
   );
 
-  assert(
-    content.includes("useLocationConfig"),
-    `Page uses useLocationConfig hook for runtime URL`
-  );
-
-  assert(
-    content.includes("locationConfig"),
-    `Page reads locationConfig data for map link`
-  );
+  if (dallasUrls.length > 0) {
+    assert(
+      !FORBIDDEN_PATTERN.test(dallasUrls[0]),
+      `Dallas maps URL does not use the coordinate-only ?q= format`
+    );
+    assert(
+      dallasUrls[0].includes(EXPECTED_PLACE_ID) || dallasUrls[0].includes(EXPECTED_COORDS),
+      `Dallas maps URL contains known place identifier or coordinates`
+    );
+  }
 }
 
 // ── 4. Mobile app data constants — mapUrl field must have been removed ────────

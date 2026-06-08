@@ -1,24 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>VV Auto Repair Website</title>
-    <meta name="description" content="VV Auto Repair Website — built on Replit. Update this description to reflect the app." />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="VV Auto Repair Website" />
-    <meta property="og:description" content="VV Auto Repair Website — built on Replit. Update this description to reflect the app." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="VV Auto Repair Website" />
-    <meta name="twitter:description" content="VV Auto Repair Website — built on Replit. Update this description to reflect the app." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V.V. Auto Repair &amp; Body Shop | Dallas &amp; Garland TX</title>
+  <meta name="description" content="Honest family-owned auto repair in Dallas and collision body shop in Garland. Mechanics, diagnostics, brakes, oil changes, and paint.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="site-wrapper">
+
+<nav class="site-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-vv">V V</span><span class="logo-auto">Auto Repair</span>
+      </a>
+      <div class="nav-desktop">
+        <ul class="nav-links">
+          <li><a href="index.html" data-navpath="/"><span class="lang-en">Home</span><span class="lang-vi">Trang Chủ</span></a></li>
+          <li><a href="services/index.html" data-navpath="/services"><span class="lang-en">Services</span><span class="lang-vi">Dịch Vụ</span></a></li>
+          <li><a href="about.html" data-navpath="/about"><span class="lang-en">About</span><span class="lang-vi">Giới Thiệu</span></a></li>
+          <li><a href="contact.html" data-navpath="/contact"><span class="lang-en">Contact</span><span class="lang-vi">Liên Hệ</span></a></li>
+        </ul>
+        <div class="lang-toggle">
+          <button data-lang="en">English</button>
+          <button data-lang="vi">Tiếng Việt</button>
+        </div>
+        <a href="tel:2143202171" class="nav-call-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (214) 320-2171
+        </a>
+      </div>
+      <button id="nav-hamburger" class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="index.html" data-navpath="/"><span class="lang-en">Home</span><span class="lang-vi">Trang Chủ</span></a>
+    <a href="services/index.html" data-navpath="/services"><span class="lang-en">Services</span><span class="lang-vi">Dịch Vụ</span></a>
+    <a href="about.html" data-navpath="/about"><span class="lang-en">About</span><span class="lang-vi">Giới Thiệu</span></a>
+    <a href="contact.html" data-navpath="/contact"><span class="lang-en">Contact</span><span class="lang-vi">Liên Hệ</span></a>
+    <div class="lang-toggle">
+      <button data-lang="en">English</button>
+      <button data-lang="vi">Tiếng Việt</button>
+    </div>
+    <a href="tel:2143202171" class="nav-call-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      (214) 320-2171
+    </a>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="images/vv-hero.png" alt="V.V. Auto Repair shop" loading="eager">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2rem;">
+        <div class="lang-toggle">
+          <button data-lang="en">English</button>
+          <button data-lang="vi">Tiếng Việt</button>
+        </div>
+        <div class="loc-toggle">
+          <button data-loc="dallas"><span class="lang-en">Dallas</span><span class="lang-vi">Dallas</span></button>
+          <button data-loc="garland"><span class="lang-en">Garland</span><span class="lang-vi">Garland</span></button>
+        </div>
+      </div>
+      <h1 class="hero-title">
+        <span data-loc="dallas"><span class="lang-en">Trusted Auto Repair<br><span class="accent">in Dallas, TX</span></span><span class="lang-vi">Sửa Chữa Ô Tô Uy Tín<br><span class="accent">tại Dallas, TX</span></span></span>
+        <span data-loc="garland"><span class="lang-en">Collision &amp; Body Repair<br><span class="accent">in Garland, TX</span></span><span class="lang-vi">Đồng Sơn &amp; Sửa Thân Xe<br><span class="accent">tại Garland, TX</span></span></span>
+      </h1>
+      <div class="hero-badge">
+        <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="lang-en">4.4 Stars (65+ Reviews)</span><span class="lang-vi">4.4 Sao (Hơn 65 Đánh giá)</span>
+        <span class="dot"></span>
+        <span data-loc="dallas"><span class="lang-en">Dallas, TX</span><span class="lang-vi">Dallas, TX</span></span>
+        <span data-loc="garland"><span class="lang-en">Garland, TX</span><span class="lang-vi">Garland, TX</span></span>
+      </div>
+      <div class="hero-btns">
+        <span data-loc="dallas">
+          <a href="tel:2143202171" class="btn btn-red">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span class="lang-en">Call Dallas — (214) 320-2171</span><span class="lang-vi">Gọi Dallas — (214) 320-2171</span>
+          </a>
+        </span>
+        <span data-loc="garland">
+          <a href="tel:4692589356" class="btn btn-red">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span class="lang-en">Call Garland — (469) 258-9356</span><span class="lang-vi">Gọi Garland — (469) 258-9356</span>
+          </a>
+        </span>
+        <a href="#locations" class="btn btn-teal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="lang-en">Our Locations</span><span class="lang-vi">Địa Điểm Của Chúng Tôi</span>
+        </a>
+      </div>
+      <p class="hero-desc">
+        <span data-loc="dallas"><span class="lang-en">Trusted local mechanic serving Dallas drivers with fair pricing, reliable repairs, diagnostics, and straightforward service.</span><span class="lang-vi">Gara địa phương đáng tin cậy phục vụ tài xế Dallas với giá cả công bằng, sửa chữa đảm bảo, chẩn đoán lỗi và dịch vụ trung thực.</span></span>
+        <span data-loc="garland"><span class="lang-en">Collision repair and body work serving Garland and the DFW area. Quality paint, dents, and frame work at fair prices.</span><span class="lang-vi">Sửa chữa đồng sơn và thân xe phục vụ Garland và khu vực DFW. Chất lượng sơn, móp méo và khung xe với giá cả hợp lý.</span></span>
+      </p>
+      <div class="hero-trust">
+        <div class="hero-trust-item">
+          <svg class="check" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span class="lang-en">Honest Pricing</span><span class="lang-vi">Giá Cả Trung Thực</span>
+        </div>
+        <div class="hero-trust-item">
+          <svg class="check" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span class="lang-en">Vietnamese Speaking</span><span class="lang-vi">Giao Tiếp Tiếng Việt</span>
+        </div>
+        <div class="hero-trust-item">
+          <svg class="check" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span class="lang-en">Family Owned &amp; Operated</span><span class="lang-vi">Cơ Sở Gia Đình</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="container">
+    <div class="trust-grid">
+      <div>
+        <h2 class="section-title">
+          <span class="lang-en">A mechanic you'd send your mom to.</span>
+          <span class="lang-vi">Người thợ máy mà bạn có thể an tâm giới thiệu cho gia đình.</span>
+        </h2>
+        <p class="section-desc" style="margin-bottom:1.5rem;">
+          <span class="lang-en">Finding a mechanic you can trust shouldn't be hard. At V.V. Auto, we built our family business on a simple premise: relentlessly honest work. We never overcharge. We never invent repairs you don't need. We just fix your car right the first time.</span>
+          <span class="lang-vi">Việc tìm kiếm một thợ máy đáng tin cậy không nên quá khó khăn. Tại V.V. Auto, chúng tôi xây dựng cơ sở gia đình mình dựa trên một nguyên tắc đơn giản: làm việc trung thực tuyệt đối. Chúng tôi không bao giờ tính phí quá cao. Chúng tôi không bao giờ vẽ ra những sửa chữa mà bạn không cần.</span>
+        </p>
+        <div class="trust-quote-box">
+          <p>"We speak English and Tiếng Việt, serving our diverse community across Dallas and Garland with respect and transparency."</p>
+          <p>"Chúng tôi giao tiếp bằng tiếng Anh và Tiếng Việt, phục vụ cộng đồng đa dạng tại Dallas và Garland với sự tôn trọng và minh bạch."</p>
+        </div>
+        <div class="trust-features">
+          <div class="trust-feature">
+            <div class="trust-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <h4><span class="lang-en">Honest Pricing</span><span class="lang-vi">Giá Cả Minh Bạch</span></h4>
+              <p><span class="lang-en">No hidden fees or surprise charges.</span><span class="lang-vi">Không có phí ẩn hay chi phí bất ngờ.</span></p>
+            </div>
+          </div>
+          <div class="trust-feature">
+            <div class="trust-feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div>
+              <h4><span class="lang-en">Expert Service</span><span class="lang-vi">Dịch Vụ Chuyên Nghiệp</span></h4>
+              <p><span class="lang-en">From diagnostics to full body repair.</span><span class="lang-vi">Từ chẩn đoán lỗi đến phục hồi thân vỏ.</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trust-img-wrap">
+        <div class="trust-img-shadow"></div>
+        <img src="images/vv-brakes.png" alt="Mechanic working on brakes" loading="lazy">
+        <div class="trust-badge">
+          <div class="big-num">65+</div>
+          <div>
+            <div class="stars">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="badge-label"><span class="lang-en">5-Star Reviews</span><span class="lang-vi">Đánh Giá 5 Sao</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label"><span class="lang-en">What We Do</span><span class="lang-vi">Những Gì Chúng Tôi Làm</span></span>
+      <h2 class="section-title"><span class="lang-en">Complete Auto Care</span><span class="lang-vi">Chăm Sóc Ô Tô Toàn Diện</span></h2>
+      <p class="section-desc"><span class="lang-en">Two specialized locations working together to handle everything your vehicle needs.</span><span class="lang-vi">Hai địa điểm chuyên biệt phối hợp cùng nhau để xử lý mọi nhu cầu cho chiếc xe của bạn.</span></p>
+    </div>
+    <div class="services-cols">
+      <div class="services-card">
+        <div class="services-card-head">
+          <div class="services-card-loc blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lang-en">Dallas Location</span><span class="lang-vi">Địa điểm Dallas</span>
+          </div>
+          <h4><span class="lang-en">Auto Repair Services</span><span class="lang-vi">Dịch Vụ Sửa Chữa Ô Tô</span></h4>
+          <p><span class="lang-en">Mechanical repair, maintenance &amp; diagnostics.</span><span class="lang-vi">Sửa chữa máy móc, bảo dưỡng và chẩn đoán.</span></p>
+        </div>
+        <div class="services-card-body">
+          <ul>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Texas State Inspection</span><span class="lang-vi">Kiểm Định Chính Thức Tiểu Bang</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Computer Engine Diagnostics</span><span class="lang-vi">Chẩn Đoán Động Cơ Bằng Máy Tính</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Brake Repair &amp; Replacement</span><span class="lang-vi">Sửa Chữa &amp; Thay Thế Phanh</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Oil Changes &amp; Routine Maintenance</span><span class="lang-vi">Thay Nhớt &amp; Bảo Dưỡng Định Kỳ</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Engine Repair &amp; Rebuilds</span><span class="lang-vi">Sửa Chữa &amp; Phục Hồi Động Cơ</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Domestic &amp; Foreign Vehicles</span><span class="lang-vi">Xe Mỹ &amp; Xe Nhập Khẩu</span></li>
+          </ul>
+          <a href="services/index.html" class="services-card-link"><span class="lang-en">View all repair services</span><span class="lang-vi">Xem tất cả dịch vụ sửa chữa</span> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+      <div class="services-card">
+        <div class="services-card-head">
+          <div class="services-card-loc red">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span class="lang-en">Garland Location</span><span class="lang-vi">Địa điểm Garland</span>
+          </div>
+          <h4><span class="lang-en">Auto Body Services</span><span class="lang-vi">Dịch Vụ Làm Đồng Sơn</span></h4>
+          <p><span class="lang-en">Collision repair, paint &amp; insurance claims.</span><span class="lang-vi">Sửa chữa tai nạn, sơn xe và làm bảo hiểm.</span></p>
+        </div>
+        <div class="services-card-body">
+          <ul>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Major &amp; Minor Collision Repair</span><span class="lang-vi">Sửa Chữa Tai Nạn Nặng &amp; Nhẹ</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Professional Paint &amp; Body Work</span><span class="lang-vi">Sơn &amp; Làm Đồng Chuyên Nghiệp</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Insurance Claim Repairs</span><span class="lang-vi">Sửa Chữa Hồ Sơ Bảo Hiểm</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Free Collision Estimates</span><span class="lang-vi">Ước Tính Tai Nạn Miễn Phí</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Works With Any Insurance</span><span class="lang-vi">Làm Việc Với Mọi Công Ty Bảo Hiểm</span></li>
+            <li><svg class="check text-red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-en">Frame Straightening</span><span class="lang-vi">Nắn Khung Sườn</span></li>
+          </ul>
+          <a href="services/collision-body-repair.html" class="services-card-link"><span class="lang-en">View all body shop services</span><span class="lang-vi">Xem tất cả dịch vụ đồng sơn</span> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations-section" id="locations">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title"><span class="lang-en">Two Convenient Locations</span><span class="lang-vi">Hai Địa Điểm Thuận Tiện</span></h2>
+      <p class="section-desc"><span class="lang-en">Find the right shop for your needs. Auto repair in Dallas, collision and body work in Garland.</span><span class="lang-vi">Tìm cửa tiệm phù hợp với nhu cầu của bạn. Sửa chữa máy móc tại Dallas, làm đồng sơn tại Garland.</span></p>
+    </div>
+    <div class="locations-grid">
+      <div class="location-card">
+        <span class="location-badge blue"><span class="lang-en">Auto Repair</span><span class="lang-vi">Sửa Chữa Máy Móc</span></span>
+        <h3>V V Auto Repair</h3>
+        <p class="location-city">Dallas</p>
+        <div class="location-details">
+          <div class="location-detail">
+            <div class="location-detail-icon blue"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <h4><span class="lang-en">Address</span><span class="lang-vi">Địa chỉ</span></h4>
+              <p>11366 Jupiter Rd<br>Dallas, TX 75218</p>
+            </div>
+          </div>
+          <div class="location-detail">
+            <div class="location-detail-icon blue"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div>
+              <h4><span class="lang-en">Contact</span><span class="lang-vi">Liên Hệ</span></h4>
+              <p><span class="lang-en">Main:</span><span class="lang-vi">Chính:</span> <a href="tel:2143202171" class="link-blue">214-320-2171</a><br><span class="lang-en">Cell:</span><span class="lang-vi">Di động:</span> <a href="tel:4692589356" class="link-blue">469-258-9356</a><br><a href="mailto:vv.autorepair@yahoo.com" class="link-blue">vv.autorepair@yahoo.com</a></p>
+            </div>
+          </div>
+          <div class="location-detail">
+            <div class="location-detail-icon blue"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div>
+              <h4><span class="lang-en">Hours</span><span class="lang-vi">Giờ mở cửa</span></h4>
+              <p><span class="lang-en">Mon–Fri: 8:00am–6:00pm<br><span style="color:#9ca3af">Sat–Sun: Closed</span></span><span class="lang-vi">Thứ Hai–Sáu: 8:00sáng–6:00chiều<br><span style="color:#9ca3af">Thứ Bảy–CN: Đóng cửa</span></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="location-actions">
+          <a href="tel:2143202171" class="btn btn-navy btn-sm"><span class="lang-en">Call Dallas Shop</span><span class="lang-vi">Gọi Tiệm Dallas</span></a>
+          <a href="https://www.google.com/maps/place/V+V+Auto+Repair/@32.8488156,-96.6827611,17z/data=!4m8!3m7!1s0x864ea12237496ed3:0x44a59c7835f91535!8m2!3d32.8488156!4d-96.6827611!9m1!1b1" target="_blank" rel="noreferrer" class="btn btn-teal btn-sm"><span class="lang-en">Get Directions</span><span class="lang-vi">Chỉ Đường</span></a>
+        </div>
+      </div>
+      <div class="location-card">
+        <span class="location-badge red"><span class="lang-en">Collision &amp; Body</span><span class="lang-vi">Đồng Sơn &amp; Tai Nạn</span></span>
+        <h3>V V Auto Body Repair</h3>
+        <p class="location-city">Garland</p>
+        <div class="location-details">
+          <div class="location-detail">
+            <div class="location-detail-icon red"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <h4><span class="lang-en">Address</span><span class="lang-vi">Địa chỉ</span></h4>
+              <p>3730 Marquis Dr<br>Garland, TX 75042</p>
+            </div>
+          </div>
+          <div class="location-detail">
+            <div class="location-detail-icon red"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div>
+              <h4><span class="lang-en">Contact</span><span class="lang-vi">Liên Hệ</span></h4>
+              <p>Huong: <a href="tel:4692589356" class="link-red">469-258-9356</a><br>David: <a href="tel:4694075340" class="link-red">469-407-5340</a><br><a href="mailto:vv.autobodycorp@gmail.com" class="link-red">vv.autobodycorp@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="location-detail">
+            <div class="location-detail-icon red"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div>
+              <h4><span class="lang-en">Hours</span><span class="lang-vi">Giờ mở cửa</span></h4>
+              <p><span class="lang-en">Mon–Fri: 8:00am–5:00pm<br><span style="color:#9ca3af">Sat–Sun: Closed</span></span><span class="lang-vi">Thứ Hai–Sáu: 8:00sáng–5:00chiều<br><span style="color:#9ca3af">Thứ Bảy–CN: Đóng cửa</span></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="location-actions">
+          <a href="tel:4692589356" class="btn btn-navy btn-sm"><span class="lang-en">Call Garland Shop</span><span class="lang-vi">Gọi Tiệm Garland</span></a>
+          <a href="https://www.google.com/maps/place/V+V+Auto+Body+Repair+Corporation/@32.9016826,-96.6874462,17z/data=!3m1!4b1!4m6!3m5!1s/g/11pzygbgln!8m2!3d32.9016826!4d-96.6874462!16s%2Fg%2F11pzygbgln!9m1!1b1" target="_blank" rel="noreferrer" class="btn btn-teal btn-sm"><span class="lang-en">Get Directions</span><span class="lang-vi">Chỉ Đường</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-content">
+      <h2><span class="lang-en">Need an honest opinion on your car?</span><span class="lang-vi">Cần một ý kiến trung thực về chiếc xe của bạn?</span></h2>
+      <p><span class="lang-en">Stop by our Dallas shop for diagnostics, or visit our Garland shop for a free collision estimate.</span><span class="lang-vi">Ghé qua tiệm Dallas để chẩn đoán, hoặc đến tiệm Garland để được ước tính miễn phí.</span></p>
+      <a href="tel:2143202171" class="btn btn-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span class="lang-en">Call Dallas: (214) 320-2171</span><span class="lang-vi">Gọi Dallas: (214) 320-2171</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-row"><span class="logo-vv">V.V.</span><span class="logo-auto">Auto</span></div>
+        <p><span class="lang-en">Honest auto repair and collision services in Dallas and Garland. A family-owned mechanic shop built on trust, fair pricing, and reliable work.</span><span class="lang-vi">Sửa chữa ô tô và đồng sơn uy tín tại Dallas và Garland. Cơ sở gia đình được xây dựng trên sự tin cậy, giá cả công bằng và chất lượng đảm bảo.</span></p>
+        <div class="stars"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="review-count"><span class="lang-en">4.4 Stars • 65+ Google Reviews</span><span class="lang-vi">4.4 Sao • Hơn 65 Đánh giá Google</span></p>
+      </div>
+      <div class="footer-col">
+        <h3><span class="lang-en">Dallas (Auto Repair)</span><span class="lang-vi">Dallas (Sửa Chữa)</span></h3>
+        <ul>
+          <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>11366 Jupiter Rd<br>Dallas, TX 75218</span></li>
+          <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span><span class="lang-en">Main:</span><span class="lang-vi">Chính:</span> <a href="tel:2143202171">214-320-2171</a><br><span class="lang-en">Cell:</span><span class="lang-vi">Di động:</span> <a href="tel:4692589356">469-258-9356</a></span></li>
+          <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span><span class="lang-en">Mon–Fri: 8am–6pm<br>Sat–Sun: Closed</span><span class="lang-vi">T2–T6: 8s–6c<br>T7–CN: Đóng cửa</span></span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3><span class="lang-en">Garland (Body Shop)</span><span class="lang-vi">Garland (Đồng Sơn)</span></h3>
+        <ul>
+          <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>3730 Marquis Dr<br>Garland, TX 75042</span></li>
+          <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.12 2.19 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span>Huong: <a href="tel:4692589356">469-258-9356</a><br>David: <a href="tel:4694075340">469-407-5340</a></span></li>
+          <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span><span class="lang-en">Mon–Fri: 8am–5pm<br>Sat–Sun: Closed</span><span class="lang-vi">T2–T6: 8s–5c<br>T7–CN: Đóng cửa</span></span></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-links">
+        <h3><span class="lang-en">Quick Links</span><span class="lang-vi">Liên Kết Nhanh</span></h3>
+        <ul>
+          <li><a href="services/index.html"><svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="lang-en">Auto Repair Services</span><span class="lang-vi">Dịch Vụ Sửa Chữa Ô Tô</span></a></li>
+          <li><a href="services/brake-repair.html"><svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="lang-en">Brake Repair</span><span class="lang-vi">Sửa Chữa Phanh</span></a></li>
+          <li><a href="services/collision-body-repair.html"><svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="lang-en">Collision &amp; Body Work</span><span class="lang-vi">Làm Đồng &amp; Sơn</span></a></li>
+          <li><a href="services/state-inspection.html"><svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="lang-en">State Inspections</span><span class="lang-vi">Kiểm Định Tiểu Bang</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footer-year"></span> <span class="lang-en">V.V. Auto Repair &amp; Body Shop. All rights reserved.</span><span class="lang-vi">V.V. Auto Repair &amp; Body Shop. Đã đăng ký bản quyền.</span></p>
+      <p class="footer-note">Need a website or app for your business?</p>
+      <a href="built-by.html" class="built-by-link">Built by Paper Street Software Co. <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--vv-red)"><polyline points="9 18 15 12 9 6"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="js/main.js"></script>
+</body>
 </html>

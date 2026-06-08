@@ -26,12 +26,12 @@ const root = resolve(__dirname, "..");
 
 const SOURCES = [
   {
-    label: "Website – contact page (artifacts/vv-auto-website/src/pages/contact.tsx)",
-    file: "artifacts/vv-auto-website/src/pages/contact.tsx",
+    label: "Website – contact page (artifacts/vv-auto-website/contact.html)",
+    file: "artifacts/vv-auto-website/contact.html",
   },
   {
-    label: "Website – homepage (artifacts/vv-auto-website/src/pages/index.tsx)",
-    file: "artifacts/vv-auto-website/src/pages/index.tsx",
+    label: "Website – homepage (artifacts/vv-auto-website/index.html)",
+    file: "artifacts/vv-auto-website/index.html",
   },
   {
     label: "Mobile app – data constants (artifacts/vv-auto-mobile/constants/data.ts)",
