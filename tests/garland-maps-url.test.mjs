@@ -160,9 +160,9 @@ console.log(
   }
 }
 
-// ── 5. Env var GARLAND_MAPS_URL must contain the correct place identifiers ─────
+// ── 5. Env var GARLAND_MAPS_URL must be set to the correct URL ────────────────
 console.log(
-  "\n─── Env var – GARLAND_MAPS_URL (must contain verified Place identifiers)"
+  "\n─── Env var – GARLAND_MAPS_URL (must equal the owner-provided directions URL)"
 );
 {
   const garlandEnvUrl = process.env["GARLAND_MAPS_URL"] ?? null;
@@ -171,20 +171,13 @@ console.log(
       "  ⚠  GARLAND_MAPS_URL is not set in the environment — skipping content checks"
     );
   } else {
-    const urlsInEnvVar = extractGarlandUrls(garlandEnvUrl);
     assert(
-      urlsInEnvVar.length > 0 ||
-        garlandEnvUrl.includes(EXPECTED_FEATURE_ID) ||
-        garlandEnvUrl.includes(EXPECTED_FEATURE_PATH),
-      `GARLAND_MAPS_URL contains the known Garland feature identifier (${EXPECTED_FEATURE_ID})`
+      garlandEnvUrl === EXPECTED_SHORT_URL || garlandEnvUrl === EXPECTED_SHORT_URL + "?g_st=ic",
+      `GARLAND_MAPS_URL equals the correct owner-provided URL`
     );
     assert(
       !FORBIDDEN_PATTERN.test(garlandEnvUrl),
       "GARLAND_MAPS_URL does not use the coordinate-only ?q= format that shows 'invalid coord'"
-    );
-    assert(
-      garlandEnvUrl.includes(EXPECTED_COORDS),
-      `GARLAND_MAPS_URL contains the expected coordinates (${EXPECTED_COORDS})`
     );
   }
 }

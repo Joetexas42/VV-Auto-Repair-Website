@@ -113,7 +113,7 @@ externalPort = 3003
 [userenv.shared]
 DALLAS_MAPS_URL = "https://maps.app.goo.gl/iuW6oo7aA3FH7eG4A?g_st=ic"
 DALLAS_WRITE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJ025JNyKhToYRNRX5NXicpUQ"
-GARLAND_MAPS_URL = "https://www.google.com/maps/place/V+V+Auto+Body+Repair+Corporation/@32.9016826,-96.6874462,17z/data=!3m1!4b1!4m6!3m5!1s/g/11pzygbgln!8m2!3d32.9016826!4d-96.6874462!16s%2Fg%2F11pzygbgln!9m1!1b1"
+GARLAND_MAPS_URL = "https://maps.app.goo.gl/SRFnqikpxGiZt1gm7?g_st=ic"
 
 [nix]
 channel = "stable-25_05"
