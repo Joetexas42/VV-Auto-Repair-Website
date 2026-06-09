@@ -25,6 +25,7 @@ const root = resolve(__dirname, "..");
 const EXPECTED_COORDS = "@32.9016826,-96.6874462";
 const EXPECTED_FEATURE_ID = "11pzygbgln";
 const EXPECTED_FEATURE_PATH = "/g/11pzygbgln";
+const EXPECTED_SHORT_URL = "https://maps.app.goo.gl/SRFnqikpxGiZt1gm7";
 const FORBIDDEN_PATTERN = /\?q=/;
 
 let passed = 0;
@@ -55,10 +56,15 @@ function readFile(relPath, { optional = false } = {}) {
 }
 
 function extractGarlandUrls(content) {
-  const urlRegex = /https:\/\/www\.google\.com\/maps\/[^\s"'>]+/g;
-  return (content.match(urlRegex) ?? []).filter(
+  const longUrlRegex = /https:\/\/www\.google\.com\/maps\/[^\s"'>]+/g;
+  const shortUrlRegex = /https:\/\/maps\.app\.goo\.gl\/[^\s"'>]+/g;
+  const longUrls = (content.match(longUrlRegex) ?? []).filter(
     (u) => u.includes(EXPECTED_COORDS) || u.includes(EXPECTED_FEATURE_ID)
   );
+  const shortUrls = (content.match(shortUrlRegex) ?? []).filter(
+    (u) => u.includes("SRFnqikpxGiZt1gm7")
+  );
+  return [...longUrls, ...shortUrls];
 }
 
 // ── 1. Website shared constants — URLs must have been removed (or file gone) ──
@@ -127,8 +133,10 @@ for (const source of PAGE_SOURCES) {
       `Garland maps URL does not use the coordinate-only ?q= format`
     );
     assert(
-      garlandUrls[0].includes(EXPECTED_FEATURE_ID) || garlandUrls[0].includes(EXPECTED_COORDS),
-      `Garland maps URL contains known place identifier or coordinates`
+      garlandUrls[0].includes(EXPECTED_FEATURE_ID) ||
+        garlandUrls[0].includes(EXPECTED_COORDS) ||
+        garlandUrls[0].includes("SRFnqikpxGiZt1gm7"),
+      `Garland maps URL contains known place identifier, coordinates, or short-link ID`
     );
   }
 }
