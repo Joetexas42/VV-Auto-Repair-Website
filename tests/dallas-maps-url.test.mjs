@@ -1,16 +1,17 @@
 /**
- * Smoke test: Dallas Google Maps URL — coordinates + place-ID format
+ * Smoke test: Dallas Google Maps URL
  *
  * Verifies that:
  *   1. The website's shared constants file (src/lib/locations.ts) does NOT
  *      contain any hardcoded Dallas map URL — or the file no longer exists
  *      (static HTML site has no shared constants layer).
  *   2. The API route (artifacts/api-server/src/routes/locationConfig.ts) has
- *      the correct Dallas URL as its hardcoded default and reads the env var.
+ *      no hardcoded Dallas URL and reads the env var.
  *   3. Static website pages (contact.html, index.html) contain the correct
- *      Dallas maps URL with verified coordinates and place identifier.
+ *      Dallas directions URL on the Get Directions button.
  *   4. The mobile app data constants (data.ts) do NOT hardcode mapUrl fields
  *      (URLs are now served exclusively by the API).
+ *   5. The DALLAS_MAPS_URL env var is set to the correct URL.
  *
  * Run with:  node tests/dallas-maps-url.test.mjs
  */
@@ -22,9 +23,9 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 
-const EXPECTED_COORDS = "@32.8488156,-96.6827611";
-const EXPECTED_PLACE_ID = "0x864ea12237496ed3";
-const EXPECTED_SECONDARY_CID = "0x44a59c7835f91535";
+const EXPECTED_DALLAS_URL = "https://maps.app.goo.gl/iuW6oo7aA3FH7eG4A?g_st=ic";
+const OLD_COORDS = "@32.8488156,-96.6827611";
+const OLD_PLACE_ID = "0x864ea12237496ed3";
 const FORBIDDEN_PATTERN = /\?q=/;
 
 let passed = 0;
@@ -54,10 +55,10 @@ function readFile(relPath, { optional = false } = {}) {
   }
 }
 
-function extractDallasUrls(content) {
+function extractOldLongFormDallasUrls(content) {
   const urlRegex = /https:\/\/www\.google\.com\/maps\/[^\s"'>]+/g;
   return (content.match(urlRegex) ?? []).filter(
-    (u) => u.includes(EXPECTED_COORDS) || u.includes(EXPECTED_PLACE_ID)
+    (u) => u.includes(OLD_COORDS) || u.includes(OLD_PLACE_ID)
   );
 }
 
@@ -68,7 +69,7 @@ console.log(
 {
   const content = readFile("artifacts/vv-auto-website/src/lib/locations.ts", { optional: true });
   if (content) {
-    const dallasUrls = extractDallasUrls(content);
+    const dallasUrls = extractOldLongFormDallasUrls(content);
     assert(
       dallasUrls.length === 0,
       `No hardcoded Dallas maps URL in locations.ts (URLs are served by the API) (got ${dallasUrls.length})`
@@ -86,7 +87,7 @@ console.log(
 {
   const content = readFile("artifacts/api-server/src/routes/locationConfig.ts");
   if (content) {
-    const dallasUrls = extractDallasUrls(content);
+    const dallasUrls = extractOldLongFormDallasUrls(content);
     assert(
       dallasUrls.length === 0,
       `No hardcoded Dallas maps URL in locationConfig.ts (URL served via env var or DB) (got ${dallasUrls.length})`
@@ -98,7 +99,7 @@ console.log(
   }
 }
 
-// ── 3. Static website HTML pages contain the correct Dallas URL ───────────────
+// ── 3. Static website HTML pages contain the correct Dallas directions URL ────
 const PAGE_SOURCES = [
   {
     label: "Website – contact page (artifacts/vv-auto-website/contact.html)",
@@ -115,22 +116,14 @@ for (const source of PAGE_SOURCES) {
   const content = readFile(source.file);
   if (!content) continue;
 
-  const dallasUrls = extractDallasUrls(content);
   assert(
-    dallasUrls.length > 0,
-    `Page contains a Dallas maps URL with correct coordinates or place ID`
+    content.includes(EXPECTED_DALLAS_URL),
+    `Page contains the correct Dallas directions URL (${EXPECTED_DALLAS_URL})`
   );
-
-  if (dallasUrls.length > 0) {
-    assert(
-      !FORBIDDEN_PATTERN.test(dallasUrls[0]),
-      `Dallas maps URL does not use the coordinate-only ?q= format`
-    );
-    assert(
-      dallasUrls[0].includes(EXPECTED_PLACE_ID) || dallasUrls[0].includes(EXPECTED_COORDS),
-      `Dallas maps URL contains known place identifier or coordinates`
-    );
-  }
+  assert(
+    !FORBIDDEN_PATTERN.test(content.match(/href="[^"]*dallas[^"]*"/i)?.[0] ?? ""),
+    `Dallas directions link does not use the coordinate-only ?q= format`
+  );
 }
 
 // ── 4. Mobile app data constants — mapUrl field must have been removed ────────
@@ -140,7 +133,7 @@ console.log(
 {
   const content = readFile("artifacts/vv-auto-mobile/constants/data.ts");
   if (content) {
-    const dallasUrls = extractDallasUrls(content);
+    const dallasUrls = extractOldLongFormDallasUrls(content);
     assert(
       dallasUrls.length === 0,
       `No hardcoded Dallas maps URL in data.ts (URLs are served by the API) (got ${dallasUrls.length})`
@@ -152,9 +145,9 @@ console.log(
   }
 }
 
-// ── 5. Env var DALLAS_MAPS_URL must contain the correct place identifiers ──────
+// ── 5. Env var DALLAS_MAPS_URL must be set to the correct URL ─────────────────
 console.log(
-  "\n─── Env var – DALLAS_MAPS_URL (must contain verified Place identifiers)"
+  "\n─── Env var – DALLAS_MAPS_URL (must equal the owner-provided directions URL)"
 );
 {
   const dallasEnvUrl = process.env["DALLAS_MAPS_URL"] ?? null;
@@ -163,20 +156,13 @@ console.log(
       "  ⚠  DALLAS_MAPS_URL is not set in the environment — skipping content checks"
     );
   } else {
-    const urlsInEnvVar = extractDallasUrls(dallasEnvUrl);
     assert(
-      urlsInEnvVar.length > 0 ||
-        dallasEnvUrl.includes(EXPECTED_PLACE_ID) ||
-        dallasEnvUrl.includes(EXPECTED_SECONDARY_CID),
-      `DALLAS_MAPS_URL contains a known Dallas place identifier (${EXPECTED_PLACE_ID} or ${EXPECTED_SECONDARY_CID})`
+      dallasEnvUrl === EXPECTED_DALLAS_URL,
+      `DALLAS_MAPS_URL equals the correct owner-provided URL`
     );
     assert(
       !FORBIDDEN_PATTERN.test(dallasEnvUrl),
       "DALLAS_MAPS_URL does not use the coordinate-only ?q= format that shows 'invalid coord'"
-    );
-    assert(
-      dallasEnvUrl.includes(EXPECTED_COORDS),
-      `DALLAS_MAPS_URL contains the expected coordinates (${EXPECTED_COORDS})`
     );
   }
 }
