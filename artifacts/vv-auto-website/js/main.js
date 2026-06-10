@@ -1,16 +1,27 @@
 (function () {
   'use strict';
 
+  /* ─── Locale detection from URL ─── */
+  function getCurrentLocale() {
+    return window.location.pathname.startsWith('/vi') ? 'vi' : 'en';
+  }
+
+  function getEnEquivalent(path) {
+    return path.replace(/^\/vi/, '') || '/';
+  }
+
+  function getViEquivalent(path) {
+    if (path.startsWith('/vi')) return path;
+    return '/vi' + (path === '/' ? '/' : path);
+  }
+
   /* ─── Language ─── */
   function getLang() {
-    var saved = localStorage.getItem('vv-lang');
-    return (saved === 'en' || saved === 'vi') ? saved : 'en';
+    return getCurrentLocale();
   }
 
   function applyLang(lang) {
     document.documentElement.lang = lang;
-    localStorage.setItem('vv-lang', lang);
-
     document.querySelectorAll('.lang-toggle').forEach(function (toggle) {
       toggle.querySelectorAll('button').forEach(function (btn) {
         btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -24,7 +35,15 @@
 
     document.querySelectorAll('.lang-toggle button').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        applyLang(this.dataset.lang);
+        var selected = this.dataset.lang;
+        var current = window.location.pathname;
+        if (selected === getCurrentLocale()) return;
+
+        if (selected === 'vi') {
+          window.location.href = getViEquivalent(current);
+        } else {
+          window.location.href = getEnEquivalent(current);
+        }
       });
     });
   }

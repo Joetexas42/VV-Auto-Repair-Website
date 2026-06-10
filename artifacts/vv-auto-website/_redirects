@@ -8,3 +8,16 @@
 /services/engine-repair         /services/engine-repair.html         200
 /services/oil-change            /services/oil-change.html            200
 /services/state-inspection      /services/state-inspection.html      200
+
+/vi             /vi/                 301
+/vi/            /vi/index.html       200
+/vi/about       /vi/about.html       200
+/vi/contact     /vi/contact.html     200
+/vi/services    /vi/services/        301
+/vi/services/   /vi/services/index.html                     200
+/vi/services/brake-repair          /vi/services/brake-repair.html         200
+/vi/services/collision-body-repair /vi/services/collision-body-repair.html 200
+/vi/services/diagnostics           /vi/services/diagnostics.html           200
+/vi/services/engine-repair         /vi/services/engine-repair.html         200
+/vi/services/oil-change            /vi/services/oil-change.html            200
+/vi/services/state-inspection      /vi/services/state-inspection.html      200
