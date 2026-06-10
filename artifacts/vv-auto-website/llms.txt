@@ -1,0 +1,23 @@
+# V.V. Auto Repair & Body Shop
+
+> Family-owned auto repair and collision body shop serving the Dallas–Fort Worth area. Two specialized locations: mechanical repair in Dallas, TX and collision/body work in Garland, TX. Staff speaks English and Vietnamese (Tiếng Việt).
+
+## Business
+
+- Dallas location (auto repair): 11366 Jupiter Rd, Dallas, TX 75218 — phone (214) 320-2171
+- Garland location (collision & body): 3730 Marquis Dr, Garland, TX 75042 — phone (469) 258-9356
+- Hours: Monday – Friday (both locations)
+- Preferred business names: "V.V. Auto Repair" (Dallas), "V.V. Auto Body" (Garland)
+
+## Pages
+
+- [Home](https://vvautorepair.com/): Overview of both locations, services summary, and contact options.
+- [About](https://vvautorepair.com/about): Business history, family ownership, community values, and bilingual service.
+- [Contact & Locations](https://vvautorepair.com/contact): Addresses, phone numbers, hours, and maps for Dallas and Garland.
+- [Services](https://vvautorepair.com/services/): Hub listing all offered services across both locations.
+- [Brake Repair](https://vvautorepair.com/services/brake-repair): Brake inspection, pad/rotor replacement, and brake system repair.
+- [Collision & Body Repair](https://vvautorepair.com/services/collision-body-repair): Dent repair, frame work, paint matching, and insurance-related collision work (Garland).
+- [Diagnostics](https://vvautorepair.com/services/diagnostics): Check-engine and warning-light diagnosis using professional scan tools.
+- [Engine Repair](https://vvautorepair.com/services/engine-repair): Engine troubleshooting, repair, and replacement services.
+- [Oil Change](https://vvautorepair.com/services/oil-change): Conventional and synthetic oil changes with multi-point inspection.
+- [State Inspection](https://vvautorepair.com/services/state-inspection): Texas state vehicle safety and emissions inspections.
