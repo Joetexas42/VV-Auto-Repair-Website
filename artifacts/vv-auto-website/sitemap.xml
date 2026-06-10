@@ -4,180 +4,180 @@
 
   <!-- Home -->
   <url>
-    <loc>https://vvauto.repair/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/"/>
+    <loc>https://vvrepair.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/"/>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/"/>
+    <loc>https://vvrepair.com/vi/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/"/>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
 
   <!-- About -->
   <url>
-    <loc>https://vvauto.repair/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/about"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/about"/>
+    <loc>https://vvrepair.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/about"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/about"/>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/about"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/about"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/about"/>
+    <loc>https://vvrepair.com/vi/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/about"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/about"/>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <!-- Contact -->
   <url>
-    <loc>https://vvauto.repair/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/contact"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/contact"/>
+    <loc>https://vvrepair.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/contact"/>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/contact"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/contact"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/contact"/>
+    <loc>https://vvrepair.com/vi/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/contact"/>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <!-- Services index -->
   <url>
-    <loc>https://vvauto.repair/services/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/"/>
+    <loc>https://vvrepair.com/services/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/"/>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/services/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/"/>
+    <loc>https://vvrepair.com/vi/services/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/"/>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <!-- Brake Repair -->
   <url>
-    <loc>https://vvauto.repair/services/brake-repair</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/brake-repair"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/brake-repair"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/brake-repair"/>
+    <loc>https://vvrepair.com/services/brake-repair</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/brake-repair"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/brake-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/brake-repair"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/services/brake-repair</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/brake-repair"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/brake-repair"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/brake-repair"/>
+    <loc>https://vvrepair.com/vi/services/brake-repair</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/brake-repair"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/brake-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/brake-repair"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <!-- Collision & Body Repair -->
   <url>
-    <loc>https://vvauto.repair/services/collision-body-repair</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/collision-body-repair"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/collision-body-repair"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/collision-body-repair"/>
+    <loc>https://vvrepair.com/services/collision-body-repair</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/collision-body-repair"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/collision-body-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/collision-body-repair"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/services/collision-body-repair</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/collision-body-repair"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/collision-body-repair"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/collision-body-repair"/>
+    <loc>https://vvrepair.com/vi/services/collision-body-repair</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/collision-body-repair"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/collision-body-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/collision-body-repair"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <!-- Diagnostics -->
   <url>
-    <loc>https://vvauto.repair/services/diagnostics</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/diagnostics"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/diagnostics"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/diagnostics"/>
+    <loc>https://vvrepair.com/services/diagnostics</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/diagnostics"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/diagnostics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/diagnostics"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/services/diagnostics</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/diagnostics"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/diagnostics"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/diagnostics"/>
+    <loc>https://vvrepair.com/vi/services/diagnostics</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/diagnostics"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/diagnostics"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/diagnostics"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <!-- Engine Repair -->
   <url>
-    <loc>https://vvauto.repair/services/engine-repair</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/engine-repair"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/engine-repair"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/engine-repair"/>
+    <loc>https://vvrepair.com/services/engine-repair</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/engine-repair"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/engine-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/engine-repair"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/services/engine-repair</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/engine-repair"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/engine-repair"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/engine-repair"/>
+    <loc>https://vvrepair.com/vi/services/engine-repair</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/engine-repair"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/engine-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/engine-repair"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <!-- Oil Change -->
   <url>
-    <loc>https://vvauto.repair/services/oil-change</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/oil-change"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/oil-change"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/oil-change"/>
+    <loc>https://vvrepair.com/services/oil-change</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/oil-change"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/oil-change"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/oil-change"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/services/oil-change</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/oil-change"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/oil-change"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/oil-change"/>
+    <loc>https://vvrepair.com/vi/services/oil-change</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/oil-change"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/oil-change"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/oil-change"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <!-- State Inspection -->
   <url>
-    <loc>https://vvauto.repair/services/state-inspection</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/state-inspection"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/state-inspection"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/state-inspection"/>
+    <loc>https://vvrepair.com/services/state-inspection</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/state-inspection"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/state-inspection"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/state-inspection"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://vvauto.repair/vi/services/state-inspection</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vvauto.repair/services/state-inspection"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://vvauto.repair/vi/services/state-inspection"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvauto.repair/services/state-inspection"/>
+    <loc>https://vvrepair.com/vi/services/state-inspection</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vvrepair.com/services/state-inspection"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://vvrepair.com/vi/services/state-inspection"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vvrepair.com/services/state-inspection"/>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
