@@ -11,8 +11,10 @@ else
 fi
 
 if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
-  echo "Deploying VV Auto website to Cloudflare Pages..."
-  pnpm --filter @workspace/vv-auto-website run deploy
+  echo "Deploying VV Auto website to Cloudflare Pages (background)..."
+  nohup pnpm --filter @workspace/vv-auto-website run deploy \
+    > /tmp/cf-deploy.log 2>&1 &
+  echo "Cloudflare deploy started (PID $!), log: /tmp/cf-deploy.log"
 else
   echo "CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID not set — skipping Cloudflare Pages deploy"
 fi
