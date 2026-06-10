@@ -1,3 +1,12 @@
+/about.html                          /about                          301
+/contact.html                        /contact                        301
+/services/brake-repair.html          /services/brake-repair          301
+/services/collision-body-repair.html /services/collision-body-repair 301
+/services/diagnostics.html           /services/diagnostics           301
+/services/engine-repair.html         /services/engine-repair         301
+/services/oil-change.html            /services/oil-change            301
+/services/state-inspection.html      /services/state-inspection      301
+
 /about          /about.html         200
 /contact        /contact.html       200
 /built-by       /built-by.html      200

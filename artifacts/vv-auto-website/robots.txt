@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /built-by
 
-Sitemap: https://5fcca9f2-cd82-4a62-a2c8-342e18721319-00-3rtt7tri6ogiv-0okcjpuu.janeway.replit.dev/sitemap.xml
+Sitemap: https://vvauto.repair/sitemap.xml
