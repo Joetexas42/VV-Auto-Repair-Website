@@ -12,10 +12,26 @@
       "last_modified": "2026-06-12"
     },
     {
+      "url": "https://vvrepair.com/md/vi/index.md",
+      "canonical_url": "https://vvrepair.com/vi/",
+      "title": "V.V. Auto Repair & Body Shop | Dallas & Garland TX",
+      "description": "Gara ô tô gia đình uy tín tại Dallas và tiệm đồng sơn tại Garland. Thợ máy, chẩn đoán, phanh, thay nhớt và sơn xe.",
+      "lang": "vi",
+      "last_modified": "2026-06-12"
+    },
+    {
       "url": "https://vvrepair.com/md/about.md",
       "canonical_url": "https://vvrepair.com/about",
       "title": "About V.V. Auto Repair | Family-Owned Dallas & Garland",
       "description": "Learn about V.V. Auto Repair — a family-owned mechanic shop serving Dallas and Garland with honest pricing, expert mechanics, and bilingual service.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/vi/about.md",
+      "canonical_url": "https://vvrepair.com/vi/about",
+      "title": "Giới Thiệu V.V. Auto Repair | Cơ Sở Gia Đình Dallas & Garland",
+      "description": "Tìm hiểu về V.V. Auto Repair — cơ sở gia đình phục vụ Dallas và Garland với giá cả công bằng, thợ máy lành nghề và dịch vụ song ngữ.",
+      "lang": "vi",
       "last_modified": "2026-06-12"
     },
     {
@@ -26,31 +42,26 @@
       "last_modified": "2026-06-12"
     },
     {
-      "url": "https://vvrepair.com/md/brake-repair.md",
-      "canonical_url": "https://vvrepair.com/services/brake-repair",
-      "title": "Brake Repair Dallas TX | V.V. Auto Repair",
-      "description": "Honest brake repair in Dallas, TX. We never upsell — we just fix your brakes right for a fair price. Pads, rotors, calipers, and fluid.",
+      "url": "https://vvrepair.com/md/vi/contact.md",
+      "canonical_url": "https://vvrepair.com/vi/contact",
+      "title": "Liên Hệ V.V. Auto Repair | Địa Điểm Dallas & Garland",
+      "description": "Liên hệ V.V. Auto Repair tại Dallas (214-320-2171) hoặc V.V. Auto Body tại Garland (469-258-9356). Địa chỉ và giờ mở cửa.",
+      "lang": "vi",
       "last_modified": "2026-06-12"
     },
     {
-      "url": "https://vvrepair.com/md/collision-body-repair.md",
-      "canonical_url": "https://vvrepair.com/services/collision-body-repair",
-      "title": "Collision & Body Repair Garland TX | V.V. Auto Body",
-      "description": "Collision and body repair in Garland, TX. Frame straightening, computerized paint matching, dent removal, and insurance claims. Free estimates.",
+      "url": "https://vvrepair.com/md/services.md",
+      "canonical_url": "https://vvrepair.com/services/",
+      "title": "Auto Repair & Body Shop Services | V.V. Auto Dallas & Garland",
+      "description": "Full-service auto repair in Dallas and collision body shop in Garland. Brakes, oil changes, diagnostics, engine repair, state inspections, and collision work.",
       "last_modified": "2026-06-12"
     },
     {
-      "url": "https://vvrepair.com/md/diagnostics.md",
-      "canonical_url": "https://vvrepair.com/services/diagnostics",
-      "title": "Computer Diagnostics Dallas TX | V.V. Auto Repair",
-      "description": "Check engine light on? Accurate computer diagnostics in Dallas, TX. We find the root cause — not just clear the code — and fix it for a fair price.",
-      "last_modified": "2026-06-12"
-    },
-    {
-      "url": "https://vvrepair.com/md/engine-repair.md",
-      "canonical_url": "https://vvrepair.com/services/engine-repair",
-      "title": "Engine Repair Dallas TX | V.V. Auto Repair",
-      "description": "Expert engine repair and rebuilds in Dallas, TX at V.V. Auto Repair. From minor repairs to full rebuilds — honest pricing for domestic and foreign vehicles.",
+      "url": "https://vvrepair.com/md/vi/services.md",
+      "canonical_url": "https://vvrepair.com/vi/services/",
+      "title": "Dịch Vụ Sửa Xe & Đồng Sơn | V.V. Auto Dallas & Garland",
+      "description": "Dịch vụ sửa xe toàn diện tại Dallas và tiệm đồng sơn tại Garland. Phanh, thay nhớt, chẩn đoán, sửa động cơ, kiểm định tiểu bang và sửa tai nạn.",
+      "lang": "vi",
       "last_modified": "2026-06-12"
     },
     {
@@ -61,10 +72,86 @@
       "last_modified": "2026-06-12"
     },
     {
+      "url": "https://vvrepair.com/md/vi/oil-change.md",
+      "canonical_url": "https://vvrepair.com/vi/services/oil-change",
+      "title": "Thay Nhớt & Bảo Dưỡng Dallas TX | V.V. Auto Repair",
+      "description": "Thay nhớt giá tốt tại Dallas, TX. Nhớt tổng hợp hoàn toàn, bán tổng hợp, xe nhiều km và nhớt thường. Mỗi lần thay bao gồm kiểm tra đa điểm miễn phí.",
+      "lang": "vi",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/brake-repair.md",
+      "canonical_url": "https://vvrepair.com/services/brake-repair",
+      "title": "Brake Repair Dallas TX | V.V. Auto Repair",
+      "description": "Honest brake repair in Dallas, TX. We never upsell — we just fix your brakes right for a fair price. Pads, rotors, calipers, and fluid.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/vi/brake-repair.md",
+      "canonical_url": "https://vvrepair.com/vi/services/brake-repair",
+      "title": "Sửa Phanh Dallas TX | V.V. Auto Repair",
+      "description": "Sửa phanh trung thực tại Dallas, TX. Chúng tôi không bao giờ chèo kéo — chỉ sửa đúng cần với giá công bằng. Má phanh, đĩa phanh, caliper và dầu phanh.",
+      "lang": "vi",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/diagnostics.md",
+      "canonical_url": "https://vvrepair.com/services/diagnostics",
+      "title": "Computer Diagnostics Dallas TX | V.V. Auto Repair",
+      "description": "Check engine light on? Accurate computer diagnostics in Dallas, TX. We find the root cause — not just clear the code — and fix it for a fair price.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/vi/diagnostics.md",
+      "canonical_url": "https://vvrepair.com/vi/services/diagnostics",
+      "title": "Chẩn Đoán Máy Tính Dallas TX | V.V. Auto Repair",
+      "description": "Đèn kiểm tra động cơ sáng? Chẩn đoán máy tính chính xác tại Dallas, TX. Chúng tôi tìm nguyên nhân gốc rễ — không chỉ xóa mã lỗi — và sửa với giá công bằng.",
+      "lang": "vi",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/engine-repair.md",
+      "canonical_url": "https://vvrepair.com/services/engine-repair",
+      "title": "Engine Repair Dallas TX | V.V. Auto Repair",
+      "description": "Expert engine repair and rebuilds in Dallas, TX at V.V. Auto Repair. From minor repairs to full rebuilds — honest pricing for domestic and foreign vehicles.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/vi/engine-repair.md",
+      "canonical_url": "https://vvrepair.com/vi/services/engine-repair",
+      "title": "Sửa Động Cơ Dallas TX | V.V. Auto Repair",
+      "description": "Sửa chữa và phục hồi động cơ chuyên nghiệp tại Dallas, TX. Từ sửa nhỏ đến phục hồi hoàn toàn — giá trung thực cho xe Mỹ và xe nhập khẩu.",
+      "lang": "vi",
+      "last_modified": "2026-06-12"
+    },
+    {
       "url": "https://vvrepair.com/md/state-inspection.md",
       "canonical_url": "https://vvrepair.com/services/state-inspection",
       "title": "Texas State Inspection Dallas TX | V.V. Auto Repair",
       "description": "Official Texas state vehicle inspection in Dallas, TX. Quick, accurate, and affordable. V.V. Auto Repair is an authorized Texas vehicle inspection station.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/vi/state-inspection.md",
+      "canonical_url": "https://vvrepair.com/vi/services/state-inspection",
+      "title": "Kiểm Định Xe Tiểu Bang Texas Dallas TX | V.V. Auto Repair",
+      "description": "Kiểm định xe chính thức của tiểu bang Texas tại Dallas, TX. Nhanh chóng, chính xác và giá phải chăng. V.V. Auto Repair là trạm kiểm định xe được ủy quyền tại Texas.",
+      "lang": "vi",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/collision-body-repair.md",
+      "canonical_url": "https://vvrepair.com/services/collision-body-repair",
+      "title": "Collision & Body Repair Garland TX | V.V. Auto Body",
+      "description": "Collision and body repair in Garland, TX. Frame straightening, computerized paint matching, dent removal, and insurance claims. Free estimates.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/vi/collision-body-repair.md",
+      "canonical_url": "https://vvrepair.com/vi/services/collision-body-repair",
+      "title": "Sửa Đồng Sơn & Tai Nạn Garland TX | V.V. Auto Body",
+      "description": "Sửa chữa đồng sơn và tai nạn tại Garland, TX. Nắn khung, sơn theo máy tính, sửa móp và làm hồ sơ bảo hiểm. Ước tính miễn phí.",
+      "lang": "vi",
       "last_modified": "2026-06-12"
     }
   ]

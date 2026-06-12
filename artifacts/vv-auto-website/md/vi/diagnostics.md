@@ -1,6 +1,6 @@
 ---
 title: Chẩn Đoán Máy Tính Dallas TX | V.V. Auto Repair
-description: Đèn kiểm tra động cơ sáng? Chẩn đoán máy tính chính xác tại Dallas, TX. Chúng tôi tìm nguyên nhân gốc rễ — không chỉ xóa mã — và sửa với giá hợp lý.
+description: Đèn kiểm tra động cơ sáng? Chẩn đoán máy tính chính xác tại Dallas, TX. Chúng tôi tìm nguyên nhân gốc rễ — không chỉ xóa mã lỗi — và sửa với giá công bằng.
 lang: vi
 url: https://vvrepair.com/vi/services/diagnostics
 hreflang:
@@ -17,7 +17,7 @@ hreflang:
 
 ---
 
-Đèn kiểm tra động cơ của bạn đang sáng? Đừng đoán mò vấn đề là gì. Thiết bị chẩn đoán máy tính tiên tiến của chúng tôi đọc mã lỗi của xe bạn một cách chính xác, giúp thợ máy xác định chính xác sự cố nhanh chóng và tiết kiệm tiền cho các bộ phận không cần thiết.
+Đèn kiểm tra động cơ của bạn đang sáng? Đừng đoán mò vấn đề là gì. Thiết bị chẩn đoán máy tính tiên tiến của chúng tôi đọc mã lỗi xe chính xác, giúp thợ máy xác định đúng vấn đề nhanh chóng và tiết kiệm tiền cho bạn vì không phải thay phụ tùng không cần thiết.
 
 ---
 
@@ -25,25 +25,25 @@ hreflang:
 
 - Đèn Kiểm Tra Động Cơ
 - Đèn ABS & Túi Khí
-- Sự Cố Hộp Số
-- Vấn Đề Điện
+- Vấn Đề Hộp Số
+- Lỗi Hệ Thống Điện
 
 ---
 
 ## Quy Trình Của Chúng Tôi
 
-Chúng tôi không chỉ xóa mã và để bạn đi. Chúng tôi sử dụng mã lỗi làm điểm xuất phát để kiểm tra thực tế các bộ phận và tìm nguyên nhân gốc rễ của vấn đề.
+Chúng tôi không chỉ xóa mã lỗi rồi để bạn đi. Chúng tôi dùng mã lỗi như điểm khởi đầu để kiểm tra thực tế các bộ phận và tìm ra nguyên nhân gốc rễ của vấn đề.
 
-1. Quét máy tính xe để đọc mã lỗi
+1. Quét máy tính xe để lấy mã lỗi
 2. Kiểm tra thực tế các bộ phận
-3. Báo giá sửa chữa trung thực
-4. Sửa chữa và cài đặt lại hệ thống
+3. Đưa ra ước tính sửa chữa trung thực
+4. Sửa chữa và khởi động lại hệ thống
 
 ---
 
 ## Chúng Tôi Tìm Nguyên Nhân Gốc Rễ
 
-Xe hiện đại được vi tính hóa cao. Khi đèn cảnh báo sáng lên, có nghĩa là máy tính của xe đã phát hiện sự cố. Kiểm tra chẩn đoán là cách duy nhất để biết chính xác điều gì đang hỏng.
+Xe hiện đại được vi tính hóa cao. Khi đèn cảnh báo sáng lên, có nghĩa là máy tính xe đã phát hiện ra vấn đề. Kiểm tra chẩn đoán là cách duy nhất để biết chính xác điều gì đang trục trặc.
 
 ---
 
