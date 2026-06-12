@@ -13,7 +13,8 @@
 /vi/index.md               /md/vi/index.md            200
 /vi/about.md               /md/vi/about.md            200
 /vi/contact.md             /md/vi/contact.md          200
-/vi/services/oil-change.md /md/vi/oil-change.md       200
+/vi/services/oil-change.md             /md/vi/oil-change.md             200
+/vi/services/collision-body-repair.md /md/vi/collision-body-repair.md  200
 
 # Redirect old domains to canonical domain
 https://vvauto.repair/*        https://vvrepair.com/:splat     301
