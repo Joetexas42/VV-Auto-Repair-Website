@@ -22,6 +22,19 @@
 - [Oil Change](https://vvrepair.com/services/oil-change): Conventional and synthetic oil changes with multi-point inspection. · [Markdown mirror](https://vvrepair.com/md/oil-change.md)
 - [State Inspection](https://vvrepair.com/services/state-inspection): Texas state vehicle safety and emissions inspections. · [Markdown mirror](https://vvrepair.com/md/state-inspection.md)
 
+## Vietnamese Pages (Trang Tiếng Việt)
+
+- [Trang Chủ](https://vvrepair.com/vi/): Tổng quan về hai địa điểm, tóm tắt dịch vụ và thông tin liên hệ. · [Markdown mirror](https://vvrepair.com/md/vi/index.md)
+- [Giới Thiệu](https://vvrepair.com/vi/about): Lịch sử doanh nghiệp, quyền sở hữu gia đình, giá trị cộng đồng và dịch vụ song ngữ. · [Markdown mirror](https://vvrepair.com/md/vi/about.md)
+- [Liên Hệ & Địa Điểm](https://vvrepair.com/vi/contact): Địa chỉ, số điện thoại, giờ mở cửa và bản đồ cho Dallas và Garland. · [Markdown mirror](https://vvrepair.com/md/vi/contact.md)
+- [Dịch Vụ](https://vvrepair.com/vi/services/): Danh sách tất cả dịch vụ tại cả hai địa điểm. · [Markdown mirror](https://vvrepair.com/md/vi/services-index.md)
+- [Sửa Chữa Phanh](https://vvrepair.com/vi/services/brake-repair): Kiểm tra phanh, thay bố/đĩa phanh và sửa hệ thống phanh. · [Markdown mirror](https://vvrepair.com/md/vi/brake-repair.md)
+- [Sửa Chữa Tai Nạn & Đồng Sơn](https://vvrepair.com/vi/services/collision-body-repair): Sửa móp, nắn khung, pha màu sơn và làm hồ sơ bảo hiểm (Garland). · [Markdown mirror](https://vvrepair.com/md/vi/collision-body-repair.md)
+- [Chẩn Đoán](https://vvrepair.com/vi/services/diagnostics): Chẩn đoán đèn báo lỗi và cảnh báo bằng máy chuyên nghiệp. · [Markdown mirror](https://vvrepair.com/md/vi/diagnostics.md)
+- [Sửa Chữa Động Cơ](https://vvrepair.com/vi/services/engine-repair): Chẩn đoán, sửa chữa và phục hồi động cơ. · [Markdown mirror](https://vvrepair.com/md/vi/engine-repair.md)
+- [Thay Nhớt](https://vvrepair.com/vi/services/oil-change): Thay nhớt thông thường và tổng hợp kèm kiểm tra đa điểm. · [Markdown mirror](https://vvrepair.com/md/vi/oil-change.md)
+- [Kiểm Định Tiểu Bang](https://vvrepair.com/vi/services/state-inspection): Kiểm định an toàn và khí thải xe tiểu bang Texas. · [Markdown mirror](https://vvrepair.com/md/vi/state-inspection.md)
+
 ## Markdown mirrors
 
 - [/md/index.json](https://vvrepair.com/md/index.json): Machine-readable JSON index listing all Markdown mirror URLs with titles and descriptions.
@@ -34,3 +47,16 @@
 - [/md/engine-repair.md](https://vvrepair.com/md/engine-repair.md): Markdown mirror of the Engine Repair page — engine troubleshooting, repair, and replacement services.
 - [/md/oil-change.md](https://vvrepair.com/md/oil-change.md): Markdown mirror of the Oil Change page — conventional and synthetic oil changes with multi-point inspection.
 - [/md/state-inspection.md](https://vvrepair.com/md/state-inspection.md): Markdown mirror of the State Inspection page — Texas state vehicle safety and emissions inspections.
+
+## Vietnamese Markdown mirrors (Tài liệu Markdown Tiếng Việt)
+
+- [/md/vi/index.md](https://vvrepair.com/md/vi/index.md): Trang chủ bằng Tiếng Việt — tổng quan hai địa điểm, tóm tắt dịch vụ và thông tin liên hệ.
+- [/md/vi/about.md](https://vvrepair.com/md/vi/about.md): Trang giới thiệu bằng Tiếng Việt — lịch sử doanh nghiệp, quyền sở hữu gia đình, giá trị cộng đồng và dịch vụ song ngữ.
+- [/md/vi/contact.md](https://vvrepair.com/md/vi/contact.md): Trang liên hệ bằng Tiếng Việt — địa chỉ, số điện thoại, giờ mở cửa và bản đồ.
+- [/md/vi/services-index.md](https://vvrepair.com/md/vi/services-index.md): Trang dịch vụ bằng Tiếng Việt — danh sách tất cả dịch vụ tại Dallas và Garland.
+- [/md/vi/brake-repair.md](https://vvrepair.com/md/vi/brake-repair.md): Trang sửa chữa phanh bằng Tiếng Việt — bố phanh, đĩa phanh, cùm phanh và dầu phanh.
+- [/md/vi/collision-body-repair.md](https://vvrepair.com/md/vi/collision-body-repair.md): Trang đồng sơn bằng Tiếng Việt — nắn khung, pha màu sơn, xóa móp và làm hồ sơ bảo hiểm (Garland).
+- [/md/vi/diagnostics.md](https://vvrepair.com/md/vi/diagnostics.md): Trang chẩn đoán bằng Tiếng Việt — chẩn đoán đèn báo lỗi và cảnh báo bằng máy chuyên nghiệp.
+- [/md/vi/engine-repair.md](https://vvrepair.com/md/vi/engine-repair.md): Trang sửa chữa động cơ bằng Tiếng Việt — chẩn đoán, sửa chữa và phục hồi động cơ.
+- [/md/vi/oil-change.md](https://vvrepair.com/md/vi/oil-change.md): Trang thay nhớt bằng Tiếng Việt — thay nhớt thông thường và tổng hợp kèm kiểm tra đa điểm.
+- [/md/vi/state-inspection.md](https://vvrepair.com/md/vi/state-inspection.md): Trang kiểm định tiểu bang bằng Tiếng Việt — kiểm định an toàn và khí thải xe tiểu bang Texas.
