@@ -1,0 +1,16 @@
+name = "vv-auto-repair-website"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "./artifacts/vv-auto-website"
+
+# ──────────────────────────────────────────────────────────────
+# Cloudflare Pages deployment
+# ──────────────────────────────────────────────────────────────
+# On the Cloudflare Pages "Set up your application" screen:
+#   Build command:  (leave blank — no build step needed)
+#   Deploy command: npx wrangler pages deploy artifacts/vv-auto-website --project-name=vv-auto-repair-website
+#
+# Every push to the main branch triggers a new deploy automatically
+# once the GitHub integration is enabled in the Cloudflare dashboard.
+# ──────────────────────────────────────────────────────────────

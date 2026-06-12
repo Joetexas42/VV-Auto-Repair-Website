@@ -40,6 +40,16 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 _Populate as you build — sharp edges, "always run X before Y" rules._
 
+## Cloudflare Pages deployment
+
+The static website (`artifacts/vv-auto-website`) is configured for Cloudflare Pages via `wrangler.toml` at the repo root.
+
+On the Cloudflare Pages **"Set up your application"** screen:
+- **Build command**: *(leave blank)*
+- **Deploy command**: `npx wrangler pages deploy artifacts/vv-auto-website --project-name=vv-auto-repair-website`
+
+Once the GitHub integration is enabled in the Cloudflare dashboard, every push to `main` triggers a new deploy automatically.
+
 ## Pointers
 
 - See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
