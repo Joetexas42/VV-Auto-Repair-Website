@@ -42,6 +42,17 @@ https://www.vvrepiar.com/*     https://vvrepair.com/:splat     301
 /services/oil-change            /services/oil-change.html            200
 /services/state-inspection      /services/state-inspection.html      200
 
+/vi/index.html                       /vi/                                    301
+/vi/about.html                       /vi/about                               301
+/vi/contact.html                     /vi/contact                             301
+/vi/services/index.html              /vi/services/                           301
+/vi/services/brake-repair.html          /vi/services/brake-repair          301
+/vi/services/collision-body-repair.html /vi/services/collision-body-repair 301
+/vi/services/diagnostics.html           /vi/services/diagnostics           301
+/vi/services/engine-repair.html         /vi/services/engine-repair         301
+/vi/services/oil-change.html            /vi/services/oil-change            301
+/vi/services/state-inspection.html      /vi/services/state-inspection      301
+
 /vi             /vi/                 301
 /vi/            /vi/index.html       200
 /vi/about       /vi/about.html       200
