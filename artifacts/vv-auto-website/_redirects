@@ -2,7 +2,12 @@
 /index.md               /md/index.md            200
 /about.md               /md/about.md            200
 /contact.md             /md/contact.md          200
-/services/oil-change.md /md/oil-change.md       200
+/services/oil-change.md             /md/oil-change.md             200
+/services/brake-repair.md          /md/brake-repair.md           200
+/services/diagnostics.md           /md/diagnostics.md            200
+/services/engine-repair.md         /md/engine-repair.md          200
+/services/state-inspection.md      /md/state-inspection.md       200
+/services/collision-body-repair.md /md/collision-body-repair.md  200
 
 # Markdown-for-Agents: Vietnamese mirrors
 /vi/index.md               /md/vi/index.md            200
