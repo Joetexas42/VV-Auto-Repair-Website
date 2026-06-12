@@ -220,7 +220,7 @@
             ];
             var all = dallas.concat(garland);
             var result = loc === 'dallas' ? dallas : loc === 'garland' ? garland : all;
-            return Promise.resolve({ services: result, services_index: 'https://vvrepair.com/services/' });
+            return Promise.resolve({ services: result, services_index: 'https://vvrepair.com/services/', markdown_index: 'https://vvrepair.com/md/index.json' });
           }
         },
         {

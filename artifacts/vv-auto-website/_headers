@@ -2,6 +2,10 @@
   Link: <https://vvrepair.com/api/.well-known/api-catalog>; rel="api-catalog"
   Link: <https://vvrepair.com/api/auth.md>; rel="service-doc"
 
+/md/index.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=3600
+
 /md/*
   Content-Type: text/markdown; charset=utf-8
   Cache-Control: public, max-age=3600

@@ -1,0 +1,36 @@
+{
+  "title": "V.V. Auto Repair — Markdown Content Index",
+  "description": "Machine-readable index of all Markdown mirrors of V.V. Auto Repair website pages, intended for AI agents and crawlers.",
+  "index_url": "https://vvrepair.com/md/index.json",
+  "generated": "2026-06-12",
+  "pages": [
+    {
+      "url": "https://vvrepair.com/md/index.md",
+      "canonical_url": "https://vvrepair.com/",
+      "title": "V.V. Auto Repair & Body Shop | Dallas & Garland TX",
+      "description": "Honest family-owned auto repair in Dallas and collision body shop in Garland. Mechanics, diagnostics, brakes, oil changes, and paint.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/about.md",
+      "canonical_url": "https://vvrepair.com/about",
+      "title": "About V.V. Auto Repair | Family-Owned Dallas & Garland",
+      "description": "Learn about V.V. Auto Repair — a family-owned mechanic shop serving Dallas and Garland with honest pricing, expert mechanics, and bilingual service.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/contact.md",
+      "canonical_url": "https://vvrepair.com/contact",
+      "title": "Contact V.V. Auto Repair | Dallas & Garland Locations",
+      "description": "Contact V.V. Auto Repair in Dallas (214-320-2171) or V.V. Auto Body in Garland (469-258-9356). Get directions and hours for both locations.",
+      "last_modified": "2026-06-12"
+    },
+    {
+      "url": "https://vvrepair.com/md/oil-change.md",
+      "canonical_url": "https://vvrepair.com/services/oil-change",
+      "title": "Oil Change & Maintenance Dallas TX | V.V. Auto Repair",
+      "description": "Affordable oil changes in Dallas, TX. Full synthetic, synthetic blend, high mileage, and conventional options. Every change includes a free multi-point inspection.",
+      "last_modified": "2026-06-12"
+    }
+  ]
+}
