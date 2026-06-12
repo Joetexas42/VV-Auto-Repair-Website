@@ -21,3 +21,16 @@
 - [Engine Repair](https://vvrepair.com/services/engine-repair): Engine troubleshooting, repair, and replacement services. · [Markdown mirror](https://vvrepair.com/md/engine-repair.md)
 - [Oil Change](https://vvrepair.com/services/oil-change): Conventional and synthetic oil changes with multi-point inspection. · [Markdown mirror](https://vvrepair.com/md/oil-change.md)
 - [State Inspection](https://vvrepair.com/services/state-inspection): Texas state vehicle safety and emissions inspections. · [Markdown mirror](https://vvrepair.com/md/state-inspection.md)
+
+## Markdown mirrors
+
+- [/md/index.json](https://vvrepair.com/md/index.json): Machine-readable JSON index listing all Markdown mirror URLs with titles and descriptions.
+- [/md/index.md](https://vvrepair.com/md/index.md): Markdown mirror of the home page — overview of both locations, services summary, and contact options.
+- [/md/about.md](https://vvrepair.com/md/about.md): Markdown mirror of the About page — business history, family ownership, community values, and bilingual service.
+- [/md/contact.md](https://vvrepair.com/md/contact.md): Markdown mirror of the Contact & Locations page — addresses, phone numbers, hours, and maps.
+- [/md/brake-repair.md](https://vvrepair.com/md/brake-repair.md): Markdown mirror of the Brake Repair page — pads, rotors, calipers, and brake fluid service.
+- [/md/collision-body-repair.md](https://vvrepair.com/md/collision-body-repair.md): Markdown mirror of the Collision & Body Repair page — frame work, paint matching, dent removal, and insurance claims (Garland).
+- [/md/diagnostics.md](https://vvrepair.com/md/diagnostics.md): Markdown mirror of the Diagnostics page — check-engine and warning-light diagnosis using professional scan tools.
+- [/md/engine-repair.md](https://vvrepair.com/md/engine-repair.md): Markdown mirror of the Engine Repair page — engine troubleshooting, repair, and replacement services.
+- [/md/oil-change.md](https://vvrepair.com/md/oil-change.md): Markdown mirror of the Oil Change page — conventional and synthetic oil changes with multi-point inspection.
+- [/md/state-inspection.md](https://vvrepair.com/md/state-inspection.md): Markdown mirror of the State Inspection page — Texas state vehicle safety and emissions inspections.
