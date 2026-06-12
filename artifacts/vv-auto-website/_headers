@@ -1,0 +1,7 @@
+/*
+  Link: <https://vvrepair.com/api/.well-known/api-catalog>; rel="api-catalog"
+  Link: <https://vvrepair.com/api/auth.md>; rel="service-doc"
+
+/md/*
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600

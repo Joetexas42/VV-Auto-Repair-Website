@@ -1,3 +1,9 @@
+# Markdown-for-Agents: convenience URLs for .md mirrors
+/index.md               /md/index.md            200
+/about.md               /md/about.md            200
+/contact.md             /md/contact.md          200
+/services/oil-change.md /md/oil-change.md       200
+
 # Redirect old domains to canonical domain
 https://vvauto.repair/*        https://vvrepair.com/:splat     301
 https://www.vvauto.repair/*    https://vvrepair.com/:splat     301
