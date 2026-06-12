@@ -42,13 +42,24 @@ _Populate as you build — sharp edges, "always run X before Y" rules._
 
 ## Cloudflare Pages deployment
 
-The static website (`artifacts/vv-auto-website`) is configured for Cloudflare Pages via `wrangler.toml` at the repo root.
+The static website (`artifacts/vv-auto-website`) deploys automatically via `.github/workflows/deploy.yml` whenever code is pushed to `main`. The Cloudflare Pages project name is `vv-auto-repair-website` (set in `wrangler.toml`).
 
-On the Cloudflare Pages **"Set up your application"** screen:
-- **Build command**: *(leave blank)*
-- **Deploy command**: `npx wrangler pages deploy artifacts/vv-auto-website --project-name=vv-auto-repair-website`
+### One-time setup — add these two secrets to the GitHub repo
 
-Once the GitHub integration is enabled in the Cloudflare dashboard, every push to `main` triggers a new deploy automatically.
+Go to **GitHub → Settings → Secrets and variables → Actions → New repository secret** and add:
+
+| Secret name | Where to find the value |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → Create Token → use the **Edit Cloudflare Workers** template, then scope it to your account |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → right-hand sidebar on any domain page (or Workers & Pages overview) |
+
+Once those secrets are in place, every push to `main` triggers a new deploy automatically — no manual steps needed.
+
+### Manual one-off deploy (optional)
+
+```
+npx wrangler pages deploy artifacts/vv-auto-website --project-name=vv-auto-repair-website
+```
 
 ## Pointers
 
