@@ -13,7 +13,7 @@ hreflang:
 
 **Địa điểm:** Tiệm Dallas · 11366 Jupiter Rd, Dallas, TX 75218  
 **Điện thoại:** [214-320-2171](tel:2143202171)  
-**Giờ mở cửa:** Thứ Hai–Thứ Sáu, 8:00sáng–6:00chiều · Không cần đặt lịch hẹn
+**Giờ mở cửa:** Thứ Hai–Thứ Sáu, 8:00sáng–6:00chiều · Thứ Bảy–Chủ Nhật: Đóng cửa
 
 ---
 
