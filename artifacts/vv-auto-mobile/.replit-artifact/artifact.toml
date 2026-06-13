@@ -19,8 +19,12 @@ localPort = 24691
 run = "pnpm --filter @workspace/vv-auto-mobile run dev"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/vv-auto-mobile", "run", "build" ]
-run = [ "pnpm", "--filter", "@workspace/vv-auto-mobile", "run", "serve" ]
+
+[services.production.build]
+args = ["pnpm", "--filter", "@workspace/vv-auto-mobile", "run", "build"]
+
+[services.production.run]
+args = ["pnpm", "--filter", "@workspace/vv-auto-mobile", "run", "serve"]
 
 [services.env]
 PORT = "24691"
