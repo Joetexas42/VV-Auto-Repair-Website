@@ -9,6 +9,7 @@
 - API server implementation in `artifacts/api-server/**` except where it affects public crawlability
 - Mobile app artifacts in `artifacts/vv-auto-mobile/**`
 - Internal tooling, build tooling, and test-only files
+- Attribution page `/built-by` because `robots.txt` intentionally disallows it
 
 ## Target audience
 - Local customers in Dallas and Garland, Texas looking for auto repair, diagnostics, maintenance, collision repair, and bilingual English/Vietnamese service.
